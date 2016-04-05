@@ -1,0 +1,94 @@
+﻿@{
+    Layout = "_DocumentLayout";
+}
+<div class="col-md-8 doc-main" role="main">
+    <div class="bs-docs-section">
+        <h1 id="overview" class="page-header"><a class="anchorjs-link " href="#overview" aria-label="Anchor link for: overview" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>Refresh Token</h1>
+
+        <h2 id="overview-relation"><a class="anchorjs-link " href="#overview-relation" aria-label="Anchor link for: overview doctype" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>简介</h2>
+        <p> 对于从旗开得胜申请到的授权，无论其采用Authorization Code、Reource Owner Password Credentials、Client Credentials中的哪一个去获取Access Token，都会拿到一个有效期为一天的Access Token和有效期为一个月的Refresh Token对于这些应用，只要用户在1个月内登陆应用，应用就可以使用Refresh Token刷新以获得新的Access Token（新的Refresh Token也会同时下发），从而达到持续获取数据的目的。</p>
+        
+        <h2 id="overview-request"><a class="anchorjs-link " href="#overview-pre" aria-label="Anchor link for: overview mobile" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>获取Access Token</h2>
+        <h3>请求数据包格式</h3>
+        <p>使用Refresh Token刷新以获得新的Access Token，需要应用在其服务端发送请求（推荐用POST方法）到旗开得胜OAuth2.0授权服务的“https://openapi.kehu1688.com/token”地址上，并带上以下参数：</p>
+        <ul>
+            <li><strong>grant_type：</strong> 必须参数，固定为“refresh_token”；</li>
+            <li><strong>refresh_token：</strong> 必须参数，用于刷新Access Token用的Refresh Token。注意一个Refresh Token只能被用来刷新一次；</li>
+            <li><strong>client_id：</strong> 必须参数，应用的API Key；</li>
+            <li><strong>client_secret：</strong> 必须参数，应用的Secret Key;</li>
+        </ul>
+        <p>
+            例如：
+        </p>
+        <div class="highlight">
+            <pre><code>
+    https://openapi.kehu1688.com/token?
+    grant_type=refresh_token&
+    refresh_token=2.e8b7dbabc28f731035f771b8d15063f23.5184000.1292922000-2346678-124328&
+    client_id=Va5yQRHlA4Fq4eR3LT0vuXV4&
+    client_secret= 0rDSjzQ20XUj5itV7WRtznPQSzr5pVw2
+           </code>
+           </pre>
+        </div>
+
+        <h3 id="overview-pre">响应数据包格式</h3>
+        <p>若参数无误，服务器将返回一段JSON文本，包含以下参数：</p>
+        <ul>
+            <li><strong>access_token：</strong>要获取的Access Token；</li>
+            <li><strong>expires_in：</strong>Access Token的有效期，以秒为单位；</li>
+            <li><strong>refresh_token：</strong>用于刷新Access Token 的 Refresh Token,并不是所有应用都会返回该参数；</li>
+        </ul>
+        <p>例如：</p>
+        <div class="highlight">
+            <pre><code>
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+    Cache-Control: no-store
+ 
+    {
+        "access_token": "1.a6b7dbd428f731035f771b8d15063f61.86400.1292922000-2346678-124328",
+        "expires_in": 86400,
+        "refresh_token": "2.af3d55f8615fdfd9edb7c4b5ebdc3e32.604800.1293440400-2346678-124328"
+    }
+            </code></pre>
+        </div>
+
+        <p>若请求错误，服务器将返回一段JSON文本，包含以下参数：</p>
+        <ul>
+            <li><strong>error：</strong>错误码；</li>
+            <li><strong>error_description：</strong>错误描述信息，用来帮助理解和解决发生的错误。；</li>
+        </ul>
+        <p> 例如：</p>
+        <div>
+            <pre><code>
+    HTTP/1.1 400 Bad Request
+    Content-Type: application/json
+    Cache-Control: no-store
+    
+    {
+        "error": "invalid_grant",
+        "error_description": "refresh token has been used"
+    }
+            </code></pre>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-2 catalog" role="complementary">
+    <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm" data-spy="affix" data-offset-top="30" data-offset-bottom="200">
+        <ul class="nav bs-docs-sidenav">
+            <li class="">
+                <strong>目录</strong>
+            </li>
+            <li class="">
+                <a href="#overview">简介</a>
+            </li>
+            <li class="">
+                <a href="#overview-request">获取Access Token</a>
+            </li>
+            <li class="">
+                <a href="#overview-pre">响应数据包格式</a>
+            </li>
+        </ul>
+    </nav>
+</div>

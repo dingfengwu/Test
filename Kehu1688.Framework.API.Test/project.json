@@ -1,0 +1,35 @@
+{
+  "version": "1.0.0-*",
+  "description": "�м������",
+  "authors": [ "WDF" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "dependencies": {
+    "xunit": "2.1.0",
+    "xunit.runner.dnx": "2.1.0-rc1-build204",
+    "Microsoft.AspNet.TestHost": "1.0.0-rc1-final",
+    "Kehu1688.Framework.Base": "1.0.0-*",
+    "Kehu1688.Framework.Middleware": "1.0.0-*",
+    "Kehu1688.Framework.API": "1.0.0-*",
+    "Kehu1688.Framework.DI": "1.0.0-*",
+    "Kehu1688.Framework.Permission": "1.0.0-*",
+    "Kehu1688.Framework.Permission.Service": "1.0.0-*",
+    "Kehu1688.Framework.Store": "1.0.0-*"
+  },
+  "commands": {
+    "test": "xunit.runner.dnx"
+  },
+  "frameworks": {
+    "dnx451": { },
+    "dnxcore50": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-beta-23516",
+        "System.Collections": "4.0.11-beta-23516",
+        "System.Linq": "4.0.1-beta-23516",
+        "System.Runtime": "4.0.21-beta-23516",
+        "System.Threading": "4.0.11-beta-23516"
+      }
+    }
+  }
+}

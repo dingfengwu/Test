@@ -1,0 +1,60 @@
+﻿@{
+    Layout = "_DocumentLayout";
+}
+<div class="col-md-8 doc-main" role="main">
+    <div class="bs-docs-section">
+        <h1 id="overview" class="page-header"><a class="anchorjs-link " href="#overview" aria-label="Anchor link for: overview" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>授权错误响应</h1>
+        <p>旗开得胜OAuth2.0在接受验证授权请求时，授权服务器会按照OAuth2.0协议对本次请求参数、请求头部进行检验，若请求不合法或验证未通过，授权服务器会返回相应的错误信息。 </p>
+
+        <h2 id="overview-relation"><a class="anchorjs-link " href="#overview-relation" aria-label="Anchor link for: overview doctype" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>错误码返回信息简介</h2>
+        <p>错误码返回方式为一段JSON文本，包含以下字段：</p>
+        <ul>
+            <li><strong>ErrorCode：</strong>错误码； </li>
+            <li><strong>ErrorMsg：</strong>错误描述信息，用来帮助理解和解决发生的错误。</li>
+        </ul>
+        <p>例如：</p>
+        <div class="highlight">
+            <pre><code class="language-html" data-lang="html">
+    HTTP/1.1 400 Bad Request
+    Content-Type: application/json
+    Cache-Control: no-store
+    
+    {
+        "error": "invalid_grant",
+        "error_description": "Invalid authorization code: ANXxSNjwQDugOnqeikRMu2bKaXCdlLxn"
+    }
+           </code></pre>
+        </div>
+
+        <p>OAuth 2.0错误码列表</p>
+        <table class="table table-bordered table-striped responsive-utilities">
+            <thead>
+                <tr>
+                    <th>错误码</th>
+                    <th>错误信息</th>
+                    <th>详细描述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">2001</th>
+                    <td class="is-visible">xxx</td>
+                    <td class="is-hidden">又称Web Server Flow，适用于所有有Server端配合的应用。</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="col-md-2 catalog" role="complementary">
+    <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm" data-spy="affix" data-offset-top="30" data-offset-bottom="200">
+        <ul class="nav bs-docs-sidenav">
+            <li class="">
+                <strong>目录</strong>
+            </li>
+            <li class="">
+                <a href="#overview">授权错误响应</a>
+            </li>
+        </ul>
+    </nav>
+</div>

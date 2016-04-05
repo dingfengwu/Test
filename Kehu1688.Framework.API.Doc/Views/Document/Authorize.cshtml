@@ -1,0 +1,103 @@
+﻿@{
+    Layout = "_DocumentLayout";
+}
+
+<div class="col-md-8 doc-main" role="main">
+    <div class="bs-docs-section">
+        <h1 id="overview" class="page-header"><a class="anchorjs-link " href="#overview" aria-label="Anchor link for: overview" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>旗开得胜OAuth 2.0</h1>
+
+        <h2 id="overview-relation"><a class="anchorjs-link " href="#overview-relation" aria-label="Anchor link for: overview doctype" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>相关概念</h2>
+        <p>OAuth2.0（开放授权）是一个开放标准，用户授权后，第三方应用无需获取用户的用户名和密码就可以访问该用户在某一网站上存储的私密的资源（如照片，视频，联系人列表）。</p>
+        <p>Access Token：用户身份验证和授权的凭证。第三方应用在调用旗开得胜API之前，首先需要获取Access Token。</p>
+
+        <h2 id="overview-pre"><a class="anchorjs-link " href="#overview-pre" aria-label="Anchor link for: overview mobile" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>使用前的准备</h2>
+        <ul>
+            <li>您需要创建一个应用以获取API Key（client_id）和Secret Key（client_secret），申请方式见<a href="#create_app">创建应用</a></li>
+        </ul>
+
+        <h2 id="overview-authorize-style"><a class="anchorjs-link " href="#overview-authorize-style" aria-label="Anchor link for: overview type links" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>旗开得胜支持的OAuth授权方式</h2>
+        <p>目前，旗开得胜OAuth2.0支持三种获取Access Token的流程和一种刷新获取AccessToken方式，第三方可根据需求选取合适的方式：</p>
+        <ul>
+            <li><strong>实现方式：</strong>返回给第三方一天有效期的Access Token + 一个月有效期的Refresh Token。</li>
+            <li><strong>实现原理：</strong>Refresh Token的作用就是在Token有效期截止前，刷新以获取新的Access Token。</li>
+        </ul>
+        <table class="table table-bordered table-striped responsive-utilities">
+            <thead>
+                <tr>
+                    <th>获取途径</th>
+                    <th>授权流程</th>
+                    <th>介络</th>
+                    <th>有效期</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row" rowspan="3" width="120px">新获取</th>
+                    <td class="is-visible"><a asp-controller="Document" asp-action="AuthorizeCode" target="_blank">Authorization Code</a></td>
+                    <td class="is-hidden">又称Web Server Flow，适用于所有有Server端配合的应用。</td>
+                    <td class="is-hidden">有效期一天的Access Token+有效期一个月的Refresh Token。</td>
+                </tr>
+                <tr>
+                    <td class="is-hidden"><a asp-controller="Document" asp-action="ImplicitGrant" target="_blank">Implicit Grant</a></td>
+                    <td class="is-hidden">又称User-Agent Flow，适用于所有无Server端配合的应用（桌面客户端需要内嵌浏览器）。</td>
+                    <td class="is-visible">有效期一个月的Access Token+有效期一个月的Refresh Token。</td>
+                </tr>
+                <tr>
+                    <td class="is-hidden"><a asp-controller="Document" asp-action="ClientCredentials" target="_blank">Client Credentials</a></td>
+                    <td class="is-visible">即采用应用公钥、密钥获取Access Token，适用于任何带server类型应用。 </td>
+                    <td class="is-hidden">有效期一天的Access Token+有效期一个月的Refresh Token。</td>
+                </tr>
+                <tr>
+                    <td>刷新Token</td>
+                    <td class="is-hidden"><a asp-controller="Document" asp-action="RefreshToken" target="_blank">Refresh Token</a></td>
+                    <td class="is-visible">Access Token刷新方式，适用于所有有Server端配合的应用 。</td>
+                    <td class="is-hidden">一个月有效期</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 id="overview-display-style"><a class="anchorjs-link " href="#overview-authorize-style" aria-label="Anchor link for: overview type links" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>授权展示方式</h2>
+        <p>请求用户授权时旗开得胜提供了一个在OAuth2.0协议中没有提到的参数：display。它是用来标识不同形式的客户端所对应的不同展现形式的授权页面,其值定义如下：</p>
+        <ul>
+            <li>page：全屏形式的授权页面(默认)，适用于web应用。</li>
+            <li>popup: 弹框形式的授权页面，适用于桌面软件应用和web应用。</li>
+            <li>dialog:浮层形式的授权页面，只能用于站内web应用。</li>
+            <li>mobile: Iphone/Android等智能移动终端上用的授权页面，适用于Iphone/Android等智能移动终端上的应用。</li>
+            <li>pad: IPad/Android等智能平板电脑使用的授权页面。</li>
+        </ul>
+
+        <h2 id="overview-callback-url"><a class="anchorjs-link " href="#overview-authorize-style" aria-label="Anchor link for: overview type links" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>授权回调地址</h2>
+        <p>为确保验证授权过程的安全，开发者必须在开发者中心预先注册应用所在的域名或URL，用以OAuth2.0检验授权请求中的“redirect_uri”参数。以便保证OAuth2.0在回调过程中，会回调到安全域名。支持至多十个授权回调地址。</p>
+
+        <h2 id="overview-right-setting"><a class="anchorjs-link " href="#overview-authorize-style" aria-label="Anchor link for: overview type links" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>授权权限列表</h2>
+        <p>每一个Access Token代表“一个用户”授予“一个应用”的“一系列数据访问操作权限”，具体权限设置请参考<a href="#">旗开得胜CRM手册</a></p>
+    </div>
+</div>
+
+<div class="col-md-2 catalog" role="complementary">
+    <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm" data-spy="affix" data-offset-top="30" data-offset-bottom="200">
+        <ul class="nav bs-docs-sidenav">
+            <li class="">
+                <strong>目录</strong>
+            </li>
+            <li class="">
+                <a href="#overview-relation">1 相关概念</a>
+            </li>
+            <li class="">
+                <a href="#overview-pre">2 使用准备</a>
+            </li>
+            <li class="">
+                <a href="#overview-authorize-style">3 支持的授权方式</a>
+            </li>
+            <li class="">
+                <a href="#overview-display-style">4 授权展示方式</a>
+            </li>
+            <li class="">
+                <a href="#overview-right-setting">5 授权回调地址</a>
+            </li>
+            <li>
+                <a href="#overview-callback-url">6 授权权限列表</a>
+            </li>
+        </ul>
+    </nav>
+</div>

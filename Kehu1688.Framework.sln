@@ -1,0 +1,107 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.Base", "Kehu1688.Framework.Base\Kehu1688.Framework.Base.xproj", "{6E386222-257F-4DFD-B3BC-8B42D6BB4DE1}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.Store", "Kehu1688.Framework.Store\Kehu1688.Framework.Store.xproj", "{DFD41F65-3BBF-449F-9350-7A811DE73826}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{25BC12DB-296C-4383-A086-3110D25DC385}"
+	ProjectSection(SolutionItems) = preProject
+		Kehu1688.Framework.Base\global.json = Kehu1688.Framework.Base\global.json
+		Kehu1688.Framework.Store\global.json = Kehu1688.Framework.Store\global.json
+		Kehu1688.Framework.Permission\global.json = Kehu1688.Framework.Permission\global.json
+		Kehu1688.Framework.Permission.Service\global.json = Kehu1688.Framework.Permission.Service\global.json
+		Kehu1688.Framework.DI\global.json = Kehu1688.Framework.DI\global.json
+		Kehu1688.Framework.API\global.json = Kehu1688.Framework.API\global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.Permission.Service", "Kehu1688.Framework.Permission.Service\Kehu1688.Framework.Permission.Service.xproj", "{36295C3F-1630-411B-AF34-0380E38804BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01Base", "01Base", "{747D054B-901A-4002-9488-BCDD50F199A8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03Business", "03Business", "{3CBB30B8-3292-49FE-B949-3316411D31CD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04Project", "04Project", "{AB412132-209A-46A1-8B41-F408184AB556}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.DI", "Kehu1688.Framework.DI\Kehu1688.Framework.DI.xproj", "{F5617FB4-8A28-45FE-9795-B94A889FA600}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.Permission", "Kehu1688.Framework.Permission\Kehu1688.Framework.Permission.xproj", "{5D17CF54-A0F2-412E-97F2-439FB027F4EA}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.API", "Kehu1688.Framework.API\Kehu1688.Framework.API.xproj", "{5117FE33-21FE-4C88-8260-079CA38B2323}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02Compact", "02Compact", "{40BDA379-F074-49AD-A7E8-82DCE7963FC9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{A8B71748-6410-4AB1-AB26-08A71148C7F2}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.API.Test", "Kehu1688.Framework.API.Test\Kehu1688.Framework.API.Test.xproj", "{E6F47FFC-439F-4D13-9BCC-909D7E47CDFE}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.Middleware", "Kehu1688.Framework.Middleware\Kehu1688.Framework.Middleware.xproj", "{BA308712-11CD-4E63-B3A6-4117A2DA6263}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{2EF2BAC1-4481-40E3-862A-2B7EE2743A73}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.API.Doc", "Kehu1688.Framework.API.Doc\Kehu1688.Framework.API.Doc.xproj", "{0D1EC740-314E-440F-A26C-E29B2886F594}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E386222-257F-4DFD-B3BC-8B42D6BB4DE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E386222-257F-4DFD-B3BC-8B42D6BB4DE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E386222-257F-4DFD-B3BC-8B42D6BB4DE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E386222-257F-4DFD-B3BC-8B42D6BB4DE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFD41F65-3BBF-449F-9350-7A811DE73826}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFD41F65-3BBF-449F-9350-7A811DE73826}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFD41F65-3BBF-449F-9350-7A811DE73826}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFD41F65-3BBF-449F-9350-7A811DE73826}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36295C3F-1630-411B-AF34-0380E38804BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36295C3F-1630-411B-AF34-0380E38804BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36295C3F-1630-411B-AF34-0380E38804BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36295C3F-1630-411B-AF34-0380E38804BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5617FB4-8A28-45FE-9795-B94A889FA600}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5617FB4-8A28-45FE-9795-B94A889FA600}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5617FB4-8A28-45FE-9795-B94A889FA600}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5617FB4-8A28-45FE-9795-B94A889FA600}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D17CF54-A0F2-412E-97F2-439FB027F4EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D17CF54-A0F2-412E-97F2-439FB027F4EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D17CF54-A0F2-412E-97F2-439FB027F4EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D17CF54-A0F2-412E-97F2-439FB027F4EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5117FE33-21FE-4C88-8260-079CA38B2323}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5117FE33-21FE-4C88-8260-079CA38B2323}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5117FE33-21FE-4C88-8260-079CA38B2323}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5117FE33-21FE-4C88-8260-079CA38B2323}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6F47FFC-439F-4D13-9BCC-909D7E47CDFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6F47FFC-439F-4D13-9BCC-909D7E47CDFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6F47FFC-439F-4D13-9BCC-909D7E47CDFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6F47FFC-439F-4D13-9BCC-909D7E47CDFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA308712-11CD-4E63-B3A6-4117A2DA6263}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA308712-11CD-4E63-B3A6-4117A2DA6263}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA308712-11CD-4E63-B3A6-4117A2DA6263}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA308712-11CD-4E63-B3A6-4117A2DA6263}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D1EC740-314E-440F-A26C-E29B2886F594}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D1EC740-314E-440F-A26C-E29B2886F594}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D1EC740-314E-440F-A26C-E29B2886F594}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D1EC740-314E-440F-A26C-E29B2886F594}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6E386222-257F-4DFD-B3BC-8B42D6BB4DE1} = {747D054B-901A-4002-9488-BCDD50F199A8}
+		{DFD41F65-3BBF-449F-9350-7A811DE73826} = {747D054B-901A-4002-9488-BCDD50F199A8}
+		{36295C3F-1630-411B-AF34-0380E38804BB} = {3CBB30B8-3292-49FE-B949-3316411D31CD}
+		{747D054B-901A-4002-9488-BCDD50F199A8} = {2EF2BAC1-4481-40E3-862A-2B7EE2743A73}
+		{3CBB30B8-3292-49FE-B949-3316411D31CD} = {2EF2BAC1-4481-40E3-862A-2B7EE2743A73}
+		{AB412132-209A-46A1-8B41-F408184AB556} = {2EF2BAC1-4481-40E3-862A-2B7EE2743A73}
+		{F5617FB4-8A28-45FE-9795-B94A889FA600} = {AB412132-209A-46A1-8B41-F408184AB556}
+		{5D17CF54-A0F2-412E-97F2-439FB027F4EA} = {3CBB30B8-3292-49FE-B949-3316411D31CD}
+		{5117FE33-21FE-4C88-8260-079CA38B2323} = {AB412132-209A-46A1-8B41-F408184AB556}
+		{40BDA379-F074-49AD-A7E8-82DCE7963FC9} = {2EF2BAC1-4481-40E3-862A-2B7EE2743A73}
+		{E6F47FFC-439F-4D13-9BCC-909D7E47CDFE} = {A8B71748-6410-4AB1-AB26-08A71148C7F2}
+		{BA308712-11CD-4E63-B3A6-4117A2DA6263} = {40BDA379-F074-49AD-A7E8-82DCE7963FC9}
+		{0D1EC740-314E-440F-A26C-E29B2886F594} = {AB412132-209A-46A1-8B41-F408184AB556}
+	EndGlobalSection
+EndGlobal

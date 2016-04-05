@@ -1,0 +1,160 @@
+﻿@{
+    Layout = "_DocumentLayout";
+}
+<div class="col-md-8 doc-main" role="main">
+    <div class="bs-docs-section">
+        <h1 id="overview" class="page-header"><a class="anchorjs-link " href="#overview" aria-label="Anchor link for: overview" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>Authorization Code授权</h1>
+
+        <h2 id="overview-relation"><a class="anchorjs-link " href="#overview-relation" aria-label="Anchor link for: overview doctype" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>简介</h2>
+        <p>采用Authorization Code获取Access Token的授权验证流程又被称为Web Server Flow，适用于所有有Server端的应用，如Web/Wap站点、有Server端的手机/桌面客户端应用等。其流程示意图如下：</p>
+        <pre><code>
+         +----------+
+         | Resource |
+         |   Owner  |
+         |          |
+         +----------+
+              ^
+              |
+             (B)
+         +----|-----+          Client Identifier      +---------------+
+         |         -+----(A)-- & Redirection URI ---->|               |
+         |  User-   |                                 | Authorization |
+         |  Agent  -+----(B)-- User authenticates --->|     Server    |
+         |          |                                 |               |
+         |         -+----(C)-- Authorization Code ---<|               |
+         +-|----|---+                                 +---------------+
+           |    |                                         ^      v
+          (A)  (C)                                        |      |
+           |    |                                         |      |
+           ^    v                                         |      |
+         +---------+                                      |      |
+         |         |>---(D)-- Authorization Code ---------'      |
+         |  Client |          & Redirection URI                  |
+         |         |                                             |
+         |         |<---(E)----- Access Token -------------------'
+         +---------+       (w/ Optional Refresh Token)
+            </code></pre>
+
+            <p>对于应用而言，其流程由获取Authorization Code和通过Authorization Code获取Access Token这2步组成。</p>
+
+            <h2 id="overview-pre"><a class="anchorjs-link " href="#overview-pre" aria-label="Anchor link for: overview mobile" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>获取Authorization Code</h2>
+            <h3 id="overview-pre">请求数据包格式</h3>
+            <p>其获取方式是通过重定向用户浏览器（或手机/桌面应用中的浏览器组件）到“http://openapi.kehu1688.com/authorize”地址上，并带上以下参数：</p>
+            <ul>
+                <li>client_id：必须参数，应用的API Key。</li>
+                <li>response_type：必须参数，此值固定为“code”。</li>
+                <li>redirect_uri：必须参数，授权后要回调的URI，即接收Authorization Code的URI。如果用户在授权过程中取消授权，会回调该URI，并在URI末尾附上error=access_denied参数。对于无Web Server的应用，其值可以是“oob”，此时用户同意授权后，授权服务会将Authorization Code直接显示在响应页面的页面中及页面title中。非“oob”值的redirect_uri须在“授权安全设置”中配置“授权回调地址”。</li>
+                <li>state：非必须参数，用于保持请求和回调的状态，授权服务器在回调时（重定向用户浏览器到“redirect_uri”时），会在Query Parameter中原样回传该参数。OAuth2.0标准协议建议，利用state参数来防止CSRF攻击。</li>
+                <li>display：非必须参数，登录和授权页面的展现样式，默认为“page”。具体参考<a asp-controller="Document" asp-action="Authorize">OAuth介绍</a>中的授权展示方式。</li>
+            </ul>
+            <p>
+                例如：“client_id”为“Va5yQRHlA4Fq4eR3LT0vuXV4”的应用要请求某个用户的默认权限和email访问权限，并在授权后需跳转到“http://www.example.com/oauth_redirect”，同时希望在弹出窗口中展现用户登录、授权界面，则应用需要重定向用户的浏览器到如下URL：
+            </p>
+            <div class="highlight">
+            <pre><code>
+    https://openapi.kehu1688.com/authorize?
+    response_type=code&
+    client_id=Va5yQRHlA4Fq4eR3LT0vuXV4&
+    redirect_uri=http%3A%2F%2Fwww.example.com%2Foauth_redirect&
+    display=popup
+           </code>
+           </pre>
+            </div>
+
+            <h3 id="overview-pre">响应数据包格式</h3>
+            <p>此时授权服务会根据应用传递参数的不同，为用户展现不同的授权页面。如果用户在此页面同意授权，授权服务则将重定向用户浏览器到应用所指定的“redirect_uri”，并附带上表示授权服务所分配的Authorization Code的code参数，以及state参数（如果请求authorization code时带了这个参数）。</p>
+            <p> 例如：继续上面的例子，假设授权服务在用户同意授权后生成的Authorization Code为“ANXxSNjwQDugOnqeikRMu2bKaXCdlLxn”，则授权服务将会返回如下响应包以重定向用户浏览器到“http://www.example.com/oauth_redirect”地址上：</p>
+            <div class="highlight">
+            <pre><code class="language-html" data-lang="html">
+    HTTP/1.1 302 Found
+    Location: http://www.example.com/oauth_redirect?code=ANXxSNjwQDugOnqeikRMu2bKaXCdlLxn
+            </code></pre>
+            </div>
+            <p> “code”参数可以在“redirect_uri”对应的应用后端程序中获取,且有效期为10分钟。</p>
+
+            <h2 id="overview-authorize-style"><a class="anchorjs-link " href="#overview-authorize-style" aria-label="Anchor link for: overview type links" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>通过Authorization Code获取Access Token</h2>
+            <p>通过上面第一步获得Authorization Code后，便可以用其换取一个Access Token。获取方式是，应用在其服务端程序中发送请求（推荐使用POST）到 旗开得胜OAuth2.0授权服务的“https://openapi.kehu1688.com/token”地址上，并带上以下5个必须参数：</p>
+            <ul>
+                <li><strong>grant_type：</strong>必须参数，此值固定为“authorization_code”；</li>
+                <li><strong>code：</strong>必须参数，通过上面第一步所获得的Authorization Code；</li>
+                <li><strong>client_id：</strong>必须参数，应用的API Key；</li>
+                <li><strong>client_secret：</strong>必须参数，'应用的Secret Key；</li>
+                <li><strong>redirect_uri：</strong>必须参数，该值必须与获取Authorization Code时传递的“redirect_uri”保持一致。</li>
+            </ul>
+            <p>例如：</p>
+            <div class="highlight">
+            <pre><code>
+    https://openapi.kehu1688.com/token?
+    grant_type=authorization_code&
+    code=ANXxSNjwQDugOnqeikRMu2bKaXCdlLxn&
+    client_id=Va5yQRHlA4Fq4eR3LT0vuXV4&
+    client_secret=0rDSjzQ20XUj5itV7WRtznPQSzr5pVw2&
+    redirect_uri=http%3A%2F%2Fwww.example.com%2Foauth_redirect
+            </code></pre>
+            </div>
+
+            <h3>响应数据包格式</h3>
+            <p>若参数无误，服务器将返回一段JSON文本，包含以下参数：</p>
+            <ul>
+                <li><strong>access_token：</strong>要获取的Access Token；</li>
+                <li><strong>expires_in：</strong>Access Token的有效期，以秒为单；</li>
+                <li><strong>refresh_token：</strong>用于刷新Access Token 的 Refresh Token,所有应用都会返回该参数；</li>
+            </ul>
+            <p>例如：</p>
+            <div>
+            <pre><code>
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+    Cache-Control: no-store
+    {
+        "access_token": "1.a6b7dbd428f731035f771b8d15063f61.86400.1292922000-2346678-124328",
+        "expires_in": 86400,
+        "refresh_token": "2.385d55f8615fdfd9edb7c4b5ebdc3e39.604800.1293440400-2346678-124328"
+    }
+            </code></pre>
+            </div>
+
+            <p>若请求错误，服务器将返回一段JSON文本，包含以下参数：</p>
+            <ul>
+                <li><strong>error：</strong>错误码；</li>
+                <li><strong>error_description：</strong>错误描述信息，用来帮助理解和解决发生的错误。；</li>
+            </ul>
+            <p> 例如：</p>
+            <div>
+            <pre><code>
+    HTTP/1.1 400 Bad Request
+    Content-Type: application/json
+    Cache-Control: no-store
+    
+    {
+        "error": "invalid_grant",
+        "error_description": "Invalid authorization code: ANXxSNjwQDugOnqeikRMu2bKaXCdlLxn"
+    }
+            </code></pre>
+            </div>
+
+            <h2 id="overview-authorize-style"><a class="anchorjs-link " href="#overview-authorize-style" aria-label="Anchor link for: overview type links" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>注意事项</h2>
+            <ul>
+                <li>默认情况下，Access Token的有效期为一个月（一天的Access Token + 一个月的Refresh Token）。</li>
+            </ul>
+    </div>
+</div>
+
+<div class="col-md-2 catalog" role="complementary">
+    <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm" data-spy="affix" data-offset-top="30" data-offset-bottom="200">
+        <ul class="nav bs-docs-sidenav">
+            <li class="">
+                <strong>目录</strong>
+            </li>
+            <li class="">
+                <a href="#overview-relation">简介</a>
+            </li>
+            <li class="">
+                <a href="#overview-pre">获取Authorization Code</a>
+            </li>
+            <li class="">
+                <a href="#overview-authorize-style">注意事项</a>
+            </li>
+        </ul>
+    </nav>
+</div>

@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0-*",
+  "description": "框架存储类型库,包括database,cache等",
+  "authors": [ "WDF" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "dependencies": {
+    "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+    "Kehu1688.Framework.Base": "1.0.0-*",
+    "Kehu1688.Framework.Permission": "1.0.0-*",
+    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final"
+  },
+
+  "frameworks": {
+    "net451": {
+      "dependencies": {}
+    },
+    "dotnet5.4": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-beta-23516",
+        "System.Collections": "4.0.11-beta-23516",
+        "System.Linq": "4.0.1-beta-23516",
+        "System.Runtime": "4.0.21-beta-23516",
+        "System.Threading": "4.0.11-beta-23516"
+      }
+    }
+  }
+}

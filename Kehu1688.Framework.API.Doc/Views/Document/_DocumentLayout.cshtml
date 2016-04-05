@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "OAuth2.0 授权文档";
+}
+
+<div class="container bs-docs-container">
+    <div class="row">
+        <div class="col-md-2" role="complementary">
+            <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix-top">
+                <ul class="nav bs-docs-sidenav">
+
+                    <li class="">
+                        <a asp-controller="Document" asp-action="Authorize"><i class="glyphicon glyphicon-user"></i> OAuth介绍</a>
+                    </li>
+                    <li class="">
+                        <a asp-controller="Document" asp-action="AuthorizeError"><i class="glyphicon glyphicon-flag"></i> 授权错误响应</a>
+                    </li>
+                    <li class="">
+                        <a asp-controller="Document" asp-action="APIList"><i class="glyphicon glyphicon-pencil"></i> Rest API</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+      @RenderBody()
+
+    </div>
+</div>
+
