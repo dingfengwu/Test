@@ -19,6 +19,7 @@ namespace Kehu1688.Framework.API.Doc.Controllers
             ViewData["Message"] = "Your application description page.";
 
             return View();
+
         }
 
         public IActionResult Contact()
