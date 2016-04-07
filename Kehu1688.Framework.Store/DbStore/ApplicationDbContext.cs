@@ -76,7 +76,7 @@ namespace Kehu1688.Framework.Store
         /// 表与视图
         /// </summary>
         public DbSet<TableView> TableViews { get; set; }
-        
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             //调用父类方法

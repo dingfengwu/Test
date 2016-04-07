@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "_DocumentLayout";
+    ViewData["Title"] = "API 文档";
+}
+
+
+<div class="col-md-8 doc-main" role="main">
+    <div class="bs-docs-section">
+        @RenderBody()
+    </div>
+</div>
+
+<div class="col-md-2 catalog" role="complementary">
+    <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm" data-spy="affix" data-offset-top="30" data-offset-bottom="200">
+        <ul class="nav bs-docs-sidenav">
+            <li class="">
+                <strong>目录</strong>
+            </li>
+            <li class="">
+                <a asp-controller="Document" asp-action="API" asp-route-viewname="default">1 授权API</a>
+            </li>
+            <li class="">
+                <a href="#overview-pre">2 使用准备</a>
+            </li>
+            <li class="">
+                <a href="#overview-authorize-style">3 支持的授权方式</a>
+            </li>
+            <li class="">
+                <a href="#overview-display-style">4 授权展示方式</a>
+            </li>
+            <li class="">
+                <a href="#overview-right-setting">5 授权回调地址</a>
+            </li>
+            <li>
+                <a href="#overview-callback-url">6 授权权限列表</a>
+            </li>
+        </ul>
+    </nav>
+</div>

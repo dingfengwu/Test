@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Kehu1688.Framework.API.Doc.Models;
 using Kehu1688.Framework.API.Doc.Services;
+using Microsoft.AspNet.Mvc;
 
 namespace Kehu1688.Framework.API.Doc
 {
@@ -48,7 +49,18 @@ namespace Kehu1688.Framework.API.Doc
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.CacheProfiles.Add("Default",
+                    new CacheProfile
+                    {
+                        Duration = 30 * 24 * 3600,//30天
+                        Location = ResponseCacheLocation.Client,
+                        NoStore = false
+                    });
+            });
+
+            services.AddCaching();
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -98,6 +110,7 @@ namespace Kehu1688.Framework.API.Doc
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            
         }
 
         // Entry point for the application.
