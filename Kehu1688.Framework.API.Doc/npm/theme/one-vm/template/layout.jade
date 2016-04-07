@@ -1,36 +1,7 @@
-doctype html
-html
-	head
-		meta(charset='utf-8')
-		meta(name="viewport", content="width=device-width")
-		title #{config.sitename}
-		script(type="text/javascript", src="https://a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js")
 
-	body
-		style
-			//include /target/css/page.css
-		script(type="text/javascript", src="https://a.alipayobjects.com/u/ecmng/js/201408/3BvrkS6RYz.js")
-		script(type="text/javascript")
-			//include /target/js/page.js
-		.header
-			.slogan.row
-				img.slogan-logo(src="https://i.alipayobjects.com/i/ecmng/png/201406/2m8Ebk4eZh.png", alt="alipay")
-				span #{config.sitename}
-			.header-nav
-				.navigation.row-n
-		.row.mar
-			.threecol.meta
-			.ninecol.wrap-content
-				.document
-					.post-header
-						.post-meta
-							time(datetime="#{lastModify}") #{lastModify}
-					.entry-content
-						block content
-		.footer
-			.grid-990.sitelink.fn-clear
-				ul.ui-link.fn-clear
-					li.ui-link-item
-						a(href="#", title="关于凝聚力") 关于凝聚力
-					li.ui-link-item
-						a(href="#", title="旗开得胜CRM") 旗开得胜CRM
+
+
+
+
+
+block content
