@@ -60,6 +60,15 @@ namespace Kehu1688.Framework.API {
         }
         
         /// <summary>
+        ///    查找与 您没有此操作的权限 类似的本地化字符串。
+        /// </summary>
+        internal static string ERROR_NOT_PERMISSION {
+            get {
+                return ResourceManager.GetString("ERROR_NOT_PERMISSION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///    查找与 指定的用户不存在 类似的本地化字符串。
         /// </summary>
         internal static string ERROR_USER_NO_FOUND {

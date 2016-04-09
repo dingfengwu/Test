@@ -17,16 +17,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Http;
 
-namespace Kehu1688.Framework.API
+namespace Kehu1688.Framework.Base
 {
-    public class OK : ApiResult { }
-
-    public static class ControlExtension
+    public static class ApiControllerExtension
     {
-        public static ApiResult Good(this Controller controler)
+        public static ApiResult Good(this ApiController controler)
         {
-            return new OK() { Result = true };
+            return new ApiResult() { Result = true };
         }
     }
 }

@@ -13,6 +13,7 @@
 
 
 using Kehu1688.Framework.Base;
+using Kehu1688.Framework.Base.Resources;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.ModelBinding;
 using Newtonsoft.Json;
@@ -22,7 +23,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kehu1688.Framework.API
+namespace Kehu1688.Framework.Base
 {
     public class ErrorApiResult : ApiResult,IActionResult
     {
@@ -36,6 +37,11 @@ namespace Kehu1688.Framework.API
         /// </summary>
         public string ErrorMsg { get; set; }
         
+        /// <summary>
+        /// 将模型状态转换为API结果
+        /// </summary>
+        /// <param name="modelState"></param>
+        /// <returns></returns>
         public static ErrorApiResult FromModelState(ModelStateDictionary modelState)
         {
             if(modelState==null)
@@ -61,15 +67,30 @@ namespace Kehu1688.Framework.API
             return new ErrorApiResult { Result = false, ErrorCode = InnerErrorCode.MODEL_INVOLID, ErrorMsg = errorBuilder.ToString() };
         }
 
+        /// <summary>
+        /// 执行数据返回
+        /// </summary>
+        /// <param name="context">请求上下文</param>
+        /// <returns></returns>
         public async Task ExecuteResultAsync(ActionContext context)
         {
-            context.HttpContext.Response.StatusCode = 400;
+            await ExecuteResultAsync(context, 400);
+        }
+
+        /// <summary>
+        /// 执行数据返回
+        /// </summary>
+        /// <param name="context">请求上下文</param>
+        /// <returns></returns>
+        public async Task ExecuteResultAsync(ActionContext context, int statusCode)
+        {
+            context.HttpContext.Response.StatusCode = statusCode;
             context.HttpContext.Response.ContentType = "application/json;chatset=utf-8";
             context.HttpContext.Response.Headers["Cache-Control"] = "no-store";
             context.HttpContext.Response.Headers["Pragma"] = "no-cache";
 
             var bytes = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(this));
-            await context.HttpContext.Response.Body.WriteAsync(bytes,0,bytes.Length);
+            await context.HttpContext.Response.Body.WriteAsync(bytes, 0, bytes.Length);
         }
     }
 }

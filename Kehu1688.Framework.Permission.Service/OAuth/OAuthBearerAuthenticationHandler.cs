@@ -16,7 +16,12 @@ namespace Kehu1688.Framework.Permission.Service
         {
             _challenge = challenge;
         }
-        
+
+        public override async Task<bool> HandleRequestAsync()
+        {
+            return true;
+        }
+
         protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
         {
             try
@@ -39,7 +44,8 @@ namespace Kehu1688.Framework.Permission.Service
                 // If no token found, no further work possible
                 if (string.IsNullOrEmpty(requestTokenContext.Token))
                 {
-                    return AuthenticateResult.Success(ticket:null);
+                    Logger.LogWarning("access token is empty");
+                    return AuthenticateResult.Failed(new Exception("access token is empty"));
                 }
 
                 // Call provider to process the token into data
@@ -58,7 +64,7 @@ namespace Kehu1688.Framework.Permission.Service
                 if (ticket == null)
                 {
                     Logger.LogWarning("invalid bearer token received");
-                    return AuthenticateResult.Success(ticket: null);
+                    return AuthenticateResult.Failed(new Exception("invalid bearer token received"));
                 }
 
                 // Validate expiration time if present
@@ -68,7 +74,7 @@ namespace Kehu1688.Framework.Permission.Service
                     ticket.Properties.ExpiresUtc.Value < currentUtc)
                 {
                     Logger.LogWarning("expired bearer token received");
-                    return AuthenticateResult.Success(ticket: null);
+                    return AuthenticateResult.Failed(new Exception("expired bearer token received"));
                 }
 
                 // Give application final opportunity to override results

@@ -15,18 +15,23 @@
 using Kehu1688.Framework.Base.Attributes;
 using Kehu1688.Framework.Permission;
 using Kehu1688.Framework.Permission.Service;
+using Kehu1688.Framework.Permission.Service.DomainService;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Net.Sockets;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Mvc.Filters;
+using System.Web.Http;
+using Kehu1688.Framework.Base;
 
 namespace Kehu1688.Framework.API.Controllers
 {
-    [Authorize]
+    [PermissionAuthroize]
     [ErrorCode("10")]
     [Route("[controller]")]
-    public class AccountController: Controller
+    public class AccountController: ApiController
     {
         private PermissionService _service;
         private UserService _userService;
@@ -39,8 +44,16 @@ namespace Kehu1688.Framework.API.Controllers
             _userService = userService;
             _logger = loger.CreateLogger(nameof(AccountController));
             _signInManager = signInManager;
+            
         }
 
+        [HttpPost]
+        [Route("Test")]
+        [PermissionAuthroize(Operate ="Edit")]
+        public async Task<ApiResult> Test()
+        {
+            return this.Good();
+        }
 
         /// <summary>
         /// 注册用户

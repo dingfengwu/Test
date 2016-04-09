@@ -15,6 +15,7 @@
 using Kehu1688.Framework.Base;
 using Kehu1688.Framework.Permission;
 using Kehu1688.Framework.Store;
+using Microsoft.AspNet.Mvc.Filters;
 using System;
 using System.Threading.Tasks;
 
@@ -30,6 +31,16 @@ namespace Kehu1688.Framework.Permission.Service
         public PermissionService(ApplicationDbContext context)
         {
             _context = context;
+        }
+
+
+        public async Task<bool> Authorize(AuthorizationContext context)
+        {
+            var action = context.ActionDescriptor.AttributeRouteInfo;
+
+
+
+            return true;
         }
     }
 }

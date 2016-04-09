@@ -11,8 +11,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
 using Kehu1688.Framework.Middleware;
+using Microsoft.AspNet.Authorization;
+using Microsoft.AspNet.Mvc.Filters;
+using Kehu1688.Framework.DI;
 
-namespace Framework.API
+namespace Kehu1688.Framework.API
 {
     public class Startup
     {
@@ -30,8 +33,7 @@ namespace Framework.API
         public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
 
         public static string PublicClientId { get; private set; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
+        
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
@@ -56,16 +58,23 @@ namespace Framework.API
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-            
-            services.AddCors();
-            services.AddMvc();
-            
-            
-            //注册服务
-            //Register.RegisterService(services);
 
-            //返回服务
-            //return Register.Get<IServiceProvider>();
+            
+            services.AddMvc(options=> {
+                options.Filters.Add(PermissionAuthorizeFilter<PermissionRequirement>.Default);
+            });
+            services.AddCors();
+
+
+            //验证权限
+            //services.AddAuthorization(option =>
+            //{
+            //    option.AddPolicy("default",
+            //        policy => policy.AddRequirements(new PermissionRequirement()));
+            //});
+            //services.AddSingleton<IAuthorizationHandler, DefaultPermissionHandler>();
+
+
 
             services.AddSingleton(typeof(RoleService));
             services.AddSingleton(typeof(UserService));
@@ -73,9 +82,13 @@ namespace Framework.API
             services.AddSingleton(typeof(ApplicationRoleStore));
             services.AddSingleton(typeof(PermissionService));
             services.AddInstance(typeof(IConfigurationRoot), Configuration);
-        }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            ////增加注入
+            //services.AddInstance(typeof(IConfigurationRoot), Configuration);
+            //Register.RegisterService(services);
+            //return Register.Get<IServiceProvider>();
+        }
+        
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             PublicClientId = "self";
@@ -112,10 +125,8 @@ namespace Framework.API
                 catch { }
             }
 
-            app.UseIISPlatformHandler();
+            //app.UseIISPlatformHandler();
             app.UseStaticFiles();
-            app.UseMvc();
-            app.UseCors(string.Empty);
             
             OAuthOptions = new OAuthAuthorizationServerOptions
             {
@@ -133,9 +144,11 @@ namespace Framework.API
                 AllowInsecureHttp = true
             };
             app.UseOAuthBearerTokens(OAuthOptions);
+            
+            app.UseCors(string.Empty);
+            app.UseMvc();
         }
-
-        // Entry point for the application.
+        
         public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }

@@ -4,9 +4,9 @@
 //
 // 文件名：InnerErrorCode.cs
 // 文件功能描述：
-// 描述内容
+// 错误代码
 //
-// 创建人  ：Administrator
+// 创建人  ：WDF
 // 创建日期：2016-03-23 17:48:34
 //----------------------------------------------------------------*/
 
@@ -30,6 +30,11 @@ namespace Kehu1688.Framework.Base
         /// 指定模型不能为空
         /// </summary>
         public const string MODEL_NOT_NULL = "1002";
+
+        /// <summary>
+        /// 没有授权
+        /// </summary>
+        public const string NOT_PERMISSION = "1003";
 
     }
 }

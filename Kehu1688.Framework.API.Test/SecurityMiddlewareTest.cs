@@ -41,6 +41,8 @@ namespace Kehu1688.Framework.API.Test
                     AllowArgumentEncrypt = true,
                     AppId = clientId
                 });
+            },service=> {
+
             });
 
             var arguments = "arg1=123&arg2=456&arg3=789&arg4=abc";
