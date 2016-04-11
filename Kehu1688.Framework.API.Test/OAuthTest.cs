@@ -52,7 +52,7 @@ namespace Kehu1688.Framework.API.Test
         }
 
         [Fact]
-        public async void TestApi()
+        public async void IsSuccess()
         {
             var accessToken = await GetAccessToken();
 
@@ -69,7 +69,20 @@ namespace Kehu1688.Framework.API.Test
                 throw new Exception(response.StatusCode.ToString());
             }
         }
-        
+
+        [Fact]
+        public async void IsFaile()
+        {
+            var list = new List<KeyValuePair<string, string>>();
+            var content = new FormUrlEncodedContent(list);
+            var client = _server.CreateClient();
+            var response = await client.PostAsync("./Account/Test", content);
+            if (response.StatusCode != HttpStatusCode.Unauthorized)
+            {
+                throw new Exception(response.StatusCode.ToString());
+            }
+        }
+
         [Fact]
         public async Task<string> GetAccessToken()
         {
@@ -91,6 +104,7 @@ namespace Kehu1688.Framework.API.Test
             TestServer server = TestServer.Create((IApplicationBuilder builder) =>
             {
                 var env = builder.ApplicationServices.GetService<IHostingEnvironment>();
+                env.EnvironmentName = "Development";
                 var logger = builder.ApplicationServices.GetService<ILoggerFactory>();
                 _start.Configure(builder, env, logger);
             },

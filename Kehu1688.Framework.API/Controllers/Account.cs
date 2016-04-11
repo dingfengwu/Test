@@ -12,7 +12,6 @@
 
 
 
-using Kehu1688.Framework.Base.Attributes;
 using Kehu1688.Framework.Permission;
 using Kehu1688.Framework.Permission.Service;
 using Kehu1688.Framework.Permission.Service.DomainService;
@@ -28,8 +27,6 @@ using Kehu1688.Framework.Base;
 
 namespace Kehu1688.Framework.API.Controllers
 {
-    [PermissionAuthroize]
-    [ErrorCode("10")]
     [Route("[controller]")]
     public class AccountController: ApiController
     {
@@ -49,7 +46,7 @@ namespace Kehu1688.Framework.API.Controllers
 
         [HttpPost]
         [Route("Test")]
-        [PermissionAuthroize(Operate ="Edit")]
+        [PermissionAuthroize]
         public async Task<ApiResult> Test()
         {
             return this.Good();

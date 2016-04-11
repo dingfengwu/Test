@@ -22,9 +22,15 @@ namespace Kehu1688.Framework.Permission.Service.DomainService
 {
     public class PermissionAuthroizeAttribute:AuthorizeAttribute
     {
-        public PermissionAuthroizeAttribute(string policy) : base(policy) { }
+        public PermissionAuthroizeAttribute(string policy) : base(policy)
+        {
+            
+        }
 
-        public PermissionAuthroizeAttribute() : base() { }
+        public PermissionAuthroizeAttribute() : base()
+        {
+            
+        }
         
         /// <summary>
         /// 操作key

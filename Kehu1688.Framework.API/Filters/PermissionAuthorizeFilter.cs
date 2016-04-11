@@ -12,16 +12,13 @@
 
 
 
-using Kehu1688.Framework.API;
 using Kehu1688.Framework.Base;
-using Kehu1688.Framework.DI.Manager;
 using Kehu1688.Framework.Permission.Service;
+using Kehu1688.Framework.Config;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc.Filters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using System;
 
 namespace Kehu1688.Framework.API
 {
@@ -43,7 +40,7 @@ namespace Kehu1688.Framework.API
         /// <returns></returns>
         public override async Task OnAuthorizationAsync(Microsoft.AspNet.Mvc.Filters.AuthorizationContext context)
         {
-            await base.OnAuthorizationAsync(context);
+            //此处不可再调用父类的OnAuthorizationAsync,否则Bearer中间件验证会出现403的错误
 
             var result = await FrameworkConfig.IocConfig.Resolve<PermissionService>().Authorize(context);
             if (!result)
@@ -62,13 +59,15 @@ namespace Kehu1688.Framework.API
         /// </summary>
         public static PermissionAuthorizeFilter<TRequirement> Default
         {
-            get {
+            get
+            {
                 lock(_lock)
                 {
                     if (_permissionFilter == null)
                     {
                         AuthorizationPolicyBuilder builder = new AuthorizationPolicyBuilder();
                         builder.AddRequirements(new TRequirement());
+                        builder.AddAuthenticationSchemes("Bearer");
                         AuthorizationPolicy policy = builder.Build();
                         _permissionFilter = new PermissionAuthorizeFilter<TRequirement>(policy);
                     }

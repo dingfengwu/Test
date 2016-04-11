@@ -12,7 +12,6 @@
 
 
 
-using Kehu1688.Framework.Base.Attributes;
 using Kehu1688.Framework.Permission;
 using Kehu1688.Framework.Permission.Service;
 using Microsoft.AspNet.Authorization;
@@ -25,11 +24,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Extensions.Configuration;
+using Kehu1688.Framework.Base;
 
 namespace Kehu1688.Framework.API.Controllers
 {
     [AllowAnonymous]
-    [ErrorCode("10")]
     [Route("[controller]")]
     public class ApiAuthorizeController:Controller
     {

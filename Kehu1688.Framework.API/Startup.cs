@@ -14,6 +14,7 @@ using Kehu1688.Framework.Middleware;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc.Filters;
 using Kehu1688.Framework.DI;
+using Microsoft.AspNet.StaticFiles;
 
 namespace Kehu1688.Framework.API
 {
@@ -21,7 +22,6 @@ namespace Kehu1688.Framework.API
     {
         public Startup(IHostingEnvironment env)
         {
-            // Set up configuration sources.
             var builder = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .AddEnvironmentVariables();
@@ -30,13 +30,10 @@ namespace Kehu1688.Framework.API
 
         public IConfigurationRoot Configuration { get; set; }
 
-        public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
-
         public static string PublicClientId { get; private set; }
         
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
             services.AddEntityFramework()
                 .AddSqlServer()
                 .AddDbContext<ApplicationDbContext>(options =>
@@ -58,14 +55,12 @@ namespace Kehu1688.Framework.API
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-
             
             services.AddMvc(options=> {
                 options.Filters.Add(PermissionAuthorizeFilter<PermissionRequirement>.Default);
             });
             services.AddCors();
-
-
+            
             //验证权限
             //services.AddAuthorization(option =>
             //{
@@ -73,16 +68,7 @@ namespace Kehu1688.Framework.API
             //        policy => policy.AddRequirements(new PermissionRequirement()));
             //});
             //services.AddSingleton<IAuthorizationHandler, DefaultPermissionHandler>();
-
-
-
-            //services.AddSingleton(typeof(RoleService));
-            //services.AddSingleton(typeof(UserService));
-            //services.AddSingleton(typeof(ApplicationUserStore));
-            //services.AddSingleton(typeof(ApplicationRoleStore));
-            //services.AddSingleton(typeof(PermissionService));
-            //services.AddInstance(typeof(IConfigurationRoot), Configuration);
-
+            
             //增加注入
             services.AddInstance(typeof(IConfigurationRoot), Configuration);
             Register.RegisterService(services);
@@ -94,13 +80,6 @@ namespace Kehu1688.Framework.API
             PublicClientId = "self";
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
-            app.UseSecurity(new SecurityMiddlewareOption()
-            {
-                AllowArgumentEncrypt = false,
-                ValidateData=false,
-                AppId = PublicClientId
-            });
             
             if (env.IsDevelopment())
             {
@@ -111,6 +90,13 @@ namespace Kehu1688.Framework.API
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+
+                app.UseSecurity(new SecurityMiddlewareOption()
+                {
+                    AllowArgumentEncrypt = true,
+                    ValidateData = true,
+                    AppId = PublicClientId
+                });
 
                 // For more details on creating database during deployment see http://go.microsoft.com/fwlink/?LinkID=615859
                 try
@@ -127,24 +113,24 @@ namespace Kehu1688.Framework.API
 
             //app.UseIISPlatformHandler();
             app.UseStaticFiles();
-            
-            OAuthOptions = new OAuthAuthorizationServerOptions
-            {
-                TokenEndpointPath = new PathString("/Token"),
-                AuthorizeEndpointPath = new PathString("/Authorize"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
-                AuthorizationCodeExpireTimeSpan = TimeSpan.FromDays(30),
 
-                Provider = new ApplicationOAuthProvider(PublicClientId),
-                AccessTokenProvider = app.CreateAccessTokenProvider(),
-                RefreshTokenProvider = app.CreateRefreshTokenProvider(),
-                AuthorizationCodeProvider = app.CreateAuthorizationCodeProvider(),
-                
+            //使用OAuth服务
+            app.UseOAuthBearerTokens(options =>
+            {
+                options.TokenEndpointPath = new PathString("/Token");
+                options.AuthorizeEndpointPath = new PathString("/Authorize");
+                options.AccessTokenExpireTimeSpan = TimeSpan.FromDays(1);
+                options.AuthorizationCodeExpireTimeSpan = TimeSpan.FromDays(30);
+
+                options.Provider = new ApplicationOAuthProvider(PublicClientId);
+                options.AccessTokenProvider = app.CreateAccessTokenProvider();
+                options.RefreshTokenProvider = app.CreateRefreshTokenProvider();
+                options.AuthorizationCodeProvider = app.CreateAuthorizationCodeProvider();
+
                 //在生产模式下设 AllowInsecureHttp = false
-                AllowInsecureHttp = true
-            };
-            app.UseOAuthBearerTokens(OAuthOptions);
-            
+                options.AllowInsecureHttp = true;
+            });
+
             app.UseCors(string.Empty);
             app.UseMvc();
         }

@@ -17,16 +17,16 @@ namespace Kehu1688.Framework.Permission.Service
             _challenge = challenge;
         }
 
+        #pragma warning disable 1998
         public override async Task<bool> HandleRequestAsync()
         {
-            return true;
+            return false;
         }
 
         protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
         {
             try
             {
-                // Find token in default location
                 string requestToken = null;
                 string authorization = Request.Headers["Authorization"];
                 if (!string.IsNullOrEmpty(authorization))
@@ -104,5 +104,7 @@ namespace Kehu1688.Framework.Permission.Service
                 return AuthenticateResult.Failed(ex.Message); ;
             }
         }
+
+
     }
 }
