@@ -19,7 +19,7 @@ namespace Kehu1688.Framework.DI.Manager
         {
             get
             {
-                lock(_lock)
+                lock (_lock)
                 {
                     if (_iocConfig == null)
                     {

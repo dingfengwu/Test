@@ -34,7 +34,7 @@ namespace Kehu1688.Framework.API
 
         public static string PublicClientId { get; private set; }
         
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
             services.AddEntityFramework()
@@ -76,17 +76,17 @@ namespace Kehu1688.Framework.API
 
 
 
-            services.AddSingleton(typeof(RoleService));
-            services.AddSingleton(typeof(UserService));
-            services.AddSingleton(typeof(ApplicationUserStore));
-            services.AddSingleton(typeof(ApplicationRoleStore));
-            services.AddSingleton(typeof(PermissionService));
-            services.AddInstance(typeof(IConfigurationRoot), Configuration);
-
-            ////增加注入
+            //services.AddSingleton(typeof(RoleService));
+            //services.AddSingleton(typeof(UserService));
+            //services.AddSingleton(typeof(ApplicationUserStore));
+            //services.AddSingleton(typeof(ApplicationRoleStore));
+            //services.AddSingleton(typeof(PermissionService));
             //services.AddInstance(typeof(IConfigurationRoot), Configuration);
-            //Register.RegisterService(services);
-            //return Register.Get<IServiceProvider>();
+
+            //增加注入
+            services.AddInstance(typeof(IConfigurationRoot), Configuration);
+            Register.RegisterService(services);
+            return Register.Get<IServiceProvider>();
         }
         
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
