@@ -35,13 +35,13 @@ namespace Kehu1688.Framework.API.Controllers
         private ILogger _logger;
         private SignInManager<User> _signInManager;
 
-        public AccountController(PermissionService service,UserService userService, ILoggerFactory loger, SignInManager<User> signInManager)
+        public AccountController(PermissionService service,UserService userService, 
+            ILoggerFactory loger, SignInManager<User> signInManager)
         {
             _service = service;
             _userService = userService;
             _logger = loger.CreateLogger(nameof(AccountController));
             _signInManager = signInManager;
-            
         }
 
         [HttpPost]

@@ -19,10 +19,12 @@ using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc.Filters;
 using System.Threading.Tasks;
 using System;
+using System.Linq;
 
 namespace Kehu1688.Framework.API
 {
-    public class PermissionAuthorizeFilter<TRequirement>:AuthorizeFilter where TRequirement: IAuthorizationRequirement,new()
+    public class PermissionAuthorizeFilter<TRequirement>:AuthorizeFilter 
+        where TRequirement: IAuthorizationRequirement,new()
     {
         private static PermissionAuthorizeFilter<TRequirement> _permissionFilter;
         private static object _lock = new object();
@@ -33,24 +35,35 @@ namespace Kehu1688.Framework.API
         }
 
         /// <summary>
-        /// 验证时执行的事件,
-        /// 在此方法中只做错误数据的输出，成功则不操作
+        /// 执行权限验证，如果Action上存在AllowAnonymous的Attribute,则不进行验证，
+        /// 存在Bearer的AuthorizeFilter,则只进行权限验证，
+        /// 如果二者都不存在，则进行OAuth的验证
         /// </summary>
         /// <param name="context">验证请求上下文</param>
         /// <returns></returns>
         public override async Task OnAuthorizationAsync(Microsoft.AspNet.Mvc.Filters.AuthorizationContext context)
         {
-            //此处不可再调用父类的OnAuthorizationAsync,否则Bearer中间件验证会出现403的错误
-
-            var result = await FrameworkConfig.IocConfig.Resolve<PermissionService>().Authorize(context);
-            if (!result)
+            if (!context.Filters.Any(item => item is IAllowAnonymous))
             {
-                ErrorApiResult content = new ErrorApiResult();
-                content.Result = false;
-                content.ErrorMsg = Resource.ResourceManager.GetString("ERROR_NOT_PERMISSION");
-                content.ErrorCode = InnerErrorCode.NOT_PERMISSION;
+                if (!context.Filters.Any(item => item is AuthorizeFilter
+                &&(item as AuthorizeFilter).Policy.AuthenticationSchemes.Contains("Bearer")
+                && item.GetType() != GetType()))
+                {
+                    await base.OnAuthorizationAsync(context);
+                }
+                else
+                {
+                    var result = await FrameworkConfig.IocConfig.Resolve<PermissionService>().Authorize(context);
+                    if (!result)
+                    {
+                        ErrorApiResult content = new ErrorApiResult();
+                        content.Result = false;
+                        content.ErrorMsg = Resource.ResourceManager.GetString("ERROR_NOT_PERMISSION");
+                        content.ErrorCode = InnerErrorCode.NOT_PERMISSION;
 
-                await content.ExecuteResultAsync(context);
+                        await content.ExecuteResultAsync(context);
+                    }
+                }
             }
         }
 

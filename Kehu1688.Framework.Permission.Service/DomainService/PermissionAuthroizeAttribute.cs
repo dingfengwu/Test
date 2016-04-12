@@ -18,18 +18,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Kehu1688.Framework.Permission.Service.DomainService
+namespace Kehu1688.Framework.Permission.Service
 {
     public class PermissionAuthroizeAttribute:AuthorizeAttribute
     {
         public PermissionAuthroizeAttribute(string policy) : base(policy)
         {
-            
+            ActiveAuthenticationSchemes = "Bearer";
         }
 
         public PermissionAuthroizeAttribute() : base()
         {
-            
+            ActiveAuthenticationSchemes = "Bearer";
         }
         
         /// <summary>

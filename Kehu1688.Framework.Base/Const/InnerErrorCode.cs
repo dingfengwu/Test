@@ -36,5 +36,10 @@ namespace Kehu1688.Framework.Base
         /// </summary>
         public const string NOT_PERMISSION = "1003";
 
+        /// <summary>
+        /// 全局异常
+        /// </summary>
+        public const string GLOBAL_EXCEPTION = "1004";
+
     }
 }

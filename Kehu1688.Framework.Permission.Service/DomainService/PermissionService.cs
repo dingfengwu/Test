@@ -18,6 +18,8 @@ using Kehu1688.Framework.Store;
 using Microsoft.AspNet.Mvc.Filters;
 using System;
 using System.Threading.Tasks;
+using System.Linq;
+using Kehu1688.Framework.Permission.Service.DomainService;
 
 namespace Kehu1688.Framework.Permission.Service
 {
@@ -37,8 +39,11 @@ namespace Kehu1688.Framework.Permission.Service
         public async Task<bool> Authorize(AuthorizationContext context)
         {
             var action = context.ActionDescriptor.AttributeRouteInfo;
+            var permissionAuthorize = context.Filters.OfType<PermissionAuthroizeAttribute>().FirstOrDefault();
+            if (permissionAuthorize != null)
+            {
 
-
+            }
 
             return true;
         }

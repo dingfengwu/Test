@@ -58,9 +58,11 @@ namespace Kehu1688.Framework.API
             
             services.AddMvc(options=> {
                 options.Filters.Add(PermissionAuthorizeFilter<PermissionRequirement>.Default);
+
+                options.Filters.Add(new GlobalException());
             });
             services.AddCors();
-            
+
             //验证权限
             //services.AddAuthorization(option =>
             //{
@@ -80,7 +82,7 @@ namespace Kehu1688.Framework.API
             PublicClientId = "self";
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-            
+
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();

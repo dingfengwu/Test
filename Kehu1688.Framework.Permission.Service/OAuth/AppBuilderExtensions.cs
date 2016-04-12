@@ -49,6 +49,7 @@ namespace Kehu1688.Framework.Permission.Service
                 SystemClock = options.SystemClock,
 
                 AutomaticAuthenticate = false,
+                AutomaticChallenge = false,
                 AuthenticationScheme = "Bearer"
             });
 
