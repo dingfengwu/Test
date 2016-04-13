@@ -65,7 +65,7 @@ namespace Kehu1688.Framework.Store
         /// <summary>
         /// 资源
         /// </summary>
-        public DbSet<Resource> Resources { get; set; }
+        public DbSet<Kehu1688.Framework.Permission.Resource> Resources { get; set; }
 
         /// <summary>
         /// 资源

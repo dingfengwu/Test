@@ -40,6 +40,6 @@ namespace Kehu1688.Framework.Permission.Service
         /// <summary>
         /// 模块key
         /// </summary>
-        public string Model { get; set; }
+        public string Module { get; set; }
     }
 }

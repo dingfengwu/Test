@@ -12,36 +12,28 @@
 
 
 
-using Kehu1688.Framework.Permission;
-using Kehu1688.Framework.Permission.Service;
-using Kehu1688.Framework.Store;
-using Microsoft.AspNet.Authorization;
-using Microsoft.AspNet.Http;
-using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Builder;
+using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.TestHost;
-using Microsoft.Data.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Framework.ConfigurationModel;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
-using Microsoft.Framework.ConfigurationModel;
-using Microsoft.AspNet.Builder;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Microsoft.AspNet.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace Kehu1688.Framework.API.Test
 {
     public class OAuthTest
     {
         TestServer _server;
-        Startup _start;
+        static Startup _start;
 
         public OAuthTest()
         {
@@ -98,7 +90,7 @@ namespace Kehu1688.Framework.API.Test
             throw new Exception("error");
         }
 
-        private TestServer CreateServer()
+        public static TestServer CreateServer()
         {
             _start = new Startup(null);
             TestServer server = TestServer.Create((IApplicationBuilder builder) =>

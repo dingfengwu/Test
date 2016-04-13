@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="20aec3ba-a1c7-4829-a5aa-671372473f4b" name="UMLClassDiagram1" linkedPackageId="902e110d-9f94-4d2b-a28c-a4266c046369" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="d6a96f2c-d0b2-4fb2-b79a-460d7504aefd">
+      <profileInstance Id="9bce113d-fcf3-4865-a7ea-39f0d0c18815" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="aadb7f1b-4046-459a-a112-4fbd49607879">
+      <profileInstance Id="08dabc56-61da-4ad6-88e2-e6a7ff377c26" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="674f0009-9c82-4a22-af68-237bebb135de" name="IRightHandler&lt;IRightHandlerOption&gt;" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="819b846b-25a7-46c5-a822-a556774fe854" />
+        <ownedOperations>
+          <operation Id="ea9ee248-6171-4e7a-a708-29a0e61887b8" name="Authorize" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="1c4daa01-1c1b-4caa-a7aa-bdd12184d827" />
+          </operation>
+        </ownedOperations>
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="40f49734-6686-40b2-a310-02a4d144b7e9" name="IRightHandlerOption" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="037b0d6a-082f-4a97-8c56-51a7c132f75f" />
+        <ownedAttributes>
+          <property Id="53ac52d4-da4e-4432-bcf9-88190c66f9c5" name="Scheme" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="37eecfcf-c55e-4040-8a72-8423b15f90af" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="43d8326c-ee4c-4e2f-8a36-f74ff4d74f47" LastKnownName="ICollection" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributes>
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="43d8326c-ee4c-4e2f-8a36-f74ff4d74f47" name="ICollection" isAbstract="false" isLeaf="false" cachedFullName="ICollection">
+        <elementDefinition Id="e21de040-0ecf-41b7-8f20-8861c50c1ac4" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="6ea8cf63-1b28-41b8-8557-358b93bd3d5b" name="RightHandler&lt;TOption&gt;" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="3d3462bb-8c7a-4807-852d-47280cc6649f" />
+        <suppliersInternal>
+          <interfaceRealization Id="939e6b44-388e-41e3-9c23-e742bad2f9e9">
+            <interfaceMoniker Id="674f0009-9c82-4a22-af68-237bebb135de" LastKnownName="IRightHandler&lt;IRightHandlerOption&gt;" />
+            <elementDefinition Id="5258914c-98d4-468d-badf-211793b1f720" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <ownedOperationsInternal>
+          <operation Id="e65adf1a-ce77-4d66-9cd4-bd7f50ed96a6" name="Authorize" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="09c6db83-069b-4957-8dce-9959301f467b" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="51e9d6fb-1624-4e0b-97bb-bd2b64d0f8a9" name="RightHandlerOption" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ff8ef9c7-1052-4a03-9e36-1b04233b9bae" />
+        <suppliersInternal>
+          <interfaceRealization Id="ad352580-d99e-4fea-be5c-32796f5a2bc0">
+            <interfaceMoniker Id="40f49734-6686-40b2-a310-02a4d144b7e9" LastKnownName="IRightHandlerOption" />
+            <elementDefinition Id="1dfa015a-82e3-48c2-a30a-9cb7f47d5350" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="81e4e55b-4021-4620-b7c7-0bf2fe021d5e" name="RightHandlerManager" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="30f5320b-c78c-4e70-b8b6-fb653012acc8" />
+        <ownedAttributesInternal>
+          <property Id="3a3cf234-65ec-482b-8bb5-9d48f90e016a" name="Handlers" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="a308bb4f-0d49-4067-8e9f-1d85a17c503c" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="06387de7-7e8a-4168-b860-d5110633a961" LastKnownName="ICollection" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="4b4496bf-3769-44b6-a761-e2695292ea92" name="Register" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="6135c980-e1b7-4057-8471-05173b6493c5" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="06387de7-7e8a-4168-b860-d5110633a961" name="ICollection" isAbstract="false" isLeaf="false" cachedFullName="ICollection">
+        <elementDefinition Id="e21de040-0ecf-41b7-8f20-8861c50c1ac4" />
+      </referencedType>
+    </packageHasNamedElement>
+  </packagedElements>
+  <package Id="902e110d-9f94-4d2b-a28c-a4266c046369" name="RightAuthentication">
+    <elementDefinition Id="8f5bccfb-c6df-4f58-9ad4-42c6e3f1d055" />
+  </package>
+</logicalClassDesignerModel>

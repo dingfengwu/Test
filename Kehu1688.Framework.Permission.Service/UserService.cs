@@ -13,17 +13,15 @@
 
 
 using Kehu1688.Framework.Base;
-using Kehu1688.Framework.Permission;
-using Kehu1688.Framework.Store;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.OptionsModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Kehu1688.Framework.Permission.Service
 {

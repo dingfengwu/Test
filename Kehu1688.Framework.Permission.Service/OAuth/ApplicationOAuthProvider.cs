@@ -1,15 +1,12 @@
-﻿using Kehu1688.Framework.Base;
-using Kehu1688.Framework.Permission;
-using Kehu1688.Framework.Permission.Service;
-using Microsoft.AspNet.Authentication;
+﻿using Microsoft.AspNet.Authentication;
 using Microsoft.AspNet.Http.Authentication;
 using Microsoft.AspNet.Identity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.OptionsModel;
 using System;
 using System.Collections.Generic;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.Extensions.OptionsModel;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Kehu1688.Framework.Permission.Service
 {

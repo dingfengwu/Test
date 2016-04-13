@@ -9,13 +9,6 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.Store", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{25BC12DB-296C-4383-A086-3110D25DC385}"
 	ProjectSection(SolutionItems) = preProject
-		Kehu1688.Framework.Base\global.json = Kehu1688.Framework.Base\global.json
-		Kehu1688.Framework.Store\global.json = Kehu1688.Framework.Store\global.json
-		Kehu1688.Framework.Permission\global.json = Kehu1688.Framework.Permission\global.json
-		Kehu1688.Framework.Permission.Service\global.json = Kehu1688.Framework.Permission.Service\global.json
-		Kehu1688.Framework.DI\global.json = Kehu1688.Framework.DI\global.json
-		Kehu1688.Framework.API\global.json = Kehu1688.Framework.API\global.json
-		Kehu1688.Framework.Config\global.json = Kehu1688.Framework.Config\global.json
 		..\文档\框架设计规范.doc = ..\文档\框架设计规范.doc
 	EndProjectSection
 EndProject
@@ -46,6 +39,32 @@ EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.API.Doc", "Kehu1688.Framework.API.Doc\Kehu1688.Framework.API.Doc.xproj", "{0D1EC740-314E-440F-A26C-E29B2886F594}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.Config", "Kehu1688.Framework.Config\Kehu1688.Framework.Config.xproj", "{63B18E74-073B-4008-B695-84BCCE6868BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "global", "global", "{D7B8D154-D7BB-489D-A377-6BEE365E357B}"
+	ProjectSection(SolutionItems) = preProject
+		Kehu1688.Framework.Config\global.json = Kehu1688.Framework.Config\global.json
+		Kehu1688.Framework.Base\global.json = Kehu1688.Framework.Base\global.json
+		Kehu1688.Framework.Store\global.json = Kehu1688.Framework.Store\global.json
+		Kehu1688.Framework.Permission\global.json = Kehu1688.Framework.Permission\global.json
+		Kehu1688.Framework.Permission.Service\global.json = Kehu1688.Framework.Permission.Service\global.json
+		Kehu1688.Framework.DI\global.json = Kehu1688.Framework.DI\global.json
+		Kehu1688.Framework.API\global.json = Kehu1688.Framework.API\global.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{8177021E-9803-4C88-A6B6-6975C8630125}"
+	ProjectSection(SolutionItems) = preProject
+		Kehu1688.Framework.API\project.json = Kehu1688.Framework.API\project.json
+		Kehu1688.Framework.API.Doc\project.json = Kehu1688.Framework.API.Doc\project.json
+		Kehu1688.Framework.Base\project.json = Kehu1688.Framework.Base\project.json
+		Kehu1688.Framework.Config\project.json = Kehu1688.Framework.Config\project.json
+		Kehu1688.Framework.DI\project.json = Kehu1688.Framework.DI\project.json
+		Kehu1688.Framework.Middleware\project.json = Kehu1688.Framework.Middleware\project.json
+		Kehu1688.Framework.Permission\project.json = Kehu1688.Framework.Permission\project.json
+		Kehu1688.Framework.Permission.Service\project.json = Kehu1688.Framework.Permission.Service\project.json
+		Kehu1688.Framework.Store\project.json = Kehu1688.Framework.Store\project.json
+	EndProjectSection
+EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "RightAuthentication", "RightAuthentication\RightAuthentication.modelproj", "{58DBE350-5068-40C7-BC95-5734606B10F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +112,10 @@ Global
 		{63B18E74-073B-4008-B695-84BCCE6868BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63B18E74-073B-4008-B695-84BCCE6868BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63B18E74-073B-4008-B695-84BCCE6868BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58DBE350-5068-40C7-BC95-5734606B10F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58DBE350-5068-40C7-BC95-5734606B10F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58DBE350-5068-40C7-BC95-5734606B10F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58DBE350-5068-40C7-BC95-5734606B10F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -112,5 +135,7 @@ Global
 		{BA308712-11CD-4E63-B3A6-4117A2DA6263} = {40BDA379-F074-49AD-A7E8-82DCE7963FC9}
 		{0D1EC740-314E-440F-A26C-E29B2886F594} = {AB412132-209A-46A1-8B41-F408184AB556}
 		{63B18E74-073B-4008-B695-84BCCE6868BD} = {747D054B-901A-4002-9488-BCDD50F199A8}
+		{D7B8D154-D7BB-489D-A377-6BEE365E357B} = {25BC12DB-296C-4383-A086-3110D25DC385}
+		{8177021E-9803-4C88-A6B6-6975C8630125} = {25BC12DB-296C-4383-A086-3110D25DC385}
 	EndGlobalSection
 EndGlobal

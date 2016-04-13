@@ -12,18 +12,15 @@
 
 
 
+using Kehu1688.Framework.Base;
 using Kehu1688.Framework.Permission;
 using Kehu1688.Framework.Permission.Service;
-using Kehu1688.Framework.Permission.Service.DomainService;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.Logging;
-using System.Net.Sockets;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc.Filters;
 using System.Web.Http;
-using Kehu1688.Framework.Base;
 
 namespace Kehu1688.Framework.API.Controllers
 {
@@ -44,6 +41,8 @@ namespace Kehu1688.Framework.API.Controllers
             _signInManager = signInManager;
         }
 
+
+        #pragma warning disable 1998
         [HttpPost]
         [Route("Test")]
         [PermissionAuthroize]

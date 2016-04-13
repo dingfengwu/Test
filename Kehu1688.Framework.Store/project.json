@@ -14,7 +14,9 @@
 
   "frameworks": {
     "net451": {
-      "dependencies": {}
+      "dependencies": {
+        "Z.EntityFramework.Extensions": "3.9.23"
+      }
     },
     "dotnet5.4": {
       "dependencies": {

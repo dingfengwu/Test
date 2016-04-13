@@ -15,6 +15,7 @@ using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc.Filters;
 using Kehu1688.Framework.DI;
 using Microsoft.AspNet.StaticFiles;
+using Kehu1688.Framework.Base;
 
 namespace Kehu1688.Framework.API
 {
@@ -55,21 +56,17 @@ namespace Kehu1688.Framework.API
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-            
+
+            services.AddPermission();
+            services.AddStore();
+
+
             services.AddMvc(options=> {
                 options.Filters.Add(PermissionAuthorizeFilter<PermissionRequirement>.Default);
 
                 options.Filters.Add(new GlobalException());
             });
             services.AddCors();
-
-            //验证权限
-            //services.AddAuthorization(option =>
-            //{
-            //    option.AddPolicy("default",
-            //        policy => policy.AddRequirements(new PermissionRequirement()));
-            //});
-            //services.AddSingleton<IAuthorizationHandler, DefaultPermissionHandler>();
             
             //增加注入
             services.AddInstance(typeof(IConfigurationRoot), Configuration);
@@ -82,6 +79,9 @@ namespace Kehu1688.Framework.API
             PublicClientId = "self";
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            loggerFactory.AddProvider(new TextLoggerProvider(options=> {
+                options.LoggerPath = env.MapPath("./Logs/");
+            }));
 
             if (env.IsDevelopment())
             {

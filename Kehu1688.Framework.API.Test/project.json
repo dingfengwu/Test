@@ -16,7 +16,9 @@
     "Kehu1688.Framework.Permission": "1.0.0-*",
     "Kehu1688.Framework.Permission.Service": "1.0.0-*",
     "Kehu1688.Framework.Store": "1.0.0-*",
-    "Microsoft.Framework.ConfigurationModel": "1.0.0-beta4"
+    "Microsoft.Framework.ConfigurationModel": "1.0.0-beta4",
+    "Kehu1688.Framework.Config": "1.0.0-*",
+    "Microsoft.AspNet.Mvc.Core": "6.0.0-rc1-final"
   },
   "commands": {
     "test": "xunit.runner.dnx"

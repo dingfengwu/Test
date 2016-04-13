@@ -126,6 +126,9 @@
   <data name="CollectionArgumentIsEmpty" xml:space="preserve">
     <value>参数{0}不能为空集合</value>
   </data>
+  <data name="ERROR_PATH_NOT_FOUND" xml:space="preserve">
+    <value>请指定有效的日志路径</value>
+  </data>
   <data name="InvalidEntityType" xml:space="preserve">
     <value>参数{0}不是类类型</value>
   </data>

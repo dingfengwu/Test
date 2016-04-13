@@ -4,9 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
-using Kehu1688.Framework.Base.Resources;
 
 namespace Kehu1688.Framework.Base
 {

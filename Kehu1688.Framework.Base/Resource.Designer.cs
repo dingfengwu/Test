@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Kehu1688.Framework.Base.Resources {
+namespace Kehu1688.Framework.Base {
     using System;
     using System.Reflection;
     
@@ -38,7 +38,7 @@ namespace Kehu1688.Framework.Base.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Kehu1688.Framework.Base.Resources.Resource", typeof(Resource).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Kehu1688.Framework.Base.Resource", typeof(Resource).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -83,6 +83,15 @@ namespace Kehu1688.Framework.Base.Resources {
         internal static string CollectionArgumentIsEmpty {
             get {
                 return ResourceManager.GetString("CollectionArgumentIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    查找与 请指定有效的日志路径 类似的本地化字符串。
+        /// </summary>
+        internal static string ERROR_PATH_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("ERROR_PATH_NOT_FOUND", resourceCulture);
             }
         }
         

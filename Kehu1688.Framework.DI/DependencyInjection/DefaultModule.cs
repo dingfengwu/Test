@@ -13,6 +13,7 @@
 
 
 using Autofac;
+using Kehu1688.Framework.Base;
 using Kehu1688.Framework.Permission;
 using Kehu1688.Framework.Permission.Service;
 using Microsoft.Extensions.Configuration;
@@ -24,11 +25,7 @@ namespace Kehu1688.Framework.DI
         protected override void Load(ContainerBuilder builder)
         {
             //注册域服务
-            builder.RegisterType<PermissionService>().SingleInstance();
-            builder.RegisterType<RoleService>().SingleInstance();
-            builder.RegisterType<UserService>().SingleInstance();
-            builder.RegisterType<ApplicationUserStore>().SingleInstance();
-            builder.RegisterType<ApplicationRoleStore>().SingleInstance();
+            builder.RegisterType<IdGenerator>().SingleInstance();
 
             base.Load(builder);
         }

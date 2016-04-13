@@ -6,65 +6,54 @@
 // 文件功能描述：
 // 描述内容
 //
-// 创建人  ：Administrator
+// 创建人  ：WDF
 // 创建日期：2016-04-12 11:01:39
 //----------------------------------------------------------------*/
 
 
 
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.OptionsModel;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Kehu1688.Framework.Base
 {
     public class TextLoggerProvider : ILoggerProvider
     {
+        TextLoggerOption _options;
+        public TextLoggerProvider(TextLoggerOption options)
+        {
+            if (options == null)
+                throw new ArgumentNullException(nameof(options));
+
+            if (string.IsNullOrWhiteSpace(options.LoggerPath))
+                throw new ArgumentNullException(nameof(options), Resource.ResourceManager.GetString("ERROR_PATH_NOT_FOUND"));
+            
+            _options = options;
+        }
+        public TextLoggerProvider(Action<TextLoggerOption> options)
+        {
+            if (options == null)
+                throw new ArgumentNullException(nameof(options));
+
+            _options = new TextLoggerOption();
+            options(_options);
+
+            if (string.IsNullOrWhiteSpace(_options.LoggerPath))
+                throw new ArgumentNullException(nameof(options), Resource.ResourceManager.GetString("ERROR_PATH_NOT_FOUND"));
+        }
+
         public ILogger CreateLogger(string categoryName)
         {
-            return new TextLogger();
+            _options.LoggerCategory = categoryName;
+            return new TextLogger(_options);
         }
 
-        #region IDisposable Support
-        private bool disposedValue = false; // 要检测冗余调用
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposedValue)
-            {
-                if (disposing)
-                {
-                    // TODO: 释放托管状态(托管对象)。
-                }
-
-                // TODO: 释放未托管的资源(未托管的对象)并在以下内容中替代终结器。
-                // TODO: 将大型字段设置为 null。
-
-                disposedValue = true;
-            }
-        }
-
-        // TODO: 仅当以上 Dispose(bool disposing) 拥有用于释放未托管资源的代码时才替代终结器。
-        // ~TextLoggerProvider() {
-        //   // 请勿更改此代码。将清理代码放入以上 Dispose(bool disposing) 中。
-        //   Dispose(false);
-        // }
-
-        // 添加此代码以正确实现可处置模式。
         public void Dispose()
         {
-            // 请勿更改此代码。将清理代码放入以上 Dispose(bool disposing) 中。
-            Dispose(true);
-            // TODO: 如果在以上内容中替代了终结器，则取消注释以下行。
-            // GC.SuppressFinalize(this);
+            
         }
-        #endregion
-
     }
 
     public class TextLogger : DefaultLogger
@@ -77,6 +66,12 @@ namespace Kehu1688.Framework.Base
 
         public TextLogger(TextLoggerOption options)
         {
+            if (options == null)
+                throw new ArgumentNullException(nameof(options));
+
+            if (string.IsNullOrWhiteSpace(options.LoggerPath))
+                throw new ArgumentNullException(nameof(options), Resource.ResourceManager.GetString("ERROR_PATH_NOT_FOUND"));
+
             _options = options;
             if (!Directory.Exists(options.LoggerPath))
                 Directory.CreateDirectory(options.LoggerPath);
@@ -103,7 +98,7 @@ namespace Kehu1688.Framework.Base
                 lock (_lock)
                 {
                     if (_warningFile == null)
-                        _warningFile = new FileInfo(LogFilename(LogLevel.Verbose));
+                        _warningFile = new FileInfo(LogFilename(LogLevel.Warning));
                 }
                 return _warningFile;
             }
@@ -116,7 +111,7 @@ namespace Kehu1688.Framework.Base
                 lock (_lock)
                 {
                     if (_errorFile == null)
-                        _errorFile = new FileInfo(LogFilename(LogLevel.Verbose));
+                        _errorFile = new FileInfo(LogFilename(LogLevel.Error));
                 }
                 return _errorFile;
             }
@@ -126,18 +121,22 @@ namespace Kehu1688.Framework.Base
         {
             return Path.Combine(_options.LoggerPath, $"{logLevel.ToString()}{DateTime.Now.ToString("yyyyMMdd")}.log");
         }
-
-        public override IDisposable BeginScopeImpl(object state)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         protected override string Formatter(object state, Exception exception)
         {
-            return string.Format($"时间:{DateTime.Now.ToString("HH:mm:ss")}-类别:{state}-错误描述:{exception.Message}");
+            if (state == null && exception == null) { return string.Empty; }
+
+            if (exception == null)
+            {
+                return string.Format($"时间:{DateTime.Now.ToString("HH:mm:ss")}-类别:{_options.LoggerCategory}-状态：{state.ToString()}\r\n\r\n");
+            }
+            else
+            {
+                return string.Format($"时间:{DateTime.Now.ToString("HH:mm:ss")}-类别:{_options.LoggerCategory}-状态：{state.ToString()}-错误描述:{exception.Message}\r\n\r\n");
+            }
         }
 
-        protected async override void Log(LogLevel logLevel, Exception exception)
+        protected async override void Log(LogLevel logLevel,object state, Exception exception)
         {
             FileInfo file = null;
             switch (logLevel)
@@ -155,10 +154,11 @@ namespace Kehu1688.Framework.Base
 
             if (file != null)
             {
-                var bytes = Encoding.UTF8.GetBytes(Formatter(null, exception));
-                using (var fs = file.Open(FileMode.OpenOrCreate, FileAccess.Write, FileShare.Write))
+                var bytes = Encoding.UTF8.GetBytes(Formatter(state, exception));
+                using (var fs = file.Open(FileMode.Append, FileAccess.Write, FileShare.Write))
                 {
                     await fs.WriteAsync(bytes, 0, bytes.Length);
+                    fs.Flush();
                 }
             }
         }
@@ -166,7 +166,10 @@ namespace Kehu1688.Framework.Base
 
     public abstract class DefaultLogger : ILogger
     {
-        public abstract IDisposable BeginScopeImpl(object state);
+        public virtual IDisposable BeginScopeImpl(object state)
+        {
+            return NoopDisposable.Instance;
+        }
 
         public virtual bool IsEnabled(LogLevel logLevel)
         {
@@ -181,11 +184,11 @@ namespace Kehu1688.Framework.Base
             }
         }
 
-        protected abstract void Log(LogLevel logLevel, Exception exception);
+        protected abstract void Log(LogLevel logLevel,object state, Exception exception);
 
         public void Log(LogLevel logLevel, int eventId, object state, Exception exception, Func<object, Exception, string> formatter)
         {
-            Log(logLevel, exception);
+            Log(logLevel,state, exception);
         }
 
         public void LogVerbose(string message)
@@ -204,6 +207,17 @@ namespace Kehu1688.Framework.Base
         }
 
         protected abstract string Formatter(object state, Exception exception);
+
+
+        private class NoopDisposable : IDisposable
+        {
+            public static NoopDisposable Instance = new NoopDisposable();
+
+            public void Dispose()
+            {
+
+            }
+        }
     }
 
     public class TextLoggerOption : Microsoft.Extensions.OptionsModel.IOptions<TextLoggerOption>
@@ -216,6 +230,14 @@ namespace Kehu1688.Framework.Base
             }
         }
 
+        /// <summary>
+        /// 日志文件路径
+        /// </summary>
         public string LoggerPath { get; set; }
+
+        /// <summary>
+        /// 日志文件类别
+        /// </summary>
+        public string LoggerCategory { get; set; }
     }
 }

@@ -13,13 +13,10 @@
 
 
 using Kehu1688.Framework.Base;
-using Kehu1688.Framework.Permission;
 using Kehu1688.Framework.Store;
 using Microsoft.AspNet.Mvc.Filters;
-using System;
-using System.Threading.Tasks;
 using System.Linq;
-using Kehu1688.Framework.Permission.Service.DomainService;
+using System.Threading.Tasks;
 
 namespace Kehu1688.Framework.Permission.Service
 {
@@ -28,21 +25,27 @@ namespace Kehu1688.Framework.Permission.Service
     /// </summary>
     public class PermissionService:IDomainService
     {
-        private ApplicationDbContext _context;
+        EntityFrameworkRepository _rep;
+        DepartmentService _dptService;
 
-        public PermissionService(ApplicationDbContext context)
+        public PermissionService(EntityFrameworkRepository rep, 
+            DepartmentService departmentService)
         {
-            _context = context;
+            _rep = rep;
+            _dptService = departmentService;
         }
 
-
-        public async Task<bool> Authorize(AuthorizationContext context)
+        #pragma warning disable 1998
+        public virtual async Task<bool> Authorize(AuthorizationContext context)
         {
             var action = context.ActionDescriptor.AttributeRouteInfo;
             var permissionAuthorize = context.Filters.OfType<PermissionAuthroizeAttribute>().FirstOrDefault();
             if (permissionAuthorize != null)
             {
+                var operate = permissionAuthorize.Operate;
+                var resource = permissionAuthorize.Module;
 
+                
             }
 
             return true;
