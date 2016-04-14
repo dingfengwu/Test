@@ -17,6 +17,7 @@ using Kehu1688.Framework.Store;
 using Microsoft.AspNet.Mvc.Filters;
 using System.Linq;
 using System.Threading.Tasks;
+using Kehu1688.Framework.Config;
 
 namespace Kehu1688.Framework.Permission.Service
 {
@@ -35,17 +36,23 @@ namespace Kehu1688.Framework.Permission.Service
             _dptService = departmentService;
         }
 
+        /// <summary>
+        /// 验证权限
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         #pragma warning disable 1998
         public virtual async Task<bool> Authorize(AuthorizationContext context)
         {
-            var action = context.ActionDescriptor.AttributeRouteInfo;
             var permissionAuthorize = context.Filters.OfType<PermissionAuthroizeAttribute>().FirstOrDefault();
             if (permissionAuthorize != null)
             {
                 var operate = permissionAuthorize.Operate;
                 var resource = permissionAuthorize.Module;
+                var key = "";
 
-                
+                var rightContext = new RightAuthorizeContext(context, resource, operate, key);
+                await FrameworkConfig.IocConfig.Resolve<RightAuthorize>().AuthorizeAsync(rightContext);
             }
 
             return true;

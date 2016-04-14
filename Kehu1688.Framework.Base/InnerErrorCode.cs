@@ -41,5 +41,10 @@ namespace Kehu1688.Framework.Base
         /// </summary>
         public const string GLOBAL_EXCEPTION = "1004";
 
+        /// <summary>
+        /// 权限验证失败
+        /// </summary>
+        public const string RIGHT_AUTHORIZE_FAIL = "1005";
+
     }
 }

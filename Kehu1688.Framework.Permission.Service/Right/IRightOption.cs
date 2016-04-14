@@ -2,12 +2,12 @@
 // Copyright (C) 2016 Kehu1688
 // 版权所有。
 //
-// 文件名：IRightHandler.cs
+// 文件名：IRightOption.cs
 // 文件功能描述：
 // 描述内容
 //
 // 创建人  ：Administrator
-// 创建日期：2016-04-13 17:31:14
+// 创建日期：2016-04-14 11:16:56
 //----------------------------------------------------------------*/
 
 
@@ -20,11 +20,18 @@ using System.Threading.Tasks;
 namespace Kehu1688.Framework.Permission.Service
 {
     /// <summary>
-    /// 权限处理接口
+    /// 权限处理器的选项接口
     /// </summary>
-    public interface IRightHandler
+    public interface IRightOption
     {
-        string ModuleKey { get; set; }
-        Task<bool> Authorize(string moduleKey, string opKey, string entityId);
+        /// <summary>
+        /// 用来标识此处理器可用于的模块,如果为模块可以为modulekey
+        /// </summary>
+        string[] Scheme { get; set; }
+
+        /// <summary>
+        /// 执行顺序
+        /// </summary>
+        int Order { get; set; }
     }
 }

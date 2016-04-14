@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="e488ee34-8338-4669-91b0-8b29cacb8411" name="RightFlow" linkedPackageId="a53ec9a9-c4f5-4a38-a04a-686fc9c5eb3a" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <ownedCommentsInternal>
+    <comment Id="f69cb7c2-0139-440e-8f2c-94ad68ff70ef">
+      <elementDefinition Id="00c3c825-5fec-4b3b-848b-893429716780" />
+      <body>根据Scheme判断是否走ModelRightHandler</body>
+      <annotatedElements>
+        <decisionNodeMoniker Id="dfdb7169-d3f7-48d5-b833-a5084754ebdd" LastKnownName="Decision1" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="6c5e2fc4-c7d2-4fc1-8575-8089ad9f6ee0" name="RightFlow" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="78f33389-c27b-4940-85be-96a0924bc34d" />
+        <nodes>
+          <opaqueAction Id="c7f09510-b550-4013-9917-5ca1fe339e3b" name="操作" isLeaf="false">
+            <elementDefinition Id="8473ceb4-9478-4702-971f-b13d64bacb1a" />
+            <objectFlowTargets>
+              <objectFlow Id="7b70aebf-a84e-42eb-8b9f-f781c65d7729" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="928892a3-e03c-4616-8dda-e5d190815742" LastKnownName="RightHandlerManager" />
+                <elementDefinition Id="0f7cb398-9961-4415-9378-2d054f3b75de" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <objectNode Id="928892a3-e03c-4616-8dda-e5d190815742" name="RightHandlerManager" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="f7de7c98-d31c-4330-a176-7ce0cd290da5" />
+            <objectFlowTargets>
+              <objectFlow Id="b3422845-b3a1-4444-b321-b9e48473d18d" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <decisionNodeMoniker Id="dfdb7169-d3f7-48d5-b833-a5084754ebdd" LastKnownName="Decision1" />
+                <elementDefinition Id="c1390dec-367d-41cd-a725-83d5505f1162" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="4959093d-2acc-4aad-b814-08a560d270e8" name="2147483647" value="2147483647">
+                <elementDefinition Id="4fb6356e-4cbe-4824-8afa-b6619849097a" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <initialNode Id="87efc90e-4dca-41be-85cc-7870e4a5023e" name="Initial1" isLeaf="false">
+            <elementDefinition Id="52eae40f-5ae9-4be1-9272-dff67cb12316" />
+            <flowNodeTargets>
+              <controlFlow Id="bd63de3c-e27f-4d8e-8cde-a1177299911d" isLeaf="false">
+                <opaqueActionMoniker Id="c7f09510-b550-4013-9917-5ca1fe339e3b" LastKnownName="操作" />
+                <elementDefinition Id="c96047bd-215e-4f20-974d-9928edd5d144" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <decisionNode Id="dfdb7169-d3f7-48d5-b833-a5084754ebdd" name="Decision1" isLeaf="false">
+            <elementDefinition Id="43e8ee18-c621-463b-971f-6f08b5dc2230" />
+            <objectFlowTargets>
+              <objectFlow Id="994dbc8a-b6f4-49c2-a9f3-185011710b7c" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="6b8b246d-a663-4238-8efe-4284a03d7719" LastKnownName="ModelRightHandler" />
+                <elementDefinition Id="99c77f67-ddc2-4b09-8c07-61a1a382cee3" />
+              </objectFlow>
+              <objectFlow Id="2fd22af4-b202-4d05-80b0-d807d461e3f9" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="9c302f76-3858-4caf-85d8-46ec96de5e19" LastKnownName="CommonRightHandler" />
+                <elementDefinition Id="f8badf56-b289-478c-b5ac-a37860649089" />
+              </objectFlow>
+            </objectFlowTargets>
+          </decisionNode>
+          <objectNode Id="6b8b246d-a663-4238-8efe-4284a03d7719" name="ModelRightHandler" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="0fd13e64-8311-46d8-a32b-b66695daa019" />
+            <upperBound>
+              <literalInteger Id="609df473-a80f-4289-82ca-d08101360ea6" name="2147483647" value="2147483647">
+                <elementDefinition Id="5270fc89-832b-4e76-80a1-cca5b2668699" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="9c302f76-3858-4caf-85d8-46ec96de5e19" name="CommonRightHandler" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="3bca3fa1-1857-46b7-baab-7db5df5f4ae1" />
+            <objectFlowTargets>
+              <objectFlow Id="e69effca-bc53-414d-aa3f-a4193ffbd098" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="0432c42d-4430-448c-aaf5-ecb4396bc0ab" LastKnownName="DeptmentRightHandler" />
+                <elementDefinition Id="2eedaa4c-730f-4287-b276-9f9d99ec0be0" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="b18194dc-8e6d-4ef7-a3c7-4b9df069047c" name="2147483647" value="2147483647">
+                <elementDefinition Id="8b2ed4e0-d3ab-4265-8c74-1233837a072a" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="0432c42d-4430-448c-aaf5-ecb4396bc0ab" name="DeptmentRightHandler" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="f8e40417-d408-49b2-adf3-5232c3a26e2a" />
+            <objectFlowTargets>
+              <objectFlow Id="93bf843a-2fe0-4ebe-8917-6f6d80a7a19e" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="088ea325-e8d1-4ed1-95a3-5750cb4e12d0" LastKnownName="AuditRightHandler" />
+                <elementDefinition Id="a2e37622-813b-4126-9ef7-05c5ff23e858" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="167b0405-27c8-41ff-ba3b-a9dbfecd9827" name="2147483647" value="2147483647">
+                <elementDefinition Id="2b4d08be-6c45-47db-aaf7-a08ca6f4c8ad" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="088ea325-e8d1-4ed1-95a3-5750cb4e12d0" name="AuditRightHandler" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="145eaff1-3036-4b3a-bc9d-4945973f1c09" />
+            <objectFlowTargets>
+              <objectFlow Id="ff76396d-804d-4950-9da4-7e0a7b5ac031" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="8e68b5cf-ec53-4359-b0ba-27b25117dd2a" LastKnownName="FieldRightHandler" />
+                <elementDefinition Id="2fbddff2-d664-4522-b0c3-590babb28a6b" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="5c7b528f-c01e-4bee-916b-f2675d67d5da" name="2147483647" value="2147483647">
+                <elementDefinition Id="0e6316de-69e7-4ebd-a5fd-594bdd092cf0" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="8e68b5cf-ec53-4359-b0ba-27b25117dd2a" name="FieldRightHandler" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="d0c9831f-40af-4deb-9874-7bcfb2105518" />
+            <upperBound>
+              <literalInteger Id="3d5ba4b6-28c4-487d-896a-836503e34d36" name="2147483647" value="2147483647">
+                <elementDefinition Id="8d590549-5e2d-4892-b711-141e8b432f23" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="8d938212-8282-4149-9292-88ee0a2a3d33" name="CommonRightHandlerProvider" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="978cf384-e481-4084-ae60-5a746e2fc79c" />
+            <upperBound>
+              <literalInteger Id="c1498257-7d62-4540-b717-db38e0ed654c" name="2147483647" value="2147483647">
+                <elementDefinition Id="2d43b2c0-105e-4827-81e0-62b4cf2aa002" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="5eeff4a5-7e92-431f-b31f-4e799055ab3b" name="DeptmentRightHandlerProvider" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="f532cb1b-7eb5-491e-8b50-cc6b962f6141" />
+            <upperBound>
+              <literalInteger Id="5840dacf-6959-47db-a7df-f46b80366f0d" name="2147483647" value="2147483647">
+                <elementDefinition Id="4e295107-7d01-408a-a483-46adf2b14dd0" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="a6c84805-d1ea-459f-b67c-dd0786340aae" name="AuditRightHandlerProvider" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="0493774a-69a0-4205-9ff6-064666f5c734" />
+            <upperBound>
+              <literalInteger Id="d2348ad5-8635-4824-8698-4ea17e9a7eb4" name="2147483647" value="2147483647">
+                <elementDefinition Id="63113400-747e-4d5d-85eb-98d08c3a5a09" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="542d737b-e410-4411-91ad-9047c9c67097" name="FieldRightHandlerProvider" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="097c5d1c-b0ed-4de2-bad8-8dcc6e288766" />
+            <upperBound>
+              <literalInteger Id="8ab677d7-40fb-49c3-b224-794177436591" name="2147483647" value="2147483647">
+                <elementDefinition Id="4f17246c-61c7-4b34-9272-047c8722db5d" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="a53ec9a9-c4f5-4a38-a04a-686fc9c5eb3a" name="RightAuthentication">
+    <elementDefinition Id="8f5bccfb-c6df-4f58-9ad4-42c6e3f1d055" />
+    <profileInstances>
+      <packageHasProfileInstances Id="0f641f04-8302-4735-8fcb-8bdb56069cee">
+        <profileInstance Id="3d730cd1-e42a-46f8-8dd7-f50e8ed4b8d2" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="8715e02f-a5e3-4aee-9db0-05a57028d19b">
+        <profileInstance Id="d37dc3eb-5d74-4ab5-bd8b-99ce7d41b3aa" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</activityRootModel>
