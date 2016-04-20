@@ -27,7 +27,7 @@ namespace Kehu1688.Framework.Base.Cache
 
         string ServerVersion();
 
-        void DeleteAll<T>();
+        void FlushAll();
 
         long Delete(params string[] key);
     }

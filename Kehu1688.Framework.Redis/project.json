@@ -9,6 +9,10 @@
     "net451": {
       "dependencies": {
         "ServiceStack.Redis": "4.0.54"
+      },
+      "frameworkAssemblies": {
+        "System.Net.Http.WebRequest": "4.0.0.0",
+        "System.Web": "4.0.0.0"
       }
     },
     "dotnet5.4": {

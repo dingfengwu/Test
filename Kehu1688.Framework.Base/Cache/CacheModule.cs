@@ -34,7 +34,10 @@ namespace Kehu1688.Framework.Base.Cache
 
         public CacheModule(string host = null,int port = 0 , string password = null,long db = 0)
         {
-
+            Host = host;
+            Port = port;
+            Password = password;
+            DB = db;
         }
 
         /// <summary>
@@ -52,8 +55,9 @@ namespace Kehu1688.Framework.Base.Cache
         /// 清空缓存
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public virtual void DeleteAll<T>()
-        {            
+        public virtual void FlushAll()
+        {
+            
         }
 
         /// <summary>

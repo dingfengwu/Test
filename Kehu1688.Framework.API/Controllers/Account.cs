@@ -19,6 +19,7 @@ using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Net.Sockets;
 using System.Threading.Tasks;
 
 namespace Kehu1688.Framework.API.Controllers
@@ -32,7 +33,7 @@ namespace Kehu1688.Framework.API.Controllers
         private UserService _userService;
         private ILogger _logger;
         private SignInManager<User> _signInManager;
-
+        
         public AccountController(PermissionService service,UserService userService, ILoggerFactory loger, SignInManager<User> signInManager)
         {
             _service = service;

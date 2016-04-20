@@ -14,12 +14,10 @@ namespace Kehu1688.Framework.Redis
         /// </summary>
         /// <param name="host"></param>
         /// <param name="port"></param>
-        public RedisModule(string host = "localhost", int port = 6379, string password = null, long db = 0)
+        public RedisModule(string host = "localhost", int port = 6379, string password = null, long db = 0) : base(host, port, password, db)
         {
             Host = host;
             Port = port;
-            Password = password;
-            DB = db;
             cacheType = CacheType.Redis;
         }
 
@@ -27,7 +25,7 @@ namespace Kehu1688.Framework.Redis
         /// 获取连接后的客户端对象
         /// </summary>
         /// <returns></returns>
-        protected override RedisClient GetRedisClient() => new RedisClient(Host, Port, Password, DB);
+        protected  RedisClient GetClient() => new RedisClient(Host, Port, Password, DB);
 
         /// <summary>
         /// 设置缓存
@@ -38,7 +36,7 @@ namespace Kehu1688.Framework.Redis
         /// <returns></returns>
         public override bool Set<T>(string key, T value)
         {
-            using (var rc = GetRedisClient())
+            using (var rc = GetClient())
             {
                 return rc.Set<T>(key, value);
             }
@@ -54,7 +52,7 @@ namespace Kehu1688.Framework.Redis
         /// <returns></returns>
         public override bool Set<T>(string key, T value,DateTime expiresAt)
         {
-            using (var rc = GetRedisClient())
+            using (var rc = GetClient())
             {
                 return rc.Set<T>(key, value, expiresAt);
             }
@@ -70,7 +68,7 @@ namespace Kehu1688.Framework.Redis
         /// <returns></returns>
         public override bool Set<T>(string key, T value,TimeSpan expiresIn)
         {
-            using (var rc = GetRedisClient())
+            using (var rc = GetClient())
             {
                 return rc.Set<T>(key, value, expiresIn);
             }
@@ -95,7 +93,7 @@ namespace Kehu1688.Framework.Redis
         /// <returns></returns>
         public override T Get<T>(string key)
         {
-            using (var rc = GetRedisClient())
+            using (var rc = GetClient())
             {
                 return rc.Get<T>(key);
             }
@@ -108,7 +106,7 @@ namespace Kehu1688.Framework.Redis
         /// <returns></returns>
         public override bool Exists(string key)
         {
-            using (var rc = GetRedisClient())
+            using (var rc = GetClient())
             {
                 return rc.Exists(key) >= 0;
             }
@@ -121,7 +119,7 @@ namespace Kehu1688.Framework.Redis
         /// <returns></returns>
         public override long KeyId(string key)
         {
-            using (var rc = GetRedisClient())
+            using (var rc = GetClient())
             {
                 return rc.Exists(key);
             }
@@ -133,7 +131,7 @@ namespace Kehu1688.Framework.Redis
         /// <returns></returns>
         public override long KeysNum()
         {
-            using (var rc = GetRedisClient())
+            using (var rc = GetClient())
             {
                 return rc.DbSize;
             }
@@ -145,7 +143,7 @@ namespace Kehu1688.Framework.Redis
         /// <returns></returns>
         public override string ServerVersion()
         {
-            using (var rc = GetRedisClient())
+            using (var rc = GetClient())
             {
                 return rc.ServerVersion;
             }
@@ -156,11 +154,11 @@ namespace Kehu1688.Framework.Redis
         /// 清空缓存
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public override void DeleteAll<T>()
+        public override void FlushAll()
         {
-            using (var rc = GetRedisClient())
+            using (var rc = GetClient())
             {
-                rc.DeleteAll<T>();
+                rc.FlushAll();
             }
         }
 
@@ -171,7 +169,7 @@ namespace Kehu1688.Framework.Redis
         /// <returns></returns>
         public override long Delete(params string[] key)
         {
-            using (var rc = GetRedisClient())
+            using (var rc = GetClient())
             {
                 return rc.Del(key);
             }
