@@ -29,7 +29,9 @@
     "Microsoft.Extensions.Logging.Debug": "1.0.0-rc1-final",
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc1-final",
     "EntityFramework.MicrosoftSqlServer.Design": "7.0.0-rc1-final",
-    "Kehu1688.Framework.Middleware": "1.0.0-*"
+    "Kehu1688.Framework.Middleware": "1.0.0-*",
+    "Microsoft.AspNet.Mvc.Core": "6.0.0-rc1-final",
+    "Kehu1688.Framework.Config": "1.0.0-*"
   },
 
   "commands": {

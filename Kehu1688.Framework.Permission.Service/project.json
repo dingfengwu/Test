@@ -1,13 +1,15 @@
 {
   "version": "1.0.0-*",
-  "description": "ÊÚÈ¨Ä£¿éµÄ·şÎñ",
+  "description": "æˆæƒæœåŠ¡ç±»",
   "authors": [ "WDF" ],
   "tags": [ "" ],
   "projectUrl": "",
   "licenseUrl": "",
   "dependencies": {
     "Kehu1688.Framework.Base": "1.0.0-*",
+    "Kehu1688.Framework.Config": "1.0.0-*",
     "Kehu1688.Framework.Store": "1.0.0-*",
+    "Microsoft.AspNet.Authorization": "1.0.0-rc1-final",
     "Microsoft.AspNet.Http.Extensions": "1.0.0-rc1-final",
     "Microsoft.AspNet.Identity": "3.0.0-rc1-final"
   },

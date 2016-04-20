@@ -22,24 +22,23 @@ namespace Kehu1688.Framework.Permission.Service
         /// <summary>
         ///     Configure the app to use owin middleware based oauth bearer tokens
         /// </summary>
-        /// <param name="app"></param>
+        /// <param name="this"></param>
         /// <param name="options"></param>
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Auth",
             Justification = "By Design")]
-        public static void UseOAuthBearerTokens(this IApplicationBuilder app, OAuthAuthorizationServerOptions options)
+        public static void UseOAuthBearerTokens(this IApplicationBuilder @this, OAuthAuthorizationServerOptions options)
         {
-            if (app == null)
+            if (@this == null)
             {
-                throw new ArgumentNullException("app");
+                throw new ArgumentNullException(nameof(@this));
             }
             if (options == null)
             {
-                throw new ArgumentNullException("options");
+                throw new ArgumentNullException(nameof(options));
             }
 
-            app.UseOAuthAuthorizationServer(options);
-            
-            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions
+            @this.UseOAuthAuthorizationServer(options);
+            @this.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions
             {
                 AccessTokenFormat = options.AccessTokenFormat,
                 AccessTokenProvider = options.AccessTokenProvider,
@@ -47,7 +46,11 @@ namespace Kehu1688.Framework.Permission.Service
                 AuthenticationType = options.AuthenticationType,
                 Description = options.Description,
                 Provider = new ApplicationOAuthBearerProvider(),
-                SystemClock = options.SystemClock
+                SystemClock = options.SystemClock,
+
+                AutomaticAuthenticate = false,
+                AutomaticChallenge = false,
+                AuthenticationScheme = "Bearer"
             });
 
             //app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions
@@ -62,6 +65,20 @@ namespace Kehu1688.Framework.Permission.Service
             //});
         }
 
+        /// <summary>
+        /// 使用Bearer验证Token
+        /// </summary>
+        /// <param name="@this">IApplicationBuilder</param>
+        /// <param name="config">OAuthAuthorizationServerOptions配置</param>
+        public static void UseOAuthBearerTokens(this IApplicationBuilder @this, Action<OAuthAuthorizationServerOptions> config)
+        {
+            var options = new OAuthAuthorizationServerOptions();
+            if (config != null)
+            {
+                config(options);
+            }
+            @this.UseOAuthBearerTokens(options);
+        }
         private class ApplicationOAuthBearerProvider : OAuthBearerAuthenticationProvider
         {
             public override Task ValidateIdentity(OAuthValidateIdentityContext context)

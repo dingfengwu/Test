@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="20aec3ba-a1c7-4829-a5aa-671372473f4b" name="UMLClassDiagram1" linkedPackageId="902e110d-9f94-4d2b-a28c-a4266c046369" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="674f0009-9c82-4a22-af68-237bebb135de" name="IRightHandler&lt;IRightHandlerOption&gt;" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="819b846b-25a7-46c5-a822-a556774fe854" />
+        <ownedOperations>
+          <operation Id="ea9ee248-6171-4e7a-a708-29a0e61887b8" name="Authorize" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="1c4daa01-1c1b-4caa-a7aa-bdd12184d827" />
+          </operation>
+        </ownedOperations>
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="40f49734-6686-40b2-a310-02a4d144b7e9" name="IRightHandlerOption" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="037b0d6a-082f-4a97-8c56-51a7c132f75f" />
+        <ownedAttributes>
+          <property Id="53ac52d4-da4e-4432-bcf9-88190c66f9c5" name="Scheme" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="37eecfcf-c55e-4040-8a72-8423b15f90af" />
+          </property>
+          <property Id="06eb3838-d9b0-417c-8bf4-cef9e0000edd" name="Order" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="f4a198ec-be04-49b0-b758-f049b0a92886" />
+          </property>
+        </ownedAttributes>
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="6ea8cf63-1b28-41b8-8557-358b93bd3d5b" name="RightHandlerBase&lt;TOption&gt;" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="3d3462bb-8c7a-4807-852d-47280cc6649f" />
+        <suppliersInternal>
+          <interfaceRealization Id="939e6b44-388e-41e3-9c23-e742bad2f9e9">
+            <interfaceMoniker Id="674f0009-9c82-4a22-af68-237bebb135de" LastKnownName="IRightHandler&lt;IRightHandlerOption&gt;" />
+            <elementDefinition Id="5258914c-98d4-468d-badf-211793b1f720" />
+          </interfaceRealization>
+          <dependency Id="3eeb3f44-4124-48ac-84b0-7c8b1630a4b1">
+            <classMoniker Id="7179d9b1-3ade-4a62-a836-3d9d22cdd8dc" LastKnownName="RightContext" />
+            <elementDefinition Id="1b6610ed-bbe3-45f8-9231-2918fb1ff6a0" />
+          </dependency>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization Id="4f226cd7-189b-4396-aa4f-7f642e134e90" isSubstitutable="false">
+            <classMoniker Id="5238f8c0-4493-4ed3-bf98-0fb63dc9573b" LastKnownName="RightHandlerDelegate" />
+            <elementDefinition Id="a71d1c24-e285-4e31-98fe-54b26b03356d" />
+          </generalization>
+        </generalsInternal>
+        <ownedOperationsInternal>
+          <operation Id="e65adf1a-ce77-4d66-9cd4-bd7f50ed96a6" name="Authorize" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="09c6db83-069b-4957-8dce-9959301f467b" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="f8b25139-3035-4b46-8795-c97832e1f57b" name="RightContext" direction="In" isUnique="false">
+                  <elementDefinition Id="3a64c776-cbc0-4614-8780-5c00118c7b2d" />
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="b78a869a-e1a4-4bf6-836d-8759c0e1fc06" name="RightHandlerDelegate" direction="In" isUnique="false">
+                  <elementDefinition Id="2a4404de-a680-4d6e-84e0-d021c054d422" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="51e9d6fb-1624-4e0b-97bb-bd2b64d0f8a9" name="RightHandlerOption" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ff8ef9c7-1052-4a03-9e36-1b04233b9bae" />
+        <suppliersInternal>
+          <interfaceRealization Id="ad352580-d99e-4fea-be5c-32796f5a2bc0">
+            <interfaceMoniker Id="40f49734-6686-40b2-a310-02a4d144b7e9" LastKnownName="IRightHandlerOption" />
+            <elementDefinition Id="1dfa015a-82e3-48c2-a30a-9cb7f47d5350" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="81e4e55b-4021-4620-b7c7-0bf2fe021d5e" name="RightAuthentication" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="30f5320b-c78c-4e70-b8b6-fb653012acc8" />
+        <suppliersInternal>
+          <dependency Id="6ab517ec-c3f8-4cc9-8a30-f702907e4071">
+            <classMoniker Id="6ea8cf63-1b28-41b8-8557-358b93bd3d5b" LastKnownName="RightHandlerBase&lt;TOption&gt;" />
+            <elementDefinition Id="f140d82d-be47-45e7-88c8-23f695d12965" />
+          </dependency>
+          <dependency Id="908a15d2-5a12-4652-84d3-1b8990f9fa80">
+            <classMoniker Id="51e9d6fb-1624-4e0b-97bb-bd2b64d0f8a9" LastKnownName="RightHandlerOption" />
+            <elementDefinition Id="6bb3a0b8-448c-4015-be0a-08f944d1a103" />
+          </dependency>
+        </suppliersInternal>
+        <ownedAttributesInternal>
+          <property Id="3a3cf234-65ec-482b-8bb5-9d48f90e016a" name="Handlers" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="a308bb4f-0d49-4067-8e9f-1d85a17c503c" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="06387de7-7e8a-4168-b860-d5110633a961" LastKnownName="ICollection" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="4b4496bf-3769-44b6-a761-e2695292ea92" name="Register" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="6135c980-e1b7-4057-8471-05173b6493c5" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="06387de7-7e8a-4168-b860-d5110633a961" name="ICollection" isAbstract="false" isLeaf="false" cachedFullName="ICollection">
+        <elementDefinition Id="e21de040-0ecf-41b7-8f20-8861c50c1ac4" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="3e31aa81-3956-4b31-9f87-a4d1b9f8b5d1" name="CommonRightHandler" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="38d2fa8b-d479-4fd7-87a9-3cd75cb771f2" />
+        <generalsInternal>
+          <generalization Id="692605c0-4b89-458c-be53-39b851f50dd5" isSubstitutable="false">
+            <classMoniker Id="6ea8cf63-1b28-41b8-8557-358b93bd3d5b" LastKnownName="RightHandlerBase&lt;TOption&gt;" />
+            <elementDefinition Id="d97d49cc-fbe8-45a6-9b6f-ddfe22609c0a" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="63fbf147-5fc7-462a-9c95-ef72e3ffb522" name="Handler1" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="33a7721d-3a85-40e9-ba8e-a15b4fc75d75" />
+        <generalsInternal>
+          <generalization Id="e5b3d48c-3772-4f9b-843b-e001f443b037" isSubstitutable="false">
+            <classMoniker Id="6ea8cf63-1b28-41b8-8557-358b93bd3d5b" LastKnownName="RightHandlerBase&lt;TOption&gt;" />
+            <elementDefinition Id="9498fa01-91bc-409e-8a49-87ffc9acc234" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="eaa56f35-c83e-497e-84ca-6d32da3ff6de" name="Handler2" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="6d676167-6290-4fae-839c-5279181a78c8" />
+        <generalsInternal>
+          <generalization Id="f53d77f1-5cbf-4d10-b766-3a9b46d9b20c" isSubstitutable="false">
+            <classMoniker Id="6ea8cf63-1b28-41b8-8557-358b93bd3d5b" LastKnownName="RightHandlerBase&lt;TOption&gt;" />
+            <elementDefinition Id="2e42c083-056f-4163-81dc-241395abf029" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="890edd2e-79ed-432a-9eb2-59afa97d3a32" name="Handler..." isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ff0fdfc8-a148-43a2-9775-74816bf09295" />
+        <generalsInternal>
+          <generalization Id="8533e15f-e072-464d-8537-3713f0a1894f" isSubstitutable="false">
+            <classMoniker Id="6ea8cf63-1b28-41b8-8557-358b93bd3d5b" LastKnownName="RightHandlerBase&lt;TOption&gt;" />
+            <elementDefinition Id="d0b7ef42-2256-4c7b-a6d3-25f03b239706" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="7179d9b1-3ade-4a62-a836-3d9d22cdd8dc" name="RightContext" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="76138157-580b-419e-a416-a12f111058c6" />
+        <ownedAttributesInternal>
+          <property Id="f892acde-b92f-41b3-9ef6-09ef61e02f2f" name="HttpContext" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="7b4c9951-e537-43f2-8485-3ccc24996223" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="34783a44-6a0b-4457-8210-d838c570a359" name="FieldRightHandler" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="e6d64e23-d25f-4f9e-9b3d-8d44dd3a3839" />
+        <generalsInternal>
+          <generalization Id="ec5d010c-3164-45e6-9a46-c349ad39cd86" isSubstitutable="false">
+            <classMoniker Id="6ea8cf63-1b28-41b8-8557-358b93bd3d5b" LastKnownName="RightHandlerBase&lt;TOption&gt;" />
+            <elementDefinition Id="7008e4ab-5d82-45bd-b598-2df6495e548a" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="16d09119-8b82-4fe0-87e0-e6e66ad9470a" name="DeptmentRightHandler" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="a7cbec8e-4a89-4216-833a-73d0097a8a63" />
+        <generalsInternal>
+          <generalization Id="c99c9bcc-e0d6-4813-a70d-b497362a9ca5" isSubstitutable="false">
+            <classMoniker Id="6ea8cf63-1b28-41b8-8557-358b93bd3d5b" LastKnownName="RightHandlerBase&lt;TOption&gt;" />
+            <elementDefinition Id="c35ec538-8eed-4f44-929d-b1fa2a59cc7d" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="32e84ae7-4874-4228-a3ee-63108036e3c5" name="AuditRightHandler" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="08dd3037-ccfb-4340-aa70-fca91ba8df30" />
+        <generalsInternal>
+          <generalization Id="b214bef1-c936-4b88-82f7-90ed98d59266" isSubstitutable="false">
+            <classMoniker Id="6ea8cf63-1b28-41b8-8557-358b93bd3d5b" LastKnownName="RightHandlerBase&lt;TOption&gt;" />
+            <elementDefinition Id="dfcb7070-818f-4a31-ab08-41f4338f3d13" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="5238f8c0-4493-4ed3-bf98-0fb63dc9573b" name="RightHandlerDelegate" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="25654d3e-7a40-4a19-9443-4502a22871ab" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="902e110d-9f94-4d2b-a28c-a4266c046369" name="RightAuthentication">
+    <elementDefinition Id="8f5bccfb-c6df-4f58-9ad4-42c6e3f1d055" />
+    <profileInstances>
+      <packageHasProfileInstances Id="d6a96f2c-d0b2-4fb2-b79a-460d7504aefd">
+        <profileInstance Id="9bce113d-fcf3-4865-a7ea-39f0d0c18815" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="aadb7f1b-4046-459a-a112-4fbd49607879">
+        <profileInstance Id="08dabc56-61da-4ad6-88e2-e6a7ff377c26" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</logicalClassDesignerModel>

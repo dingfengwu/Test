@@ -6,11 +6,8 @@
   "projectUrl": "",
   "licenseUrl": "",
   "dependencies": {
-    "Autofac": "4.0.0-rc1-177",
-    "Kehu1688.Framework.Base": "1.0.0-*",
-    "Kehu1688.Framework.Permission": "1.0.0-*",
-    "Kehu1688.Framework.Permission.Service": "1.0.0-*",
-    "Kehu1688.Framework.Store": "1.0.0-*"
+    "Autofac.Extensions.DependencyInjection": "4.0.0-rc1-177",
+    "Kehu1688.Framework.Base": "1.0.0-*"
   },
   "frameworks": {
     "net451": { },

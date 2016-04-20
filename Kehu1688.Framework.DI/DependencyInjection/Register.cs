@@ -13,6 +13,7 @@
 
 
 using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
@@ -34,29 +35,26 @@ namespace Kehu1688.Framework.DI
         /// <summary>
         /// 注册服务
         /// </summary>
-        /// <param name="services"></param>
+        /// <param name="services">集成服务</param>
         public static void RegisterService(IServiceCollection services = null)
         {
             _builder.RegisterModule<DefaultModule>();
-            foreach (var item in services)
-            {
-                //_builder.RegisterDecorator<IServiceProvider>(item, item, null);
-            }
+            _builder.Populate(services);
             Container=_builder.Build();
         }
 
         /// <summary>
         /// 返回指定服务
         /// </summary>
-        /// <typeparam name="TService"></typeparam>
-        /// <returns></returns>
-        public static TService Get<TService>() => Container.Resolve<TService>();
+        /// <typeparam name="T">类型</typeparam>
+        /// <returns>实例</returns>
+        public static T Get<T>() => Container.Resolve<T>();
 
         /// <summary>
         /// 获取类型
         /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
+        /// <param name="type">类型</param>
+        /// <returns>实例</returns>
         public static object Get(Type type) => Container.Resolve(type);
     }
 }

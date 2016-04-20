@@ -6,13 +6,13 @@
 // 文件功能描述：
 // 描述内容
 //
-// 创建人  ：Administrator
+// 创建人  ：WDF
 // 创建日期：2016-03-14 11:44:22
 //----------------------------------------------------------------*/
 
 
 
-using Kehu1688.Framework.Base.Attributes;
+using Kehu1688.Framework.Base;
 using Kehu1688.Framework.Permission;
 using Kehu1688.Framework.Permission.Service;
 using Microsoft.AspNet.Authorization;
@@ -21,27 +21,26 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace Kehu1688.Framework.API.Controllers
 {
-    [Authorize]
-    [ErrorCode("10")]
     [Route("[controller]")]
-    public class AccountController: Controller
+    public class AccountController: ApiController
     {
         private PermissionService _service;
         private UserService _userService;
         private ILogger _logger;
         private SignInManager<User> _signInManager;
-        
-        public AccountController(PermissionService service,UserService userService, ILoggerFactory loger, SignInManager<User> signInManager)
+
+        public AccountController(PermissionService service,UserService userService, 
+            ILoggerFactory loger, SignInManager<User> signInManager)
         {
             _service = service;
             _userService = userService;
             _logger = loger.CreateLogger(nameof(AccountController));
             _signInManager = signInManager;
         }
-
 
         /// <summary>
         /// 注册用户
@@ -68,6 +67,7 @@ namespace Kehu1688.Framework.API.Controllers
             }
             return this.Good();
         }
+
         private ApiResult GetErrorResult(IdentityResult result)
         {
             if (!result.Succeeded)

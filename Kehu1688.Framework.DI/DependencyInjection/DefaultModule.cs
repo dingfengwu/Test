@@ -13,8 +13,8 @@
 
 
 using Autofac;
-using Kehu1688.Framework.Permission;
-using Kehu1688.Framework.Permission.Service;
+using Kehu1688.Framework.Base;
+using Microsoft.Extensions.Configuration;
 
 namespace Kehu1688.Framework.DI
 {
@@ -23,20 +23,9 @@ namespace Kehu1688.Framework.DI
         protected override void Load(ContainerBuilder builder)
         {
             //注册域服务
-            RegisterDomainService(builder);
-
-
-
+            builder.RegisterType<IdGenerator>().SingleInstance();
 
             base.Load(builder);
-        }
-        
-        /// <summary>
-        /// 注册业务逻辑域服务
-        /// </summary>
-        private void RegisterDomainService(ContainerBuilder builder)
-        {
-            builder.RegisterType<PermissionService>().SingleInstance();
         }
     }
 }

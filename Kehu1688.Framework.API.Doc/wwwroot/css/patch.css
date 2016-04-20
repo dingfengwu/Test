@@ -17,3 +17,6 @@
 .bs-callout *:last-child {
 	margin-bottom: 0;
 }
+pre{
+    border:0;
+}

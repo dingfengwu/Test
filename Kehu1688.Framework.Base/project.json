@@ -9,6 +9,7 @@
     "EntityFramework.Core": "7.0.0-rc1-final",
     "Microsoft.AspNet.Http": "1.0.0-rc1-final",
     "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
+    "Microsoft.AspNet.Mvc.WebApiCompatShim": "6.0.0-rc1-final",
     "Newtonsoft.Json": "8.0.2"
   },
 
