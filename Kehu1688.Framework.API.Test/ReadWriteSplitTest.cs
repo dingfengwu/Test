@@ -34,7 +34,7 @@ namespace Kehu1688.Framework.API.Test
             var dptSvr = FrameworkConfig.IocConfig.Resolve<DepartmentService>();
             var logger = FrameworkConfig.IocConfig.Resolve<ILoggerFactory>().CreateLogger(nameof(TestReadWriteSplit));
             var id = IdGenerator.Instance.GuidToLongId().ToString();
-            dptSvr.Add(new Permission.Department
+            dptSvr.Add(new Department
             {
                 DepartmentType = 0,
                 Id = id,
@@ -48,7 +48,7 @@ namespace Kehu1688.Framework.API.Test
             Department dpt = null;
             do
             {
-                dpt = dptSvr.Find(p => p.Id == id).FirstOrDefault();
+                dpt = dptSvr.Find(p => p.Id == id, useSlaveDb: true).FirstOrDefault();
             } while (dpt == null);
             stop.Stop();
             

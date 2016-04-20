@@ -13,6 +13,7 @@
 
 
 using Kehu1688.Framework.Config;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,8 +28,11 @@ namespace Kehu1688.Framework.Store
     {
         static ConnectionStringManager()
         {
+            readConnList = new List<DbConnectionOption>();
+            var config = FrameworkConfig.IocConfig.Resolve<IConfigurationRoot>();
+            config.GetSection("Data:ReadOnlyDbList").Bind(readConnList);
+            
             CancellationToken = new CancellationToken(false);
-            readConnList = DistributedReadWriteManager.Instance;
             StartHeartMessage();
         }
 

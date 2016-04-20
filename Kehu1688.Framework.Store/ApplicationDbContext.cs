@@ -7,6 +7,7 @@ using Kehu1688.Framework.Permission.Model;
 using Microsoft.Data.Entity.Metadata;
 using System.Linq;
 using Microsoft.Data.Entity.Metadata.Conventions;
+using Microsoft.Data.Entity.Infrastructure;
 
 namespace Kehu1688.Framework.Store
 {
@@ -15,6 +16,10 @@ namespace Kehu1688.Framework.Store
         public ApplicationDbContext() : base()
         {
             
+        }
+        public ApplicationDbContext(DbContextOptions options) : base(options)
+        {
+
         }
         
         /// <summary>

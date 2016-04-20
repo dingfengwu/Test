@@ -28,7 +28,7 @@ namespace Kehu1688.Framework.Store
         TService Add(TModel entity);
         TService Update(TModel entity);
         TService Delete(TModel entity);
-        List<TModel> Find(Expression<Func<TModel, bool>> predicate = null);
+        IEnumerable<TModel> Find(Expression<Func<TModel, bool>> predicate = null);
         Task BulkUpdate(List<TModel> entities);
         Task BulkDelete(Expression<Func<TModel, bool>> predicate = null);
         Task BulkAdd(List<TModel> entities);
@@ -40,7 +40,7 @@ namespace Kehu1688.Framework.Store
         TService Add<TModel>(TModel entity) where TModel : class, IEntity<TModel>, new();
         TService Update<TModel>(TModel entity) where TModel : class, IEntity<TModel>, new();
         TService Delete<TModel>(TModel entity) where TModel : class, IEntity<TModel>, new();
-        List<TModel> Find<TModel>(Expression<Func<TModel, bool>> predicate = null) 
+        IEnumerable<TModel> Find<TModel>(Expression<Func<TModel, bool>> predicate = null) 
             where TModel : class, IEntity<TModel>, new();
         Task BulkUpdate<TModel>(List<TModel> entities) where TModel : class, IEntity<TModel>, new();
         Task BulkDelete<TModel>(Expression<Func<TModel, bool>> predicate = null) 

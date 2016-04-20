@@ -72,7 +72,6 @@ namespace Kehu1688.Framework.API
             
             //增加注入
             services.AddInstance(typeof(IConfigurationRoot), Configuration);
-            services.AddScoped(typeof(IRelationalCommandBuilderFactory), typeof(CustomRelationalCommandBuilderFactory));
             Register.RegisterService(services);
             return Register.Get<IServiceProvider>();
         }

@@ -13,8 +13,9 @@
 
 
 using Kehu1688.Framework.Base;
-using Kehu1688.Framework.Store;
+using Kehu1688.Framework.Config;
 using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -32,14 +33,46 @@ namespace Kehu1688.Framework.Store
         where TService: EntityFrameworkRepositoryBase<TService>
     {
         ILogger _logger;
+        object _lock = new object();
         
-        public EntityFrameworkRepositoryBase(ApplicationDbContext dbContext, ILoggerFactory logger)
+        public EntityFrameworkRepositoryBase(ApplicationDbContext dbContext)
         {
             DbContext = dbContext;
-            _logger = logger.CreateLogger(nameof(EntityFrameworkRepository));
+
+            var loggerFactory = FrameworkConfig.IocConfig.Resolve<ILoggerFactory>();
+            _logger = loggerFactory.CreateLogger(nameof(EntityFrameworkRepository));
         }
 
+        /// <summary>
+        /// 创建只读库储
+        /// </summary>
+        /// <returns></returns>
+        protected void CreateReadonlyDbContext()
+        {
+            if (ReadonlyDbContext == null)
+            {
+                lock (_lock)
+                {
+                    if (ReadonlyDbContext == null)
+                    {
+                        var connectionString = ConnectionStringManager.GetReadOnlyConnectionString();
+                        var builder = new DbContextOptionsBuilder();
+                        builder.UseSqlServer(connectionString);
+                        ReadonlyDbContext = new ApplicationDbContext(builder.Options);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 可读可写的dbcontext
+        /// </summary>
         public ApplicationDbContext DbContext { get; private set; }
+
+        /// <summary>
+        /// 只用于读的dbcontext
+        /// </summary>
+        public ApplicationDbContext ReadonlyDbContext { get; private set; }
         
         public TService Add<TModel>(TModel entity) where TModel : class, IEntity<TModel>, new()
         {
@@ -251,16 +284,38 @@ namespace Kehu1688.Framework.Store
         /// <typeparam name="TModel">实体类型</typeparam>
         /// <param name="predicate">条件</param>
         /// <returns></returns>
-        public List<TModel> Find<TModel>(Expression<Func<TModel, bool>> predicate) 
+        public IEnumerable<TModel> Find<TModel>(Expression<Func<TModel, bool>> predicate) 
             where TModel : class, IEntity<TModel>, new()
         {
-            return DbContext.Set<TModel>().Where(predicate).ToList();
+            return DbContext.Set<TModel>().Where(predicate).AsQueryable();
+        }
+
+        /// <summary>
+        /// 查找记录
+        /// </summary>
+        /// <typeparam name="TModel">实体类型</typeparam>
+        /// <param name="predicate">条件</param>
+        /// <param name="useReadonlyDb">是否查询从库</param>
+        /// <returns></returns>
+        public IEnumerable<TModel> Find<TModel>(Expression<Func<TModel, bool>> predicate,
+            bool useSlaveDb)
+            where TModel : class, IEntity<TModel>, new()
+        {
+            if (useSlaveDb)
+            {
+                CreateReadonlyDbContext();
+                return ReadonlyDbContext.Set<TModel>().Where(predicate).AsQueryable();
+            }
+            else
+            {
+                return DbContext.Set<TModel>().Where(predicate).AsQueryable();
+            }
         }
     }
 
     public class EntityFrameworkRepository : EntityFrameworkRepositoryBase<EntityFrameworkRepository>
     {
-        public EntityFrameworkRepository(ApplicationDbContext dbContext, ILoggerFactory logger) : base(dbContext, logger) { }
+        public EntityFrameworkRepository(ApplicationDbContext dbContext) : base(dbContext) { }
     }
 
     /// <summary>
@@ -274,7 +329,7 @@ namespace Kehu1688.Framework.Store
         where TService : EntityFrameworkRepository<TService, TModel>
         where TModel : class, IEntity<TModel>, new()
     {
-        public EntityFrameworkRepository(ApplicationDbContext dbContext, ILoggerFactory logger) : base(dbContext, logger)
+        public EntityFrameworkRepository(ApplicationDbContext dbContext, ILoggerFactory logger) : base(dbContext)
         { }
 
         /// <summary>
@@ -367,9 +422,21 @@ namespace Kehu1688.Framework.Store
         /// </summary>
         /// <param name="predicate">条件</param>
         /// <returns></returns>
-        public List<TModel> Find(Expression<Func<TModel, bool>> predicate = null)
+        public IEnumerable<TModel> Find(Expression<Func<TModel, bool>> predicate = null)
         {
             return base.Find(predicate);
+        }
+
+        /// <summary>
+        /// 查找记录按条件
+        /// </summary>
+        /// <param name="predicate">条件</param>
+        /// <param name="useSlaveDb">使用从库</param>
+        /// <returns></returns>
+        public IEnumerable<TModel> Find(Expression<Func<TModel, bool>> predicate,
+           bool useSlaveDb)
+        {
+            return base.Find(predicate,useSlaveDb);
         }
     }
 
