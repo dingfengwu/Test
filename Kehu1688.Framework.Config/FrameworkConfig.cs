@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,6 +28,17 @@ namespace Kehu1688.Framework.Config
                     }
                 }
                 return _iocConfig;
+            }
+        }
+
+        /// <summary>
+        /// 获取配置文件中的配置
+        /// </summary>
+        public static IConfigurationRoot Settings
+        {
+            get
+            {
+               return IocConfig.Resolve<IConfigurationRoot>();
             }
         }
     }

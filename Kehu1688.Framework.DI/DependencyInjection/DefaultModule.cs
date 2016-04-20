@@ -14,8 +14,6 @@
 
 using Autofac;
 using Kehu1688.Framework.Base;
-using Kehu1688.Framework.Permission;
-using Kehu1688.Framework.Permission.Service;
 using Microsoft.Extensions.Configuration;
 
 namespace Kehu1688.Framework.DI

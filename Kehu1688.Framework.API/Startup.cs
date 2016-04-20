@@ -1,4 +1,7 @@
-﻿using Kehu1688.Framework.Permission;
+﻿using Kehu1688.Framework.Base;
+using Kehu1688.Framework.DI;
+using Kehu1688.Framework.Middleware;
+using Kehu1688.Framework.Permission;
 using Kehu1688.Framework.Permission.Service;
 using Kehu1688.Framework.Store;
 using Microsoft.AspNet.Builder;
@@ -6,16 +9,12 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
-using Kehu1688.Framework.Middleware;
-using Microsoft.AspNet.Authorization;
-using Microsoft.AspNet.Mvc.Filters;
-using Kehu1688.Framework.DI;
-using Microsoft.AspNet.StaticFiles;
-using Kehu1688.Framework.Base;
+using System.Collections.Generic;
 
 namespace Kehu1688.Framework.API
 {
@@ -38,7 +37,7 @@ namespace Kehu1688.Framework.API
             services.AddEntityFramework()
                 .AddSqlServer()
                 .AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
+                    options.UseSqlServer(Configuration["Data:Connections:WriteConnectionString"]));
             
             //标识身份验证
             services.AddIdentity<User, IdentityRole>(options=> {
@@ -52,29 +51,34 @@ namespace Kehu1688.Framework.API
                 options.Password.RequireNonLetterOrDigit = false;
                 options.Password.RequireUppercase = false;
 
-                options.User.AllowedUserNameCharacters = null;// "abcdefghijklmnopqrstuvwxyz0123456789";
+                options.User.AllowedUserNameCharacters = null;
+                // "abcdefghijklmnopqrstuvwxyz0123456789";
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
             services.AddPermission();
             services.AddStore();
-
-
+            
             services.AddMvc(options=> {
                 options.Filters.Add(PermissionAuthorizeFilter<PermissionRequirement>.Default);
 
                 options.Filters.Add(new GlobalException());
             });
             services.AddCors();
+
+            //services.AddCaching();
+            //services.AddSession();
             
             //增加注入
             services.AddInstance(typeof(IConfigurationRoot), Configuration);
+            services.AddScoped(typeof(IRelationalCommandBuilderFactory), typeof(CustomRelationalCommandBuilderFactory));
             Register.RegisterService(services);
             return Register.Get<IServiceProvider>();
         }
         
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, 
+            ILoggerFactory loggerFactory)
         {
             PublicClientId = "self";
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
@@ -82,7 +86,7 @@ namespace Kehu1688.Framework.API
             loggerFactory.AddProvider(new TextLoggerProvider(options=> {
                 options.LoggerPath = env.MapPath("./Logs/");
             }));
-
+            
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
@@ -115,6 +119,12 @@ namespace Kehu1688.Framework.API
 
             //app.UseIISPlatformHandler();
             app.UseStaticFiles();
+            app.UseRightHandler(new List<RightHandler<RightOption>>
+            {
+               new OperateRightHandler(new RightOption { Order=0, Scheme="Automic" })
+            });
+            //app.UseSession();
+            
 
             //使用OAuth服务
             app.UseOAuthBearerTokens(options =>

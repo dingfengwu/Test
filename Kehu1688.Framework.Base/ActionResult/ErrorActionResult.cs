@@ -15,6 +15,7 @@
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.ModelBinding;
 using Newtonsoft.Json;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -69,7 +70,7 @@ namespace Kehu1688.Framework.Base
         /// <returns></returns>
         public async Task ExecuteResultAsync(ActionContext context)
         {
-            await ExecuteResultAsync(context, 400);
+            await ExecuteResultAsync(context, HttpStatusCode.BadRequest);
         }
 
         /// <summary>
@@ -77,9 +78,9 @@ namespace Kehu1688.Framework.Base
         /// </summary>
         /// <param name="context">请求上下文</param>
         /// <returns></returns>
-        public async Task ExecuteResultAsync(ActionContext context, int statusCode)
+        public async Task ExecuteResultAsync(ActionContext context, HttpStatusCode statusCode)
         {
-            context.HttpContext.Response.StatusCode = statusCode;
+            context.HttpContext.Response.StatusCode = (int)statusCode;
             context.HttpContext.Response.ContentType = "application/json;chatset=utf-8";
             context.HttpContext.Response.Headers["Cache-Control"] = "no-store";
             context.HttpContext.Response.Headers["Pragma"] = "no-cache";

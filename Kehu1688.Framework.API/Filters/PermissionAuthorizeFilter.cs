@@ -20,6 +20,7 @@ using Microsoft.AspNet.Mvc.Filters;
 using System.Threading.Tasks;
 using System;
 using System.Linq;
+using System.Net;
 
 namespace Kehu1688.Framework.API
 {
@@ -61,7 +62,7 @@ namespace Kehu1688.Framework.API
                         content.ErrorMsg = Resource.ResourceManager.GetString("ERROR_NOT_PERMISSION");
                         content.ErrorCode = InnerErrorCode.NOT_PERMISSION;
 
-                        await content.ExecuteResultAsync(context);
+                        await content.ExecuteResultAsync(context, HttpStatusCode.Unauthorized);
                     }
                 }
             }

@@ -6,7 +6,7 @@
 // 文件功能描述：
 // 描述内容
 //
-// 创建人  ：Administrator
+// 创建人  ：WDF
 // 创建日期：2016-04-14 17:50:55
 //----------------------------------------------------------------*/
 
@@ -21,8 +21,20 @@ namespace Kehu1688.Framework.Permission.Service
 {
     public class RightOption : IRightOption
     {
+        /// <summary>
+        /// 执行顺序
+        /// </summary>
         public int Order { get; set; }
 
-        public string[] Scheme { get; set; } = new[] { "Automic" };
+        /// <summary>
+        /// 用来标识此处理器可用于的模块,如果为模块可以为modulekey
+        /// 多个用逗号(,)分隔
+        /// </summary>
+        public string Scheme { get; set; } = AUTOMIC_SCHEME;
+
+        /// <summary>
+        /// 自动处理
+        /// </summary>
+        public const string AUTOMIC_SCHEME = "Automic";
     }
 }

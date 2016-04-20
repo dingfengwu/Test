@@ -13,6 +13,7 @@
 
 
 using Kehu1688.Framework.Base;
+using Kehu1688.Framework.Store;
 using Microsoft.Data.Entity;
 using Microsoft.Extensions.Logging;
 using System;
@@ -192,7 +193,7 @@ namespace Kehu1688.Framework.Store
             try
             {
                 DbContext.Remove(entity).State = EntityState.Deleted;
-                return this as IRepository;
+                return this as TService;
             }
             catch (Exception ex)
             {
@@ -206,7 +207,7 @@ namespace Kehu1688.Framework.Store
             try
             {
                 DbContext.Update(entity, GraphBehavior.SingleObject).State = EntityState.Modified;
-                return this as IRepository;
+                return this as TService;
             }
             catch (Exception ex)
             {

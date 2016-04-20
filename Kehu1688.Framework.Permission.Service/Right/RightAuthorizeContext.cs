@@ -14,6 +14,7 @@
 
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Mvc.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,11 +27,11 @@ namespace Kehu1688.Framework.Permission.Service
     /// </summary>
     public class RightAuthorizeContext:ActionContext
     {
-        public RightAuthorizeContext(ActionContext context, string moduleKey, string operate, string key):base(context)
+        public RightAuthorizeContext(ActionContext context, string moduleKey, string operate, IList<ParameterDescriptor> parameters):base(context)
         {
             ModuleKey = moduleKey;
             Operate = operate;
-            Key = key;
+            Parameters = parameters;
         }
         
         /// <summary>
@@ -46,6 +47,6 @@ namespace Kehu1688.Framework.Permission.Service
         /// <summary>
         /// 模块所对应实体的Id
         /// </summary>
-        public string Key { get; private set; }
+        public IList<ParameterDescriptor> Parameters { get; private set; }
     }
 }

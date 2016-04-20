@@ -41,5 +41,10 @@ namespace Kehu1688.Framework.Permission.Service
         /// 模块key
         /// </summary>
         public string Module { get; set; }
+
+        /// <summary>
+        /// Key在viewModel中的字段名
+        /// </summary>
+        public string KeyField { get; set; } = "Id";
     }
 }

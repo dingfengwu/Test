@@ -6,7 +6,7 @@
 // 文件功能描述：
 // 描述内容
 //
-// 创建人  ：Administrator
+// 创建人  ：WDF
 // 创建日期：2016-03-14 11:44:22
 //----------------------------------------------------------------*/
 
@@ -40,17 +40,7 @@ namespace Kehu1688.Framework.API.Controllers
             _logger = loger.CreateLogger(nameof(AccountController));
             _signInManager = signInManager;
         }
-
-
-        #pragma warning disable 1998
-        [HttpPost]
-        [Route("Test")]
-        [PermissionAuthroize]
-        public async Task<ApiResult> Test()
-        {
-            return this.Good();
-        }
-
+        
         /// <summary>
         /// 注册用户
         /// </summary>
@@ -76,6 +66,7 @@ namespace Kehu1688.Framework.API.Controllers
             }
             return this.Good();
         }
+
         private ApiResult GetErrorResult(IdentityResult result)
         {
             if (!result.Succeeded)

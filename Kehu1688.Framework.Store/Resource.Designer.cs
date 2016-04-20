@@ -85,5 +85,14 @@ namespace Kehu1688.Framework.Store {
                 return ResourceManager.GetString("WARN_BULK_ADD_MYBE_SLOW", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///    查找与 不支持读写分离，将读取主库的数据 类似的本地化字符串。
+        /// </summary>
+        internal static string WARN_NOT_SUPPORT_READ_WRITE_SPLIT {
+            get {
+                return ResourceManager.GetString("WARN_NOT_SUPPORT_READ_WRITE_SPLIT", resourceCulture);
+            }
+        }
     }
 }

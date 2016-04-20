@@ -126,4 +126,7 @@
   <data name="WARN_BULK_ADD_MYBE_SLOW" xml:space="preserve">
     <value>在进行批处理操作，可能会产生大量索引碎片，且可能产生死锁。</value>
   </data>
+  <data name="WARN_NOT_SUPPORT_READ_WRITE_SPLIT" xml:space="preserve">
+    <value>不支持读写分离，将读取主库的数据</value>
+  </data>
 </root>

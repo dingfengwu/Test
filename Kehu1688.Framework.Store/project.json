@@ -7,7 +7,9 @@
   "licenseUrl": "",
   "dependencies": {
     "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+    "EntityFramework.Relational": "7.0.0-rc1-final",
     "Kehu1688.Framework.Base": "1.0.0-*",
+    "Kehu1688.Framework.Config": "1.0.0-*",
     "Kehu1688.Framework.Permission": "1.0.0-*",
     "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final"
   },

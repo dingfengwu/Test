@@ -128,11 +128,11 @@ namespace Kehu1688.Framework.Base
 
             if (exception == null)
             {
-                return string.Format($"时间:{DateTime.Now.ToString("HH:mm:ss")}-类别:{_options.LoggerCategory}-状态：{state.ToString()}\r\n\r\n");
+                return $"时间:{DateTime.Now.ToString("HH:mm:ss")}-类别:{_options.LoggerCategory}-状态：{state.ToString()}\r\n\r\n";
             }
             else
             {
-                return string.Format($"时间:{DateTime.Now.ToString("HH:mm:ss")}-类别:{_options.LoggerCategory}-状态：{state.ToString()}-错误描述:{exception.Message}\r\n\r\n");
+                return $"时间:{DateTime.Now.ToString("HH:mm:ss")}-类别:{_options.LoggerCategory}-状态：{state.ToString()}-错误描述:{exception.Message}\r\n\r\n";
             }
         }
 
@@ -152,14 +152,21 @@ namespace Kehu1688.Framework.Base
                     break;
             }
 
-            if (file != null)
+            try
             {
-                var bytes = Encoding.UTF8.GetBytes(Formatter(state, exception));
-                using (var fs = file.Open(FileMode.Append, FileAccess.Write, FileShare.Write))
+                if (file != null)
                 {
-                    await fs.WriteAsync(bytes, 0, bytes.Length);
-                    fs.Flush();
+                    var bytes = Encoding.UTF8.GetBytes(Formatter(state, exception));
+                    using (var fs = file.Open(FileMode.Append, FileAccess.Write, FileShare.Write))
+                    {
+                        await fs.WriteAsync(bytes, 0, bytes.Length);
+                        fs.Flush();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                
             }
         }
     }
@@ -207,8 +214,7 @@ namespace Kehu1688.Framework.Base
         }
 
         protected abstract string Formatter(object state, Exception exception);
-
-
+        
         private class NoopDisposable : IDisposable
         {
             public static NoopDisposable Instance = new NoopDisposable();

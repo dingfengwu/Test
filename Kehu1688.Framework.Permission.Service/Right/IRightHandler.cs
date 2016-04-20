@@ -22,8 +22,9 @@ namespace Kehu1688.Framework.Permission.Service
     /// <summary>
     /// 权限处理接口
     /// </summary>
-    public interface IRightHandler
+    public interface IRightHandler<TOption>
     {
         Task<RightAuthorizeResult> Authorize(RightAuthorizeContext context);
+        TOption Option { get; set; }
     }
 }

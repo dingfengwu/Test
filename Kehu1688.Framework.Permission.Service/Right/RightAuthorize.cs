@@ -18,6 +18,7 @@ using Microsoft.AspNet.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Kehu1688.Framework.Permission.Service
@@ -27,14 +28,18 @@ namespace Kehu1688.Framework.Permission.Service
     /// </summary>
     public class RightAuthorize
     {
-        public void RegisterHandler(RightHandler<IRightOption> handler)
+        public RightAuthorize()
+        {
+            Handlers = new List<RightHandler<RightOption>>();
+        }
+        public void RegisterHandler(RightHandler<RightOption> handler)
         {
             Handlers.Add(handler);
         }
 
-        public List<RightHandler<IRightOption>> Handlers { get; set; }
+        public List<RightHandler<RightOption>> Handlers { get; private set; }
 
-        public async Task AuthorizeAsync(RightAuthorizeContext context)
+        public async Task<bool> AuthorizeAsync(RightAuthorizeContext context)
         {
             if (string.IsNullOrWhiteSpace(context.ModuleKey))
                 throw new ArgumentNullException(nameof(context.ModuleKey));
@@ -47,29 +52,13 @@ namespace Kehu1688.Framework.Permission.Service
             foreach (var handler in Handlers.OrderBy(p=>p.Option.Order))
             {
                 result = await handler.AuthorizeAsync(context);
-                if (!result.Successed)
+                if (result.Failed != null)
                 {
-                    if (!result.RequestCompleted)
-                       await HandleAuthorizeFail(context, result.Failed);
-                    break;
+                    return false;
                 }
             }
-        }
 
-        /// <summary>
-        /// 执行默认的权限验证失败处理
-        /// </summary>
-        /// <param name="context">HTTP请求上下文</param>
-        /// <param name="result">权限验证结果</param>
-        private async Task HandleAuthorizeFail(ActionContext context,
-            Exception result)
-        {
-            var apiResult = new ErrorApiResult();
-            apiResult.Result = false;
-            apiResult.ErrorMsg = result.Message;
-            apiResult.ErrorCode = InnerErrorCode.RIGHT_AUTHORIZE_FAIL;
-
-            await apiResult.ExecuteResultAsync(context); 
+            return true;
         }
     }
 }

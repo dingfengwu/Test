@@ -33,11 +33,12 @@ namespace Kehu1688.Framework.API.Test
     public class OAuthTest
     {
         TestServer _server;
-        static Startup _start;
+        TestHelper _testHelper;
 
         public OAuthTest()
         {
-            _server = CreateServer();
+            _testHelper = new TestHelper();
+            _server = _testHelper.CreateServer();
             var builder = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .AddEnvironmentVariables();
@@ -88,20 +89,6 @@ namespace Kehu1688.Framework.API.Test
                 return await response.Content.ReadAsStringAsync();
             }
             throw new Exception("error");
-        }
-
-        public static TestServer CreateServer()
-        {
-            _start = new Startup(null);
-            TestServer server = TestServer.Create((IApplicationBuilder builder) =>
-            {
-                var env = builder.ApplicationServices.GetService<IHostingEnvironment>();
-                env.EnvironmentName = "Development";
-                var logger = builder.ApplicationServices.GetService<ILoggerFactory>();
-                _start.Configure(builder, env, logger);
-            },
-                _start.ConfigureServices);
-            return server;
         }
     }
 }
