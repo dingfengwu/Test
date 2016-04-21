@@ -64,5 +64,65 @@ namespace Kehu1688.Framework.Base
 
             return BitConverter.ToString(bytes).Replace("-","");
         }
+
+        /// <summary>
+        /// 求指定字符串的sha256
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string GetSHA256(this string str,string saltValue)
+        {
+#if DNX451 || NET451
+
+            byte[] tmpByte;
+            SHA256 sha256 = new SHA256Managed();
+            string source = str;
+            if (!string.IsNullOrWhiteSpace(saltValue))
+            {
+                source += saltValue;
+            }
+            tmpByte = sha256.ComputeHash(GetByteArray(source));
+            sha256.Clear();
+
+            return GetStringValue(tmpByte);
+#elif DNXCORE50 || NET50
+            throw new Exception("not support this method");            
+#endif
+        }
+
+        /// <summary>
+        /// 获取byte流
+        /// </summary>
+        /// <param name="strKey"></param>
+        /// <returns></returns>
+        public static byte[] GetByteArray(string strKey)
+        {
+
+            ASCIIEncoding Asc = new ASCIIEncoding();
+
+            int tmpStrLen = strKey.Length;
+            byte[] tmpByte = new byte[tmpStrLen - 1];
+
+            tmpByte = Asc.GetBytes(strKey);
+
+            return tmpByte;
+
+        }
+
+        /// <summary>
+        /// 架构byte流转换为字符串
+        /// </summary>
+        /// <param name="Byte"></param>
+        /// <returns></returns>
+        public static string GetStringValue(byte[] Byte)
+        {
+            string tmpString = string.Empty;
+            int iCounter;
+            for (iCounter = 0; iCounter < Byte.Length; iCounter++)
+            {
+                tmpString = tmpString + Byte[iCounter].ToString();
+            }
+            return tmpString;
+        }
     }
 }
