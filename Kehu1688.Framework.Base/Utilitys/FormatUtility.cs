@@ -12,6 +12,7 @@
 
 
 
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,6 +65,7 @@ namespace Kehu1688.Framework.Base
 
             return BitConverter.ToString(bytes).Replace("-","");
         }
+
 
         /// <summary>
         /// 求指定字符串的sha256
@@ -123,6 +125,36 @@ namespace Kehu1688.Framework.Base
                 tmpString = tmpString + Byte[iCounter].ToString();
             }
             return tmpString;
+        }
+
+        /// <summary>
+        /// 将json转化为对象
+        /// </summary>
+        /// <param name="Json"></param>
+        /// <returns></returns>
+        public static object ToJson(this string Json)
+        {
+            return JsonConvert.DeserializeObject(Json);
+        }
+
+        /// <summary>
+        /// 将json转化为指定对象
+        /// </summary>
+        /// <param name="Json"></param>
+        /// <returns></returns>
+        public static T ToJson<T>(string Json)
+        {
+            return JsonConvert.DeserializeObject<T>(Json);
+        }
+
+        /// <summary>
+        /// 将对象转化为json
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static string ToJson(this object obj)
+        {
+            return JsonConvert.SerializeObject(obj);
         }
     }
 }
