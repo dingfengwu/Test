@@ -83,5 +83,10 @@ namespace Kehu1688.Framework.Permission.Service
             var user = _store.Users.Where(p => p.UserToken == clientId).FirstOrDefault();
             return Task.FromResult(user);
         }
+
+        internal Task<User> FindUserById(string userId, bool queryCache = true)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

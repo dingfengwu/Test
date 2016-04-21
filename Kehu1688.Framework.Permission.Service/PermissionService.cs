@@ -47,6 +47,7 @@ namespace Kehu1688.Framework.Permission.Service
         /// <returns></returns>
         public virtual async Task<bool> Authorize(AuthorizationContext context)
         {
+            
             var descriptor = context.ActionDescriptor as ControllerActionDescriptor;
             var attributes = descriptor.MethodInfo.CustomAttributes;
             var permissionAuthorize = attributes.Where(p => p.AttributeType == typeof(PermissionAuthroizeAttribute)).FirstOrDefault();

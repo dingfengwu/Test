@@ -32,7 +32,7 @@ namespace Kehu1688.Framework.API
 
         public PermissionAuthorizeFilter(AuthorizationPolicy policy) : base(policy)
         {
-
+            
         }
 
         /// <summary>
@@ -52,18 +52,16 @@ namespace Kehu1688.Framework.API
                 {
                     await base.OnAuthorizationAsync(context);
                 }
-                else
+                
+                var result = await FrameworkConfig.IocConfig.Resolve<PermissionService>().Authorize(context);
+                if (!result)
                 {
-                    var result = await FrameworkConfig.IocConfig.Resolve<PermissionService>().Authorize(context);
-                    if (!result)
-                    {
-                        ErrorApiResult content = new ErrorApiResult();
-                        content.Result = false;
-                        content.ErrorMsg = Resource.ResourceManager.GetString("ERROR_NOT_PERMISSION");
-                        content.ErrorCode = InnerErrorCode.NOT_PERMISSION;
+                    ErrorApiResult content = new ErrorApiResult();
+                    content.Result = false;
+                    content.ErrorMsg = Resource.ResourceManager.GetString("ERROR_NOT_PERMISSION");
+                    content.ErrorCode = InnerErrorCode.NOT_PERMISSION;
 
-                        await content.ExecuteResultAsync(context, HttpStatusCode.Unauthorized);
-                    }
+                    await content.ExecuteResultAsync(context, HttpStatusCode.Unauthorized);
                 }
             }
         }
