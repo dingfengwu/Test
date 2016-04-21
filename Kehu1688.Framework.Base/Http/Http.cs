@@ -24,7 +24,7 @@ namespace Kehu1688.Framework.Base.Http
     {
         private static string HttpPost(string Url, string postDataStr)
         {
-//#if DNX451 || NET451            
+#if DNX451 || NET451            
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded";
@@ -45,14 +45,14 @@ namespace Kehu1688.Framework.Base.Http
             myResponseStream.Close();
 
             return retString;
-//#elif DNXCORE50 || NET50
-//            throw new Exception("not support this method");
-//#endif
+#else
+            throw new Exception("not support this method");
+#endif
         }
 
         public static string HttpGet(string Url, string getDataStr)
         {
-//#if DNX451 || NET451            
+#if DNX451 || NET451            
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url + (getDataStr == "" ? "" : "?") + getDataStr);
             request.Method = "GET";
             request.ContentType = "text/html;charset=UTF-8";
@@ -65,9 +65,9 @@ namespace Kehu1688.Framework.Base.Http
             myResponseStream.Close();
 
             return retString;
-//#elif DNXCORE50 || NET50
-//            throw new Exception("not support this method");
-//#endif
+#else
+            throw new Exception("not support this method");
+#endif
         }
     }
 }
