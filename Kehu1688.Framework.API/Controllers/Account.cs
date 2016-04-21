@@ -19,6 +19,7 @@ using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -40,7 +41,7 @@ namespace Kehu1688.Framework.API.Controllers
             _logger = loger.CreateLogger(nameof(AccountController));
             _signInManager = signInManager;
         }
-        
+
         /// <summary>
         /// 注册用户
         /// </summary>
