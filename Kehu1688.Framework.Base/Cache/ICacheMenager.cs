@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Kehu1688.Framework.Base.Cache
 {
-    interface ICacheMenager
+    interface ICacheMenager:IEntity<ICacheMenager>
     {
     }
 }

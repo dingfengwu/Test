@@ -57,7 +57,6 @@ namespace Kehu1688.Framework.Base.Cache
         /// <typeparam name="T"></typeparam>
         public virtual void FlushAll()
         {
-            
         }
 
         /// <summary>
@@ -157,6 +156,62 @@ namespace Kehu1688.Framework.Base.Cache
         {
             return false;
         }
+
+        public bool Expire(string key, int s)
+        {
+            return false;
+        }
+
+        public long LPush(string key, byte[] s)
+        {
+            return 0;
+        }
+
+        public void FlushDB()
+        { 
+        }
+
+        public byte[] RPop(string key)
+        {
+            return default(byte[]);
+        }
+
+        public byte[] RPopLPush(string key)
+        {
+            return default(byte[]);
+        }
+
+        public byte[] RPopLPush(string fromkey, string tokey)
+        {
+            return default(byte[]);
+        }
+
+        public List<string> Keys(string pattern)
+        {
+            return new List<string>();
+        }
+
+        public long TTL(string key)
+        {
+            return 0;
+        }
+
+        public long PTTL(string key)
+        {
+            return 0;
+        }
+
+        public bool Move(string key, int db)
+        {
+            return false;
+        }
+
+        public Dictionary<string, string> ServerInfo()
+        {
+            return default(Dictionary<string, string>);
+        }
+
+
         #endregion
     }
 }
