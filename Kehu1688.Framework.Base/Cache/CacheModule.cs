@@ -170,56 +170,56 @@ namespace Kehu1688.Framework.Base.Cache
             return false;
         }
 
-        public bool Expire(string key, int s)
+        public virtual bool Expire(string key, int s)
         {
             return false;
         }
 
-        public long LPush(string key, byte[] s)
+        public virtual long LPush(string key, byte[] s)
         {
             return 0;
         }
 
-        public void FlushDB()
+        public virtual void FlushDB()
         { 
         }
 
-        public byte[] RPop(string key)
+        public virtual byte[] RPop(string key)
         {
             return default(byte[]);
         }
 
-        public byte[] RPopLPush(string key)
+        public virtual byte[] RPopLPush(string key)
         {
             return default(byte[]);
         }
 
-        public byte[] RPopLPush(string fromkey, string tokey)
+        public virtual byte[] RPopLPush(string fromkey, string tokey)
         {
             return default(byte[]);
         }
 
-        public List<string> Keys(string pattern)
+        public virtual List<string> Keys(string pattern)
         {
             return new List<string>();
         }
 
-        public long TTL(string key)
+        public virtual long TTL(string key)
         {
             return 0;
         }
 
-        public long PTTL(string key)
+        public virtual long PTTL(string key)
         {
             return 0;
         }
 
-        public bool Move(string key, int db)
+        public virtual bool Move(string key, int db)
         {
             return false;
         }
 
-        public Dictionary<string, string> ServerInfo()
+        public virtual Dictionary<string, string> ServerInfo()
         {
             return default(Dictionary<string, string>);
         }
