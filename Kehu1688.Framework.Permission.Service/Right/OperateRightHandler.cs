@@ -12,8 +12,10 @@
 
 
 
+using Microsoft.AspNet.Http.Features.Authentication;
 using System;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Kehu1688.Framework.Permission.Service
 {
@@ -23,7 +25,33 @@ namespace Kehu1688.Framework.Permission.Service
 
         public override Task<RightAuthorizeResult> Authorize(RightAuthorizeContext context)
         {
-            return Task.FromResult(RightAuthorizeResult.Fail(new NotImplementedException("no impletement")));
+            string userId = "", username = "";
+            var user = context.HttpContext.User;
+            foreach (var identity in user.Identities)
+            {
+                if (identity.IsAuthenticated && identity.AuthenticationType == Const.AUTHORIZE_TYPE)
+                {
+                    foreach (var item in identity.Claims)
+                    {
+                        if (item.Type == Const.AUTHORIZE_NAME_IDENTITY_SCHEME)
+                        {
+                            userId = item.Value;
+                        }
+                        else if (item.Type == Const.AUTHORIZE_NAME_SCHEME)
+                        {
+                            username = item.Value;
+                        }
+                    }
+                }
+            }
+
+            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(username))
+            {
+
+            }
+
+
+            throw new NotImplementedException();
         }
     }
 }

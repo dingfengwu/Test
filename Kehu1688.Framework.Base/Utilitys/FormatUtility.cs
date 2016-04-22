@@ -87,7 +87,7 @@ namespace Kehu1688.Framework.Base
             sha256.Clear();
 
             return GetStringValue(tmpByte);
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");            
 #endif
         }

@@ -20,16 +20,16 @@ using System.Threading.Tasks;
 
 namespace Kehu1688.Framework.Permission.Service
 {
-    public class PermissionAuthroizeAttribute:AuthorizeAttribute
+    public class PermissionAuthroizeAttribute:Attribute
     {
-        public PermissionAuthroizeAttribute(string policy) : base(policy)
+        public PermissionAuthroizeAttribute(string policy)// : base(policy)
         {
-            ActiveAuthenticationSchemes = "Bearer";
+            //ActiveAuthenticationSchemes = "Bearer";
         }
 
         public PermissionAuthroizeAttribute() : base()
         {
-            ActiveAuthenticationSchemes = "Bearer";
+            //ActiveAuthenticationSchemes = "Bearer";
         }
         
         /// <summary>

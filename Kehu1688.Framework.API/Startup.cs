@@ -59,11 +59,13 @@ namespace Kehu1688.Framework.API
 
             services.AddPermission();
             services.AddStore();
-            
-            services.AddMvc(options=> {
+
+            services.AddMvc()
+                .AddMvcOptions(options =>
+            {
                 options.Filters.Add(PermissionAuthorizeFilter<PermissionRequirement>.Default);
 
-                options.Filters.Add(new GlobalException());
+                options.Filters.Add(typeof(GlobalException), 100);
             });
             services.AddCors();
 
