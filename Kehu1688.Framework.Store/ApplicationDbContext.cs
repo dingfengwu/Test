@@ -76,7 +76,9 @@ namespace Kehu1688.Framework.Store
         /// 资源
         /// </summary>
         public DbSet<ResourcePermission> ResourcePermissions { get; set; }
-        
+
+        public DbSet<UserLog> UserLogs { get; set; }
+
         /// <summary>
         /// 表与视图
         /// </summary>

@@ -25,7 +25,7 @@ namespace Kehu1688.Framework.Redis
 {
     public class RedisWebConnection : CacheModule
     {
-        public RedisWebConnection(string host = "localhost", int port = 80, string password = null, long db = 0) : base(host, port, password, db)
+        public RedisWebConnection(string host = "localhost", int port = 6379, string password = null, long db = 0) : base(host, port, password, db)
         {
             Host = host;
             Port = port;
@@ -36,7 +36,7 @@ namespace Kehu1688.Framework.Redis
         {
 #if DNX451 || NET451
             return $"{Host}:{Port}/Cache/";
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif            
         }
@@ -61,7 +61,7 @@ namespace Kehu1688.Framework.Redis
                 return true;
             else
                 return false;
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
 
@@ -80,7 +80,7 @@ namespace Kehu1688.Framework.Redis
                 return true;
             else
                 return false;
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -103,7 +103,7 @@ namespace Kehu1688.Framework.Redis
                 return true;
             else
                 return false;
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -126,7 +126,7 @@ namespace Kehu1688.Framework.Redis
                 return CommonExtenstion.ToJson<T>(rd.data);
             else
                 return default(T);
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -149,7 +149,7 @@ namespace Kehu1688.Framework.Redis
                 return true;
             else
                 return false;
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -165,7 +165,7 @@ namespace Kehu1688.Framework.Redis
         }
 
         /// <summary>
-        /// 
+        /// 当前库的缓存数量
         /// </summary>
         /// <returns></returns>
         public override long KeysNum()
@@ -180,7 +180,7 @@ namespace Kehu1688.Framework.Redis
                 return Convert.ToInt64(rd.data);
             else
                 return 0;
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -204,7 +204,7 @@ namespace Kehu1688.Framework.Redis
             var r = Http.HttpPost(url, postdata.ToJson());
             var rd = CommonExtenstion.ToJson<ServerData>(r);
             
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -216,7 +216,7 @@ namespace Kehu1688.Framework.Redis
             url = url + "FlushDB";
             PostData postdata = new PostData() { app = ""  };
             var r = Http.HttpPost(url, postdata.ToJson());
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -238,7 +238,7 @@ namespace Kehu1688.Framework.Redis
                 return Convert.ToInt64(rd.data);
             else
                 return 0;
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -261,7 +261,7 @@ namespace Kehu1688.Framework.Redis
                 return true;
             else
                 return false;
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -308,7 +308,7 @@ namespace Kehu1688.Framework.Redis
                 return CommonExtenstion.ToJson<List<string>>(rd.data);
             else
                 return new List<string>();            
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -330,7 +330,7 @@ namespace Kehu1688.Framework.Redis
                 return CommonExtenstion.ToJson<long>(rd.data);
             else
                 return -1;
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -373,7 +373,7 @@ namespace Kehu1688.Framework.Redis
                 return CommonExtenstion.ToJson<Dictionary<string, string>>(rd.data);
             else
                 return new Dictionary<string, string>();
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }

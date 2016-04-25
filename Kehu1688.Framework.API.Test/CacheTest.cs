@@ -7,6 +7,7 @@ using Xunit;
 using System.Text;
 using System.Net.Http;
 using System.Net;
+using Kehu1688.Framework.Redis;
 
 namespace Kehu1688.Framework.API.Test
 {
@@ -15,7 +16,14 @@ namespace Kehu1688.Framework.API.Test
         [Fact]
         public void GetCache()
         {
-        //    Redis d = new Redis();
+            int a = 0;
+            a++;
+            RedisWebConnection rc = new RedisWebConnection("10.0.169.83",8888);
+            var dd = rc.ServerInfo();
+            Console.Write(a);
+            Assert.Equal(a , 32);
         }
+
+        
     }
 }
