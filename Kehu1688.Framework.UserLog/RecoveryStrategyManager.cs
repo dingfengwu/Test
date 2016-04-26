@@ -12,6 +12,8 @@
 // 创建日期：2016-04-23 10:40:00
 //----------------------------------------------------------------*/
 
+using Kehu1688.Framework.Config;
+using Kehu1688.Framework.Permission.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,33 +23,45 @@ namespace Kehu1688.Framework.UserLog
 {
     public class RecoveryStrategyManager
     {
+        private LogRecoveryStrategyService content;
+
         public RecoveryStrategyManager()
         {
-            
+            content = FrameworkConfig.IocConfig.Resolve<LogRecoveryStrategyService>();
         }
 
         /// <summary>
         /// 恢复策略执行器
         /// </summary>
-        public void RecoveryStrategyPerformer()
-        {
-            
+        public bool Performer(Permission.Model.UserLog userlog)
+        {            
+            return false;
         }
 
         /// <summary>
         /// 恢复策略读取器
         /// </summary>
-        public void RecoveryStrategyReader()
+        public List<Permission.Model.LogRecoveryStrategy> Reader()
         {
-
+            return content.Find().ToList<Permission.Model.LogRecoveryStrategy>();
         }
 
         /// <summary>
         /// 恢复策略编写器
         /// </summary>
-        public void RecoveryStrategyWriter()
+        public void Writer(Permission.Model.LogRecoveryStrategy model)
         {
+            content.AddSave(model);
+        }
 
+        /// <summary>
+        /// 恢复策略编写器
+        /// </summary>
+        public void Writer(List<Permission.Model.LogRecoveryStrategy> recoverylist)
+        {
+            var s = content.BulkAdd(recoverylist);
+            s.Start();
+            content.SaveChanges();
         }
     }
 }

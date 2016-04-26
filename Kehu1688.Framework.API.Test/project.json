@@ -19,7 +19,8 @@
     "Microsoft.Framework.ConfigurationModel": "1.0.0-beta4",
     "Kehu1688.Framework.Config": "1.0.0-*",
     "Microsoft.AspNet.Mvc.Core": "6.0.0-rc1-final",
-    "Kehu1688.Framework.Redis": "1.0.0-*"
+    "Kehu1688.Framework.Redis": "1.0.0-*",
+    "Kehu1688.Framework.UserLog": "1.0.0-*"
   },
   "commands": {
     "test": "xunit.runner.dnx"
