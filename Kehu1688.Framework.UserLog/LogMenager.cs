@@ -39,11 +39,7 @@ namespace Kehu1688.Framework.UserLog
         public void Writer(Permission.Model.UserLog userlog)
         {
             UserLogService content = FrameworkConfig.IocConfig.Resolve<UserLogService>();
-            content.AddSave(userlog);
-            //using (UserLogService content =new UserLogService())
-            //{
-
-            //}
+            content.AddSave(userlog);            
         }
 
         /// <summary>
