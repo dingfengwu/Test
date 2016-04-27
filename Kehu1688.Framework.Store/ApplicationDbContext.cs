@@ -77,7 +77,26 @@ namespace Kehu1688.Framework.Store
         /// </summary>
         public DbSet<ResourcePermission> ResourcePermissions { get; set; }
 
+        /// <summary>
+        /// 用户操作日志
+        /// </summary>
         public DbSet<UserLog> UserLogs { get; set; }
+         
+        /// <summary>
+        /// 用户操作日志恢复策略
+        /// </summary>
+        public DbSet<LogRecoveryStrategy> LogRecoveryStrategys { get; set; }
+
+        /// <summary>
+        /// 审核流
+        /// </summary>
+        public DbSet<AuditFlow> AuditFlows { get; set; }
+
+        /// <summary>
+        /// 审核流策略
+        /// </summary>
+        public DbSet<AuditStrategy> AuditStrategys { get; set; }
+
 
         /// <summary>
         /// 表与视图
