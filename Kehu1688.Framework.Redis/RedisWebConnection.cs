@@ -35,7 +35,7 @@ namespace Kehu1688.Framework.Redis
 #if DNX451 || NET451
             HttpWebRequest h = (HttpWebRequest)WebRequest.Create(""); 
             var s = WebRequest.Create("");
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
 
@@ -95,11 +95,11 @@ namespace Kehu1688.Framework.Redis
         public bool Set<T>(string key, T value)
         {
 #if DNX451 || NET451
-            //using (var rc = GetClient())
-            //{
-            //    return rc.Set<T>(key, value);
-            //}
-#elif DNXCORE50 || NET50
+            using (var rc = GetClient())
+            {
+                return rc.Set<T>(key, value);
+            }
+#else
             throw new Exception("not support this method");
 #endif
 
@@ -109,11 +109,11 @@ namespace Kehu1688.Framework.Redis
         public bool Set<T>(string key, T value, DateTime time)
         {
 #if DNX451 || NET451
-            //using (var rc = GetClient())
-            //{
-            //    return rc.Set<T>(key, value, time);
-            //}
-#elif DNXCORE50 || NET50
+            using (var rc = GetClient())
+            {
+                return rc.Set<T>(key, value, time);
+            }
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -126,9 +126,9 @@ namespace Kehu1688.Framework.Redis
         public bool Set(string key)
         {
 #if DNX451 || NET451
-            //var r = Delete(key);
-            //return r >= 0;
-#elif DNXCORE50 || NET50
+            var r = Delete(key);
+            return r >= 0;
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -142,11 +142,11 @@ namespace Kehu1688.Framework.Redis
         public T Get<T>(string key)
         {
 #if DNX451 || NET451
-            //using (var rc = GetClient())
-            //{
-            //    return rc.Get<T>(key);
-            //}
-#elif DNXCORE50 || NET50
+            using (var rc = GetClient())
+            {
+                return rc.Get<T>(key);
+            }
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -159,11 +159,11 @@ namespace Kehu1688.Framework.Redis
         public bool Exists(string key)
         {
 #if DNX451 || NET451
-            //using (var rc = GetClient())
-            //{
-            //    return rc.Exists(key) > 0;
-            //}
-#elif DNXCORE50 || NET50
+            using (var rc = GetClient())
+            {
+                return rc.Exists(key) > 0;
+            }
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -176,11 +176,11 @@ namespace Kehu1688.Framework.Redis
         public long KeyId(string key)
         {
 #if DNX451 || NET451
-            //using (var rc = GetClient())
-            //{
-            //    return rc.Exists(key);
-            //}
-#elif DNXCORE50 || NET50
+            using (var rc = GetClient())
+            {
+                return rc.Exists(key);
+            }
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -192,11 +192,11 @@ namespace Kehu1688.Framework.Redis
         public long KeysNum()
         {
 #if DNX451 || NET451
-            //using (var rc = GetClient())
-            //{
-            //    return rc.DbSize;
-            //}
-#elif DNXCORE50 || NET50
+            using (var rc = GetClient())
+            {
+                return rc.DbSize;
+            }
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -208,11 +208,11 @@ namespace Kehu1688.Framework.Redis
         public string ServerVersion()
         {
 #if DNX451 || NET451
-            //using (var rc = GetClient())
-            //{
-            //    return rc.ServerVersion;
-            //}
-#elif DNXCORE50 || NET50
+            using (var rc = GetClient())
+            {
+                return rc.ServerVersion;
+            }
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -220,16 +220,16 @@ namespace Kehu1688.Framework.Redis
         public void FlushAll()
         {
 #if DNX451 || NET451
-            //using (var rc = GetClient())
-            //{
-            //    rc.FlushAll();
-            //    //
-            //    //rc.GetServerRole()
-            //    //rc.GetServerRoleInfo()
-            //    //rc.GetServerTime()
+            using (var rc = GetClient())
+            {
+                rc.FlushAll();
+                //
+                //rc.GetServerRole()
+                //rc.GetServerRoleInfo()
+                //rc.GetServerTime()
 
-            //}
-#elif DNXCORE50 || NET50
+            }
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -237,12 +237,12 @@ namespace Kehu1688.Framework.Redis
         public void FlushDB()
         {
 #if DNX451 || NET451
-            //using (var rc = GetClient())
-            //{
-            //    rc.FlushDb();
+            using (var rc = GetClient())
+            {
+                rc.FlushDb();
 
-            //}
-#elif DNXCORE50 || NET50
+            }
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -255,11 +255,11 @@ namespace Kehu1688.Framework.Redis
         public long Delete(params string[] key)
         {
 #if DNX451 || NET451
-            //using (var rc = GetClient())
-            //{
-            //    return rc.Del(key);
-            //}
-#elif DNXCORE50 || NET50
+            using (var rc = GetClient())
+            {
+                return rc.Del(key);
+            }
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -273,11 +273,11 @@ namespace Kehu1688.Framework.Redis
         public bool Expire(string key, int s)
         {
 #if DNX451 || NET451
-            //using (var rc = GetClient())
-            //{
-            //    return rc.Expire(key, s);
-            //}
-#elif DNXCORE50 || NET50
+            using (var rc = GetClient())
+            {
+                return rc.Expire(key, s);
+            }
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -285,11 +285,11 @@ namespace Kehu1688.Framework.Redis
         public long LPush(string key, byte[] s)
         {
 #if DNX451 || NET451
-            //using (var rc = GetClient())
-            //{
-            //    return rc.LPush(key, s);
-            //}
-#elif DNXCORE50 || NET50
+            using (var rc = GetClient())
+            {
+                return rc.LPush(key, s);
+            }
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -297,11 +297,11 @@ namespace Kehu1688.Framework.Redis
         public byte[] RPop(string key)
         {
 #if DNX451 || NET451
-            //using (var rc = GetClient())
-            //{
-            //    return rc.RPop(key);
-            //}
-#elif DNXCORE50 || NET50
+            using (var rc = GetClient())
+            {
+                return rc.RPop(key);
+            }
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -309,11 +309,11 @@ namespace Kehu1688.Framework.Redis
         public byte[] RPopLPush(string key)
         {
 #if DNX451 || NET451
-            //using (var rc = GetClient())
-            //{
-            //    return rc.RPopLPush(key, key);
-            //}
-#elif DNXCORE50 || NET50
+            using (var rc = GetClient())
+            {
+                return rc.RPopLPush(key, key);
+            }
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -321,11 +321,11 @@ namespace Kehu1688.Framework.Redis
         public byte[] RPopLPush(string fromkey, string tokey)
         {
 #if DNX451 || NET451
-            //using (var rc = GetClient())
-            //{
-            //    return rc.RPopLPush(fromkey, tokey);
-            //}
-#elif DNXCORE50 || NET50
+            using (var rc = GetClient())
+            {
+                return rc.RPopLPush(fromkey, tokey);
+            }
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -343,17 +343,17 @@ namespace Kehu1688.Framework.Redis
         public List<string> Keys(string pattern)
         {
 #if DNX451 || NET451
-            //using (var rc = GetClient())
-            //{
-            //    var bs = rc.Keys(pattern);
-            //    List<string> list = new List<string>();
-            //    foreach (var b in bs)
-            //    {
-            //        list.Add(Encoding.Default.GetString(b));
-            //    }
-            //    return list;
-            //}
-#elif DNXCORE50 || NET50
+            using (var rc = GetClient())
+            {
+                var bs = rc.Keys(pattern);
+                List<string> list = new List<string>();
+                foreach (var b in bs)
+                {
+                    list.Add(Encoding.Default.GetString(b));
+                }
+                return list;
+            }
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -366,11 +366,11 @@ namespace Kehu1688.Framework.Redis
         public long TTL(string key)
         {
 #if DNX451 || NET451
-            //using (var rc = GetClient())
-            //{
-            //    return rc.Ttl(key);
-            //}
-#elif DNXCORE50 || NET50
+            using (var rc = GetClient())
+            {
+                return rc.Ttl(key);
+            }
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -383,11 +383,11 @@ namespace Kehu1688.Framework.Redis
         public long PTTL(string key)
         {
 #if DNX451 || NET451
-            //using (var rc = GetClient())
-            //{
-            //    return rc.PTtl(key);
-            //}
-#elif DNXCORE50 || NET50
+            using (var rc = GetClient())
+            {
+                return rc.PTtl(key);
+            }
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -401,11 +401,11 @@ namespace Kehu1688.Framework.Redis
         public bool Move(string key, int db)
         {
 #if DNX451 || NET451
-            //using (var rc = GetClient())
-            //{
-            //    return rc.Move(key, db);
-            //}
-#elif DNXCORE50 || NET50
+            using (var rc = GetClient())
+            {
+                return rc.Move(key, db);
+            }
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -417,11 +417,11 @@ namespace Kehu1688.Framework.Redis
         public Dictionary<string, string> ServerInfo()
         {
 #if DNX451 || NET451
-            //using (var rc = GetClient())
-            //{
-            //    return rc.Info;
-            //}
-#elif DNXCORE50 || NET50
+            using (var rc = GetClient())
+            {
+                return rc.Info;
+            }
+#else
             throw new Exception("not support this method");
 #endif
         }

@@ -19,6 +19,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Kehu1688.Framework.Config;
 using Microsoft.AspNet.Mvc.Controllers;
+using System.Collections.Generic;
 
 namespace Kehu1688.Framework.Permission.Service
 {
@@ -73,6 +74,17 @@ namespace Kehu1688.Framework.Permission.Service
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// 查询用户授权
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="resourceId"></param>
+        /// <returns></returns>
+        public Task<List<ResourcePermission>> QueryUserPermission(string userId,string resourceId)
+        {
+            throw new System.Exception("not impletement");
         }
     }
 }

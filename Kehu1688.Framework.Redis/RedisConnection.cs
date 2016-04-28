@@ -15,7 +15,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+#if DNX451 || NET451
 using ServiceStack.Redis;
+#endif
 using System.Text;
 
 namespace Kehu1688.Framework.Redis
@@ -33,16 +35,13 @@ namespace Kehu1688.Framework.Redis
             Port = port;
             cacheType = CacheType.Redis;
         }
+
 #if DNX451 || NET451
         /// <summary>
         /// 获取连接后的客户端对象
         /// </summary>
         /// <returns></returns> 
         protected  RedisClient GetClient() => new RedisClient(Host, Port, Password, DB);
-
-        
-#elif DNXCORE50 || NET50
-            throw new Exception("not support this method");
 #endif
 
         /// <summary>
@@ -59,10 +58,9 @@ namespace Kehu1688.Framework.Redis
             {
                 return rc.Set<T>(key, value);
             }
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
-
         }
 
 
@@ -73,7 +71,7 @@ namespace Kehu1688.Framework.Redis
             {
                 return rc.Set<T>(key, value,time);
             }
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -88,7 +86,7 @@ namespace Kehu1688.Framework.Redis
 #if DNX451 || NET451
             var r = Delete(key);
             return r >= 0;
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -106,7 +104,7 @@ namespace Kehu1688.Framework.Redis
             {
                 return rc.Get<T>(key);
             }
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -123,7 +121,7 @@ namespace Kehu1688.Framework.Redis
             {
                 return rc.Exists(key) > 0;
             }
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -140,7 +138,7 @@ namespace Kehu1688.Framework.Redis
             {
                 return rc.Exists(key); 
             }
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -156,7 +154,7 @@ namespace Kehu1688.Framework.Redis
             {
                 return rc.DbSize;
             }
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -172,7 +170,7 @@ namespace Kehu1688.Framework.Redis
             {
                 return rc.ServerVersion;
             }
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -189,7 +187,7 @@ namespace Kehu1688.Framework.Redis
                 //rc.GetServerTime()
                 
             }
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -202,7 +200,7 @@ namespace Kehu1688.Framework.Redis
                 rc.FlushDb();
 
             }
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -219,7 +217,7 @@ namespace Kehu1688.Framework.Redis
             {
                 return rc.Del(key);                
             }
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -237,7 +235,7 @@ namespace Kehu1688.Framework.Redis
             {
                 return rc.Expire(key, s);
             }
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -249,7 +247,7 @@ namespace Kehu1688.Framework.Redis
             {
                 return rc.LPush(key, s);
             }
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -261,7 +259,7 @@ namespace Kehu1688.Framework.Redis
             {
                 return rc.RPop(key);
             }
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -273,7 +271,7 @@ namespace Kehu1688.Framework.Redis
             {
                 return rc.RPopLPush(key,key);
             }
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -285,7 +283,7 @@ namespace Kehu1688.Framework.Redis
             {
                 return rc.RPopLPush(fromkey, tokey);
             }
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -313,7 +311,7 @@ namespace Kehu1688.Framework.Redis
                 }
                 return list;
             }
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -330,7 +328,7 @@ namespace Kehu1688.Framework.Redis
             {
                 return rc.Ttl(key);
             }
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -347,7 +345,7 @@ namespace Kehu1688.Framework.Redis
             {
                 return rc.PTtl(key);
             }
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -365,7 +363,7 @@ namespace Kehu1688.Framework.Redis
             {
                 return rc.Move(key, db);
             }
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }
@@ -381,7 +379,7 @@ namespace Kehu1688.Framework.Redis
             {
                 return rc.Info;
             }
-#elif DNXCORE50 || NET50
+#else
             throw new Exception("not support this method");
 #endif
         }

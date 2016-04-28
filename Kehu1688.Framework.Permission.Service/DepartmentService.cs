@@ -26,8 +26,17 @@ namespace Kehu1688.Framework.Permission.Service
     {
         public DepartmentService(ApplicationDbContext dbContext,ILoggerFactory logger):base(dbContext, logger)
         {
-
+            
         }
 
+        public string GetResource()
+        {
+            return Resources.mssqlserver;
+        }
+
+        public string GetResource1()
+        {
+            return Resources.ResourceManager.GetString("mssqlserver");
+        }
     }
 }
