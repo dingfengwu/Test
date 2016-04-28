@@ -22,7 +22,7 @@ namespace Kehu1688.Framework.Base.Http
 {
     public static class Http
     {
-        private static string HttpPost(string Url, string postDataStr)
+        public static string HttpPost(string Url, string postDataStr)
         {
 #if DNX451 || NET451            
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
