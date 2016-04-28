@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 
 namespace Kehu1688.Framework.Permission.Service
 {
@@ -73,7 +74,7 @@ namespace Kehu1688.Framework.Permission.Service
         /// <example>
         /// 
         /// </example>
-        internal Task<User> FindByUserToken(string clientId)
+        public Task<User> FindByUserToken(string clientId)
         {
             if(string.IsNullOrWhiteSpace(clientId))
             {
@@ -84,9 +85,18 @@ namespace Kehu1688.Framework.Permission.Service
             return Task.FromResult(user);
         }
 
-        internal Task<User> FindUserById(string userId, bool queryCache = true)
+        /// <summary>
+        /// 通过UserId查询用户
+        /// </summary>
+        /// <param name="userId">用户Id</param>
+        /// <param name="queryCache">是否使用缓存</param>
+        /// <returns></returns>
+        public Task<User> FindUserById(string userId, bool queryCache = true)
         {
-            throw new NotImplementedException();
+            //queryCache is true   to do:
+
+            var user = _store.Users.Where(p => p.Id == userId).FirstOrDefault();
+            return Task.FromResult(user);
         }
     }
 }

@@ -24,6 +24,9 @@ using Xunit;
 
 namespace Kehu1688.Framework.API.Test
 {
+    /// <summary>
+    /// 读写分离测试
+    /// </summary>
     public class ReadWriteSplitTest
     {
         [Fact]

@@ -16,6 +16,9 @@ using Microsoft.AspNet.Http.Features.Authentication;
 using System;
 using System.Threading.Tasks;
 using System.Linq;
+using Kehu1688.Framework.Config;
+using Microsoft.AspNet.Http;
+using System.Net;
 
 namespace Kehu1688.Framework.Permission.Service
 {
@@ -23,7 +26,7 @@ namespace Kehu1688.Framework.Permission.Service
     {
         public OperateRightHandler(RightOption options) : base(options) { }
 
-        public override Task<RightAuthorizeResult> Authorize(RightAuthorizeContext context)
+        public override async Task<RightAuthorizeResult> Authorize(RightAuthorizeContext context)
         {
             string userId = "", username = "";
             var user = context.HttpContext.User;
@@ -47,11 +50,13 @@ namespace Kehu1688.Framework.Permission.Service
 
             if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(username))
             {
-
+                throw new InvalidOperationException(Resources.EXCEPTION_USER_NOT_FOUND);
             }
 
+            var userService = FrameworkConfig.IocConfig.Resolve<UserService>();
+            var userInfo =await userService.FindUserById(userId);
 
-            throw new NotImplementedException();
+            throw new Exception();
         }
     }
 }

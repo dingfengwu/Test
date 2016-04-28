@@ -22,20 +22,20 @@ namespace Kehu1688.Framework.Permission.Service {
     // (使用 /str 选项)，或重新生成 VS 项目。
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
-        internal Resources() {
+
+        public Resources() {
         }
         
         /// <summary>
         ///    返回此类使用的缓存 ResourceManager 实例。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Kehu1688.Framework.Permission.Service.Resources", typeof(Resources).GetTypeInfo().Assembly);
@@ -50,7 +50,7 @@ namespace Kehu1688.Framework.Permission.Service {
         ///    使用此强类型资源类进行资源查找。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -62,7 +62,7 @@ namespace Kehu1688.Framework.Permission.Service {
         /// <summary>
         ///    查找与 密码不存在 类似的本地化字符串。
         /// </summary>
-        internal static string Error_NotFounPassword {
+        public static string Error_NotFounPassword {
             get {
                 return ResourceManager.GetString("Error_NotFounPassword", resourceCulture);
             }
@@ -71,7 +71,7 @@ namespace Kehu1688.Framework.Permission.Service {
         /// <summary>
         ///    查找与 用户不存在 类似的本地化字符串。
         /// </summary>
-        internal static string Error_NotFounUserName {
+        public static string Error_NotFounUserName {
             get {
                 return ResourceManager.GetString("Error_NotFounUserName", resourceCulture);
             }
@@ -80,7 +80,7 @@ namespace Kehu1688.Framework.Permission.Service {
         /// <summary>
         ///    查找与 The AuthenticationTokenProvider&apos;s required synchronous events have not been registered. 类似的本地化字符串。
         /// </summary>
-        internal static string Exception_AuthenticationTokenDoesNotProvideSyncMethods {
+        public static string Exception_AuthenticationTokenDoesNotProvideSyncMethods {
             get {
                 return ResourceManager.GetString("Exception_AuthenticationTokenDoesNotProvideSyncMethods", resourceCulture);
             }
@@ -89,7 +89,7 @@ namespace Kehu1688.Framework.Permission.Service {
         /// <summary>
         ///    查找与 The default data protection provider may only be used when the IApplicationBuilder.Properties contains an appropriate &apos;host.AppName&apos; key. 类似的本地化字符串。
         /// </summary>
-        internal static string Exception_DefaultDpapiRequiresAppNameKey {
+        public static string Exception_DefaultDpapiRequiresAppNameKey {
             get {
                 return ResourceManager.GetString("Exception_DefaultDpapiRequiresAppNameKey", resourceCulture);
             }
@@ -98,7 +98,7 @@ namespace Kehu1688.Framework.Permission.Service {
         /// <summary>
         ///    查找与 A default value for SignInAsAuthenticationType was not found in IApplicationBuilder Properties. This can happen if your authentication middleware are added in the wrong order, or if one is missing. 类似的本地化字符串。
         /// </summary>
-        internal static string Exception_MissingDefaultSignInAsAuthenticationType {
+        public static string Exception_MissingDefaultSignInAsAuthenticationType {
             get {
                 return ResourceManager.GetString("Exception_MissingDefaultSignInAsAuthenticationType", resourceCulture);
             }
@@ -107,9 +107,97 @@ namespace Kehu1688.Framework.Permission.Service {
         /// <summary>
         ///    查找与 The state passed to UnhookAuthentication may only be the return value from HookAuthentication. 类似的本地化字符串。
         /// </summary>
-        internal static string Exception_UnhookAuthenticationStateType {
+        public static string Exception_UnhookAuthenticationStateType {
             get {
                 return ResourceManager.GetString("Exception_UnhookAuthenticationStateType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    查找与 未找到用户名或用户Id,权限验证失败 类似的本地化字符串。
+        /// </summary>
+        public static string EXCEPTION_USER_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("EXCEPTION_USER_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    查找与 # -------------------------------SQL语句文件说明------------------------------------------
+        ///# &quot;#&quot;为整行注解符
+        ///#
+        ///# 空一行表示这条语句结束
+        ///#
+        ///# 如果SQL语句只有一行时：
+        ///# 每行的第一个&quot;=&quot;号为key与sql语句的分割符
+        ///#  
+        ///# 如果SQL语句存在多行时：
+        ///# 第一行的第一个&quot;=&quot;号为key与sql语句的分割符
+        ///#
+        ///# 例如：
+        ///# Key1=SELECT * FROM TABLE
+        ///#
+        ///# KEY2=SELECT *
+        ///#		FROM TABLE
+        ///#
+        ///
+        ///#查询客户
+        ///key1=SELECT * FROM Customer
+        ///
+        /// 类似的本地化字符串。
+        /// </summary>
+        public static string mssqlserver {
+            get {
+                return ResourceManager.GetString("mssqlserver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    查找与 # -------------------------------SQL语句索引文件说明------------------------------------------
+        ///# &quot;#&quot;为整行注解符
+        ///#
+        ///# 空一行表示一个配置文件的结束
+        ///#
+        ///# 格式：
+        ///# [文件名]=[key1,key2......]
+        ///#  
+        ///# 例如：
+        ///# mssqlserver=key1,key2,key3
+        ///#
+        ///#
+        ///
+        ///mssqlserver=key1,key2,key3
+        /// 类似的本地化字符串。
+        /// </summary>
+        public static string mssqlserver_index {
+            get {
+                return ResourceManager.GetString("mssqlserver_index", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    查找与 # -------------------------------SQL语句文件说明------------------------------------------
+        ///# &quot;#&quot;为整行注解符
+        ///#
+        ///# 空一行表示这条语句结束
+        ///#
+        ///# 如果SQL语句只有一行时：
+        ///# 每行的第一个&quot;=&quot;号为key与sql语句的分割符
+        ///#  
+        ///# 如果SQL语句存在多行时：
+        ///# 第一行的第一个&quot;=&quot;号为key与sql语句的分割符
+        ///#
+        ///#
+        ///#
+        ///
+        ///#查询客户
+        ///key1=SELECT * FROM Customer
+        ///
+        /// 类似的本地化字符串。
+        /// </summary>
+        public static string mysql {
+            get {
+                return ResourceManager.GetString("mysql", resourceCulture);
             }
         }
     }
