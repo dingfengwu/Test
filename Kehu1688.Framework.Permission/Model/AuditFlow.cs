@@ -24,126 +24,80 @@ namespace Kehu1688.Framework.Permission.Model
         /// <summary>
         /// 主键
         /// </summary>
-        public long id { get; set; }
+        public string Id { get; set; }
         /// <summary>
         /// 策略id
         /// </summary>
-        public int strategyId { get; set; }
+        public string StrategyId { get; set; }
         /// <summary>
-        /// 状态
+        /// 序号
         /// </summary>
-        public int state { get; set; }
+        public string No { get; set; }
         /// <summary>
-        /// 父级id，默认为0
+        /// 审核流名称
         /// </summary>
-        public long parentId { get; set; }
+        public string Name { get; set; }
         /// <summary>
-        /// 祖先id，默认为0
+        /// 父级id
         /// </summary>
-        public long ancestorId { get; set; }
+        public string ParentId { get; set; }
         /// <summary>
-        /// 审核轮次
+        /// 转出ID
         /// </summary>
-        public int rountNumber { get; set; }
+        public string NextId { get; set; }
         /// <summary>
-        /// 申请人
+        /// 转出路由
         /// </summary>
-        public string applicant { get; set; }
+        public string NextRoute { get; set; }
         /// <summary>
-        /// 申请说明内容
+        /// 会签选项
         /// </summary>
-        public string applyContext { get; set; }
+        public string JointlySign { get; set; }
         /// <summary>
-        /// 申请时间
+        /// 会签意见
         /// </summary>
-        public DateTime createTime { get; set; }
+        public string SignContent { get; set; }
+        /// <summary>
+        /// 强制转交
+        /// </summary>
+        public int ForceTransfer { get; set; }
+        /// <summary>
+        /// 强制转交对象
+        /// </summary>
+        public string TransferObject { get; set; }
+        /// <summary>
+        /// 办理时限
+        /// </summary>
+        public string HandingTime { get; set; }
+        /// <summary>
+        /// 回退选择
+        /// </summary>
+        public DateTime FallBackOption { get; set; }
+        /// <summary>
+        /// 公共附件
+        /// </summary>
+        public string CommonComponent { get; set; }
         /// <summary>
         /// 审核人
         /// </summary>
-        public string auditor { get; set; }
+        public string AuditMam { get; set; }
         /// <summary>
-        /// 审核说明内容
+        /// 是否允许反审核
         /// </summary>
-        public string auditContext { get; set; }
+        public bool IsReAudit { get; set; }
         /// <summary>
-        /// 审核时间
+        ///  反审核人
         /// </summary>
-        public DateTime auditTime { get; set; }
+        public string ReAuditMan { get; set; }
         /// <summary>
-        /// 是否终结审核，快速判断
+        /// 是否允许委托
         /// </summary>
-        public bool isfinish { get; set; }
+        public bool IsEntrust { get; set; }  
+        /// <summary>
+        /// 状态
+        /// </summary>
+        public int State { get; set; }
 
-        #region 方法
-        /// <summary>
-        /// 设置申请人
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        public bool SetApplicant(OperationManViewModel model)
-        {
-            try
-            {
-                applicant = model.ToJson();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
 
-        /// <summary>
-        /// 设置审核人
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        public bool SetAuditor(OperationManViewModel model)
-        {
-            try
-            {
-                auditor = model.ToJson();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// 获取申请人
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        public OperationManViewModel GetApplicant()
-        {
-            try
-            {
-                return CommonExtenstion.ToJson<OperationManViewModel>(applicant);                
-            }
-            catch
-            {
-                return new OperationManViewModel();
-            }
-        }
-
-        /// <summary>
-        /// 获取审核人
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        public OperationManViewModel GetAuditor()
-        {
-            try
-            {
-                return CommonExtenstion.ToJson<OperationManViewModel>(auditor);
-            }
-            catch
-            {
-                return new OperationManViewModel();
-            }
-        }
-        #endregion
     }
 }

@@ -9,6 +9,11 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.Store", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{25BC12DB-296C-4383-A086-3110D25DC385}"
 	ProjectSection(SolutionItems) = preProject
+		Kehu1688.Framework.Caches\global.json = Kehu1688.Framework.Caches\global.json
+		Kehu1688.Framework.Config\global.json = Kehu1688.Framework.Config\global.json
+		Kehu1688.Framework.AuditsFlow\global.json = Kehu1688.Framework.AuditsFlow\global.json
+		Kehu1688.Framework.Redis\global.json = Kehu1688.Framework.Redis\global.json
+		Kehu1688.Framework.UserLog\global.json = Kehu1688.Framework.UserLog\global.json
 		..\文档\框架设计规范.doc = ..\文档\框架设计规范.doc
 	EndProjectSection
 EndProject

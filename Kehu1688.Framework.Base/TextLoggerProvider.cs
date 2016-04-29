@@ -166,7 +166,7 @@ namespace Kehu1688.Framework.Base
             }
             catch (Exception ex)
             {
-                
+                var m = ex;
             }
         }
     }

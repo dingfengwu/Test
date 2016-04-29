@@ -1,11 +1,11 @@
 ﻿using Kehu1688.Framework.Base;
-using Kehu1688.Framework.Cache.Model;
+using Kehu1688.Framework.Caches.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Kehu1688.Framework.Cache
+namespace Kehu1688.Framework.Caches
 {
     public class CacheKeyConsole: IEntity<CacheKeyConsole>
     {

@@ -21,7 +21,7 @@ using Microsoft.AspNet.Builder;
 using Microsoft.Extensions.Configuration;
 using Kehu1688.Framework.Config;
 
-namespace Kehu1688.Framework.Cache
+namespace Kehu1688.Framework.Caches
 {
     public  class CacheManager
     {

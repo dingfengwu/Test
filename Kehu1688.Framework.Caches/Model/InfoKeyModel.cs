@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Kehu1688.Framework.Cache.Model
+namespace Kehu1688.Framework.Caches.Model
 {
     public class InfoKeyModel: IEntity<InfoKeyModel>
     {
