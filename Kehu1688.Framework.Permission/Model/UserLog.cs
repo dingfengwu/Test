@@ -86,7 +86,7 @@ namespace Kehu1688.Framework.Permission.Model
         public string oprData { get; set;}
 
         /// <summary>
-        /// 操作
+        /// 操作 
         /// </summary>
         public string operation { get; set;}
 
