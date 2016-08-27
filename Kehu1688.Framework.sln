@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.Base", "Kehu1688.Framework.Base\Kehu1688.Framework.Base.xproj", "{6E386222-257F-4DFD-B3BC-8B42D6BB4DE1}"
 EndProject
@@ -22,7 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04Project", "04Project", "{
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.DI", "Kehu1688.Framework.DI\Kehu1688.Framework.DI.xproj", "{F5617FB4-8A28-45FE-9795-B94A889FA600}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.Permission", "Kehu1688.Framework.Permission\Kehu1688.Framework.Permission.xproj", "{5D17CF54-A0F2-412E-97F2-439FB027F4EA}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.Permission.Model", "Kehu1688.Framework.Permission\Kehu1688.Framework.Permission.Model.xproj", "{5D17CF54-A0F2-412E-97F2-439FB027F4EA}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.API", "Kehu1688.Framework.API\Kehu1688.Framework.API.xproj", "{5117FE33-21FE-4C88-8260-079CA38B2323}"
 EndProject
