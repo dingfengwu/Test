@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.Base", "Kehu1688.Framework.Base\Kehu1688.Framework.Base.xproj", "{6E386222-257F-4DFD-B3BC-8B42D6BB4DE1}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.Store", "Kehu1688.Framework.Store\Kehu1688.Framework.Store.xproj", "{DFD41F65-3BBF-449F-9350-7A811DE73826}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.Database", "Kehu1688.Framework.Store\Kehu1688.Framework.Database.xproj", "{DFD41F65-3BBF-449F-9350-7A811DE73826}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{25BC12DB-296C-4383-A086-3110D25DC385}"
 	ProjectSection(SolutionItems) = preProject
@@ -14,10 +14,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Kehu1688.Framework.AuditsFlow\global.json = Kehu1688.Framework.AuditsFlow\global.json
 		Kehu1688.Framework.Redis\global.json = Kehu1688.Framework.Redis\global.json
 		Kehu1688.Framework.UserLog\global.json = Kehu1688.Framework.UserLog\global.json
-		..\文档\框架设计规范.doc = ..\文档\框架设计规范.doc
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.Permission.Service", "Kehu1688.Framework.Permission.Service\Kehu1688.Framework.Permission.Service.xproj", "{36295C3F-1630-411B-AF34-0380E38804BB}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.Services", "Kehu1688.Framework.Permission.Service\Kehu1688.Framework.Services.xproj", "{36295C3F-1630-411B-AF34-0380E38804BB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01Base", "01Base", "{747D054B-901A-4002-9488-BCDD50F199A8}"
 EndProject
@@ -27,7 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04Project", "04Project", "{
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.DI", "Kehu1688.Framework.DI\Kehu1688.Framework.DI.xproj", "{F5617FB4-8A28-45FE-9795-B94A889FA600}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.Permission.Model", "Kehu1688.Framework.Permission\Kehu1688.Framework.Permission.Model.xproj", "{5D17CF54-A0F2-412E-97F2-439FB027F4EA}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.Model", "Kehu1688.Framework.Permission\Kehu1688.Framework.Model.xproj", "{5D17CF54-A0F2-412E-97F2-439FB027F4EA}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kehu1688.Framework.API", "Kehu1688.Framework.API\Kehu1688.Framework.API.xproj", "{5117FE33-21FE-4C88-8260-079CA38B2323}"
 EndProject
@@ -159,7 +158,7 @@ Global
 		{3CBB30B8-3292-49FE-B949-3316411D31CD} = {2EF2BAC1-4481-40E3-862A-2B7EE2743A73}
 		{AB412132-209A-46A1-8B41-F408184AB556} = {2EF2BAC1-4481-40E3-862A-2B7EE2743A73}
 		{F5617FB4-8A28-45FE-9795-B94A889FA600} = {40BDA379-F074-49AD-A7E8-82DCE7963FC9}
-		{5D17CF54-A0F2-412E-97F2-439FB027F4EA} = {3CBB30B8-3292-49FE-B949-3316411D31CD}
+		{5D17CF54-A0F2-412E-97F2-439FB027F4EA} = {747D054B-901A-4002-9488-BCDD50F199A8}
 		{5117FE33-21FE-4C88-8260-079CA38B2323} = {AB412132-209A-46A1-8B41-F408184AB556}
 		{40BDA379-F074-49AD-A7E8-82DCE7963FC9} = {2EF2BAC1-4481-40E3-862A-2B7EE2743A73}
 		{E6F47FFC-439F-4D13-9BCC-909D7E47CDFE} = {A8B71748-6410-4AB1-AB26-08A71148C7F2}

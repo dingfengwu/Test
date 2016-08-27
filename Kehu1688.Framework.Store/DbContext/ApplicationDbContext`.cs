@@ -11,19 +11,8 @@ using Microsoft.Data.Entity.Infrastructure;
 
 namespace Kehu1688.Framework.Store
 {
-    public class ApplicationDbContext : IdentityDbContext<User,Role,string>
+    public partial class ApplicationDbContext : IdentityDbContext<User,Role,string>
     {
-        public ApplicationDbContext() : base()
-        {
-            this.ChangeTracker.AutoDetectChangesEnabled = false;
-            this.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
-
-        }
-        public ApplicationDbContext(DbContextOptions options) : base(options)
-        {
-
-        }
-        
         /// <summary>
         /// 操作
         /// </summary>
@@ -103,17 +92,6 @@ namespace Kehu1688.Framework.Store
         /// 表与视图
         /// </summary>
         //public DbSet<TableView> TableViews { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            //调用父类方法
-            base.OnModelCreating(builder);
-
-            //注册权限模块部分的模型
-            builder.RegisterPermissionModel();
-            
-        }
-        
         
     }
 }
