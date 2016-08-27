@@ -53,8 +53,9 @@ namespace Kehu1688.Framework.API
         {
             services.AddEntityFramework()
                 .AddSqlServer()
-                .AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(Configuration["Data:Connections:WriteConnectionString"]));
+                .AddDbContext<ApplicationDbContext>(options => 
+                    options.UseSqlServer(Configuration["Data:Connections:WriteConnectionString"])
+                );
 
             //标识身份验证
             services.AddIdentity<User, IdentityRole>(options => {

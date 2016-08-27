@@ -15,7 +15,9 @@ namespace Kehu1688.Framework.Store
     {
         public ApplicationDbContext() : base()
         {
-            
+            this.ChangeTracker.AutoDetectChangesEnabled = false;
+            this.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+
         }
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
@@ -96,12 +98,11 @@ namespace Kehu1688.Framework.Store
         /// 审核流策略
         /// </summary>
         public DbSet<AuditStrategy> AuditStrategys { get; set; }
-
-
+        
         /// <summary>
         /// 表与视图
         /// </summary>
-        public DbSet<TableView> TableViews { get; set; }
+        //public DbSet<TableView> TableViews { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -110,8 +111,9 @@ namespace Kehu1688.Framework.Store
 
             //注册权限模块部分的模型
             builder.RegisterPermissionModel();
+            
         }
-
+        
         
     }
 }

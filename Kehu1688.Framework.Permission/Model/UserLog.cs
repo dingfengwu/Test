@@ -127,7 +127,6 @@ namespace Kehu1688.Framework.Permission.Model
             {
                 return new UserLogViewModel<T>();
             }
-
         }
 
         /// <summary>

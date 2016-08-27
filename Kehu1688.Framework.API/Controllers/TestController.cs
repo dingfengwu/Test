@@ -14,6 +14,7 @@
 
 using Kehu1688.Framework.Base;
 using Kehu1688.Framework.Permission.Service;
+using Kehu1688.Framework.Store;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Mvc;
@@ -30,12 +31,16 @@ namespace Kehu1688.Framework.API.Controllers
     [Route("[controller]")]
     public class TestController: ApiController
     {
-#pragma warning disable 1998
+        #pragma warning disable 1998
         [HttpPost("Test")]
         [PermissionAuthroize(Module = "Customer", Operate = "Edit")]
         public async Task<ApiResult> Test()
         {
-            return this.Good();
+            return new ApiResult
+            {
+                Data = Context.RequestServices.GetService(typeof(ApplicationDbContext)).GetHashCode(),
+                Result = true
+            };
         }
 
         [HttpGet("LongTest")]
@@ -43,9 +48,8 @@ namespace Kehu1688.Framework.API.Controllers
         public async Task<string> LongTest()
         {
             Context.Session.Set("Id", Encoding.UTF8.GetBytes("1"));
-            await Task.Run(() => { Thread.Sleep(30 * 1000); });
+            
             return Context.TraceIdentifier;
-            //return Thread.CurrentThread.ManagedThreadId;
         }
 
         [HttpGet("ShortTest")]
@@ -53,12 +57,8 @@ namespace Kehu1688.Framework.API.Controllers
         public async Task<string> ShortTest()
         {
             Context.Session.Set("Id1", Encoding.UTF8.GetBytes("1"));
-            await Task.Run(() =>
-            {
-                Thread.Sleep(10 * 1000);
-            });
+            
             return Context.TraceIdentifier;
-            //return Thread.CurrentThread.ManagedThreadId;
         }
     }
 }
